@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="K-시니어 미디어 모델 아카데미" />
+  <title>K-SENIOR | 미디어 모델 아카데미</title>
+  <script src="content.js"></script>
+  <style>
+    :root{
+      --ink:#1f2430;
+      --navy:#273a52;
+      --blue:#47637f;
+      --sage:#8b9b8e;
+      --ivory:#f5f1e8;
+      --warm:#ded5c4;
+      --white:#ffffff;
+      --muted:#68707a;
+      --line:#d7d2c8;
+      --shadow:0 18px 50px rgba(31,36,48,.08);
+      --radius:24px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);background:#fff;line-height:1.7;word-break:keep-all}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .ars-bar{position:fixed;top:0;left:0;width:100%;z-index:100;background:var(--navy);color:#fff;min-height:48px;display:flex;align-items:center;justify-content:center;padding:9px 22px;text-align:center;font-size:16px;font-weight:800;box-shadow:0 4px 14px rgba(31,36,48,.12)}
+    .ars-bar strong{margin-right:8px;color:#fff}.ars-bar span{color:#eef2f5}
+    .topbar{position:sticky;top:48px;z-index:50;backdrop-filter:blur(16px);background:rgba(255,255,255,.94);border-bottom:1px solid rgba(31,36,48,.08)}
+    .nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.02em;min-width:0}
+    .brand-logo{display:none;width:auto;max-width:260px;height:52px;object-fit:contain;object-position:left center}
+    .brand-fallback{display:flex;align-items:center;gap:12px}
+    .brand.has-logo .brand-logo{display:block}
+    .brand.has-logo .brand-fallback{display:none}
+    .brand-mark{width:40px;height:40px;border-radius:50%;background:linear-gradient(145deg,var(--navy),var(--sage));position:relative;box-shadow:0 8px 20px rgba(39,58,82,.22);flex:none}
+    .brand-mark:after{content:"";position:absolute;inset:9px;border:1px solid rgba(255,255,255,.8);border-radius:50%}
+    .brand small{display:block;font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.08em}
+    .brand strong{font-size:18px}
+    .navlinks{display:flex;gap:22px;font-weight:700;font-size:14px}
+    .navlinks a{padding:10px 0;position:relative;transition:color .2s ease}
+    .navlinks a:after{content:"";position:absolute;left:0;right:0;bottom:5px;height:2px;background:var(--sage);transform:scaleX(0);transform-origin:left;transition:.2s}
+    .navlinks a:hover{color:var(--blue)}
+    .navlinks a:hover:after{transform:scaleX(1)}
+    .navlinks a.active{color:#557A9E;font-weight:900}
+    .navlinks a.active:after{transform:scaleX(1);background:#557A9E;height:3px}
+    .nav-cta{background:var(--navy);color:#fff;border-radius:999px;padding:11px 18px;font-weight:800;font-size:14px;white-space:nowrap}
+
+    .hero{background:linear-gradient(135deg,#faf8f2 0%,#f5f1e8 46%,#eee8dc 100%);min-height:760px;display:flex;align-items:center;position:relative;overflow:hidden}
+    .hero:before{content:none}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:64px;align-items:center;padding:90px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--navy);font-weight:900;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:34px;height:2px;background:var(--sage)}
+    h1{margin:18px 0 22px;font-size:clamp(48px,7vw,84px);line-height:1.04;letter-spacing:-.055em;white-space:pre-line}
+    .hero p{font-size:20px;color:#4d5560;max-width:650px;margin:0 0 34px;white-space:pre-line}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 24px;border-radius:12px;font-weight:900;border:1px solid transparent;cursor:pointer}
+    .btn.primary{background:var(--navy);color:#fff}
+    .btn.secondary{border-color:var(--navy);color:var(--navy);background:rgba(255,255,255,.45)}
+    .hero-panel{border-radius:34px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.8);box-shadow:var(--shadow);padding:34px}
+    .hero-panel .label{font-size:13px;font-weight:900;color:var(--blue);letter-spacing:.08em}
+    .hero-panel h2{font-size:32px;line-height:1.25;margin:10px 0 24px}
+    .hero-facts{display:grid;gap:2px}
+    .fact{display:grid;grid-template-columns:112px 1fr;gap:12px;padding:15px 0;border-top:1px solid rgba(31,36,48,.1);font-size:16px}
+    .fact b{color:var(--navy)}
+    .tiny{font-size:13px;color:var(--muted);margin-top:20px}
+
+    section{padding:106px 0}
+    .soft{background:linear-gradient(145deg,#faf8f3 0%,#f5f1e8 52%,#eee9df 100%)}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:44px}
+    .section-head h2{font-size:clamp(34px,5vw,54px);line-height:1.1;margin:8px 0 0;letter-spacing:-.04em}
+    .section-head p{max-width:540px;color:var(--muted);font-size:18px;margin:0}
+    .intro-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+    .quote{font-size:34px;line-height:1.35;font-weight:800;letter-spacing:-.03em;color:var(--navy);white-space:pre-line}
+    .bodycopy{font-size:18px;color:#4f5660}
+    .bodycopy p{margin-top:0}
+
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid rgba(31,36,48,.08);border-radius:var(--radius);padding:30px;box-shadow:0 10px 28px rgba(31,36,48,.05)}
+    .num{font-size:13px;font-weight:900;color:var(--sage);letter-spacing:.12em}
+    .card h3{font-size:23px;margin:12px 0}
+    .card p{margin:0;color:var(--muted)}
+
+    .curriculum{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;counter-reset:item}
+    .course{counter-increment:item;display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start;padding:26px;border:1px solid var(--line);border-radius:20px;background:#fff}
+    .course:before{content:counter(item,decimal-leading-zero);width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:900}
+    .course h3{margin:0 0 6px;font-size:21px}.course p{margin:0;color:var(--muted)}
+
+    .benefit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .benefit{background:#fff;border:1px solid rgba(31,36,48,.08);border-radius:22px;padding:26px 22px;min-height:220px;box-shadow:0 10px 28px rgba(31,36,48,.04)}
+    .benefit-icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:900;margin-bottom:20px}
+    .benefit h3{font-size:19px;line-height:1.35;margin:0 0 10px}.benefit p{font-size:15px;color:var(--muted);margin:0}
+
+    .faculty-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .faculty{border:1px solid rgba(31,36,48,.08);border-radius:22px;overflow:hidden;background:#fff}
+    .faculty-photo{aspect-ratio:4/5;background:linear-gradient(145deg,rgba(39,58,82,.92),rgba(139,155,142,.74));display:grid;place-items:center;color:rgba(255,255,255,.74);font-weight:900;letter-spacing:.08em;overflow:hidden}
+    .faculty-photo img{width:100%;height:100%;object-fit:cover}.faculty-info{padding:22px}.faculty-info h3{margin:0 0 4px;font-size:21px}.faculty-info p{margin:0;color:var(--muted);font-size:14px}
+
+    .recruit-wrap{display:grid;grid-template-columns:1.18fr .82fr;gap:28px;align-items:start}
+    .recruit-table{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+    .recruit-row{display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid var(--line)}
+    .recruit-row:last-child{border-bottom:none}.recruit-row b{padding:20px 22px;background:#f3f0e9;color:var(--navy)}.recruit-row span{padding:20px 22px}
+    .price-box{background:var(--navy);color:#fff;border-radius:24px;padding:32px;position:sticky;top:104px}
+    .price-box .small{font-size:13px;letter-spacing:.08em;font-weight:900;color:#c9d2dc}.price-box h3{font-size:25px;margin:8px 0 24px}
+    .price-old{font-size:18px;color:#bac3cc;text-decoration:line-through}.price-arrow{font-size:18px;color:#cbd2d9;margin:3px 0}.price-new{font-size:42px;font-weight:900;letter-spacing:-.04em}.price-note{font-size:14px;color:#cdd5dd;margin:8px 0 24px}
+    .recruit-notes{padding:20px 0 0;margin:0;list-style:none;color:var(--muted);font-size:14px}.recruit-notes li{margin:6px 0}
+
+    .apply-box{background:linear-gradient(135deg,var(--navy),#334f6e);color:#fff;border-radius:30px;padding:48px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+    .apply-box h2{font-size:40px;line-height:1.2;margin:0 0 12px}.apply-box p{color:rgba(255,255,255,.8);font-size:17px;margin:0}.privacy{font-size:13px!important;margin-top:18px!important;color:#cbd3dc!important}
+    .apply-action{display:flex;justify-content:flex-end}.apply-action .btn{background:#fff;color:var(--navy);min-width:220px}
+
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .contact-card{padding:30px;border-top:3px solid var(--sage);background:#fff;box-shadow:var(--shadow)}
+    .contact-card h3{font-size:22px;margin:0 0 16px}.contact-card p{margin:8px 0;color:var(--muted)}.contact-card a{text-decoration:underline;text-underline-offset:3px}
+
+    #contact{padding-bottom:36px;background:transparent}
+    /* 문의 안내 + 협찬사: 하나의 배경 레이어로 연결 */
+    .contact-sponsors-bg{background:linear-gradient(145deg,#faf8f3 0%,#f5f1e8 52%,#eee9df 100%)}
+    #contact.soft{background:transparent}
+    .sponsors{padding:48px 0 84px;background:transparent}
+    .sponsors>.wrap{position:relative}.sponsor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1100px;margin:0 auto}
+    .sponsor{min-height:130px;border:1px solid rgba(255,255,255,.14);border-radius:18px;display:flex;align-items:center;justify-content:center;padding:22px;background:#273a52;transition:.2s;box-shadow:0 8px 20px rgba(31,36,48,.10)}
+    .sponsor:hover{transform:translateY(-3px);background:#314862;box-shadow:0 14px 30px rgba(31,36,48,.18)}.sponsor img{max-width:100%;max-height:70px;object-fit:contain}.sponsor span{font-size:17px;font-weight:900;color:#fff;text-align:center}.sponsor span small{color:#d9e0e7!important}
+
+    footer{background:#f8f6f0;color:#344052;padding:32px 0;border-top:1px solid #ded8ca}.footer-row{display:grid;grid-template-columns:auto 1fr auto;gap:34px;align-items:center}.footer-logos{display:flex;align-items:center;gap:14px;min-width:300px}.footer-logo-link{display:flex;align-items:center}.footer-logo-link img{display:block;max-width:150px;max-height:42px;width:auto;height:auto;object-fit:contain}.footer-x{color:#9a927f;font-size:18px;font-weight:400}.footer-center{text-align:center}.footer-center strong{display:block;color:#273a52;font-size:14px;letter-spacing:.02em}.footer-center p{margin:4px 0 0;color:#6f7781;font-size:13px}.footer-contact{text-align:right;white-space:nowrap;color:#586373;font-size:14px}.footer-contact a{font-weight:800;color:#273a52}.footer-contact span{color:#a7a092;margin:0 7px}
+
+    @media (max-width:980px){.navlinks{display:none}.hero{min-height:auto}.hero-grid,.intro-grid,.recruit-wrap,.apply-box{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.curriculum{grid-template-columns:1fr}.benefit-grid{grid-template-columns:repeat(2,1fr)}.faculty-grid{grid-template-columns:repeat(2,1fr)}.price-box{position:static}.apply-action{justify-content:flex-start}.section-head{display:block}.section-head p{margin-top:16px}}
+    @media (max-width:900px){.sponsor-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:620px){.wrap{width:min(var(--max),calc(100% - 26px))}.nav{min-height:68px}.nav-cta{padding:10px 14px}.brand small{display:none}.brand strong{font-size:15px}.hero-grid{padding:64px 0;gap:34px}h1{font-size:48px}.hero p{font-size:18px}.hero-panel{padding:24px}.fact{grid-template-columns:96px 1fr}section{padding:76px 0}.quote{font-size:28px}.benefit-grid,.faculty-grid,.sponsor-grid,.contact-grid{grid-template-columns:1fr}.recruit-row{grid-template-columns:1fr}.recruit-row b{padding-bottom:8px}.recruit-row span{padding-top:0}.apply-box{padding:32px 24px}.apply-box h2{font-size:32px}.footer-grid{display:block}.footer-links{margin-top:24px;flex-wrap:wrap}.btn{width:100%}.hero-actions{display:grid}.apply-action .btn{min-width:0}}
+
+    @media (max-width:860px){.footer-row{grid-template-columns:1fr;text-align:center;gap:20px}.footer-logos{justify-content:center;min-width:0}.footer-contact{text-align:center;white-space:normal}.footer-center{text-align:center}}
+    @media (max-width:520px){.brand-logo{max-width:190px;height:44px}.footer-logo-link img{max-width:125px;max-height:36px}.footer-logos{gap:10px}.footer-contact{font-size:13px}}
+
+    /* 모집 안내 모달 팝업 */
+    .site-popup{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(31,36,48,.68);backdrop-filter:blur(4px)}
+    .site-popup.is-open{display:flex}
+    .popup-card{position:relative;width:min(560px,100%);max-height:92vh;background:#fff;border-radius:20px;box-shadow:0 24px 80px rgba(31,36,48,.32);overflow:hidden;border:1px solid rgba(39,58,82,.12)}
+    .popup-poster-wrap{display:none;background:#f2f2f2;line-height:0}
+    .popup-poster-wrap.is-visible{display:block}
+    .popup-poster-action{display:none;padding:18px 20px 6px;background:#fff}
+    .popup-poster-action.is-visible{display:block}
+    .popup-poster-action .popup-apply{display:flex;align-items:center;justify-content:center;text-align:center;min-height:54px}
+    .popup-poster{display:block;width:100%;max-height:78vh;object-fit:contain;background:#f2f2f2}
+    .popup-close{position:absolute;right:12px;top:12px;z-index:3;width:48px;height:48px;border:1px solid rgba(255,255,255,.38);border-radius:50%;background:rgba(22,31,43,.76);color:#fff;font-size:30px;line-height:1;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+    .popup-text-content{display:block}
+    .popup-text-content.is-hidden{display:none}
+    .popup-head{background:var(--navy);color:#fff;padding:28px 30px 24px;position:relative}
+    .popup-kicker{font-size:14px;font-weight:900;letter-spacing:.08em;color:#dce5ec;margin-bottom:7px}
+    .popup-head h2{font-size:30px;line-height:1.25;margin:0;padding-right:40px}
+    .popup-body{padding:30px}
+    .popup-body p{font-size:18px;color:#4d5560;white-space:pre-line;margin:0 0 24px}
+    .popup-apply{width:100%;background:var(--navy);color:#fff;font-size:18px}
+    .popup-controls{padding:14px 18px;background:#fff}
+    .popup-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:15px;color:var(--muted)}
+    .popup-today{display:flex;align-items:center;gap:8px;cursor:pointer}
+    .popup-today input{width:20px;height:20px}
+    .popup-text-close{border:0;background:none;color:var(--navy);font-weight:900;font-size:15px;cursor:pointer;padding:8px}
+    @media(max-width:600px){.site-popup{padding:12px}.popup-card{width:min(94vw,520px);max-height:94vh;border-radius:16px}.popup-poster{max-height:80vh}.popup-head{padding:24px}.popup-head h2{font-size:26px}.popup-body{padding:24px}.popup-body p{font-size:17px}.popup-close{width:44px;height:44px;right:8px;top:8px}.popup-bottom{font-size:14px}}
+  </style>
+</head>
+<body>
+<div class="ars-bar" id="arsBar"><strong id="arsTitle"></strong><span id="arsMessage"></span></div>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" id="brandLink" href="#home">
+      <img class="brand-logo" id="brandLogo" src="" alt="K-시니어 미디어 모델 아카데미">
+      <span class="brand-fallback" id="brandFallback"><span class="brand-mark"></span><span><small id="brandEnglish"></small><strong id="brandKorean"></strong></span></span>
+    </a>
+    <nav class="navlinks">
+      <a href="#academy">아카데미 소개</a><a href="#curriculum">커리큘럼</a><a href="#benefits">교육생 특전</a><a href="#faculty">강사진</a><a href="#recruitment">1기 모집</a><a href="#contact">문의</a>
+    </nav>
+    <a class="nav-cta" href="#recruitment">1기 모집 안내</a>
+  </div>
+</header>
+
+<div class="site-popup" id="sitePopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
+  <div class="popup-card">
+    <button class="popup-close" id="popupClose" type="button" aria-label="팝업 닫기">×</button>
+    <div class="popup-poster-wrap" id="popupPosterWrap">
+      <img class="popup-poster" id="popupPoster" alt="K-SENIOR 안내 포스터">
+    </div>
+    <div class="popup-poster-action" id="popupPosterAction">
+      <a class="btn popup-apply" id="popupPosterButton" target="_blank" rel="noopener"></a>
+    </div>
+    <div class="popup-text-content" id="popupTextContent">
+      <div class="popup-head">
+        <div class="popup-kicker" id="popupKicker">K-SENIOR</div>
+        <h2 id="popupTitle"></h2>
+      </div>
+      <div class="popup-body">
+        <p id="popupMessage"></p>
+        <a class="btn popup-apply" id="popupButton" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+    <div class="popup-controls">
+      <div class="popup-bottom">
+        <label class="popup-today"><input type="checkbox" id="popupToday"> 오늘 하루 보지 않기</label>
+        <button class="popup-text-close" id="popupTextClose" type="button">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow" id="heroEyebrow"></div>
+        <h1 id="heroTitle"></h1>
+        <p id="heroDescription"></p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#recruitment" id="heroPrimary"></a>
+          <a class="btn secondary" href="#academy" id="heroSecondary"></a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <div class="label">2026 K-SENIOR 1기</div>
+        <h2>한눈에 보는<br>모집 안내</h2>
+        <div class="hero-facts">
+          <div class="fact"><b>공개 오디션</b><span id="quickAudition"></span></div>
+          <div class="fact"><b>모집 인원</b><span id="quickCapacity"></span></div>
+          <div class="fact"><b>교육 과정</b><span id="quickCourse"></span></div>
+          <div class="fact"><b>신청 마감</b><span id="quickDeadline"></span></div>
+        </div>
+        <div class="tiny">※ 신청자가 많을 경우 조기 마감될 수 있습니다.</div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="academy">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Academy</div><h2 id="academyHeadline"></h2></div><p id="brandSub"></p></div>
+      <div class="intro-grid"><div class="quote" id="academyQuote"></div><div class="bodycopy"><p id="academyText1"></p><p id="academyText2"></p></div></div>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Why K-Senior</div><h2>교육 특징</h2></div><p>모델 교육을 넘어 미디어 경험과 새로운 사회활동의 기회까지 연결합니다.</p></div>
+      <div class="feature-grid" id="featureGrid"></div>
+    </div>
+  </section>
+
+  <section id="curriculum">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Curriculum</div><h2>커리큘럼</h2></div><p>15주 동안 모델, 방송, 이미지, 스피치 역량을 단계적으로 익히는 전문과정입니다.</p></div>
+      <div class="curriculum" id="curriculumGrid"></div>
+    </div>
+  </section>
+
+  <section class="soft" id="benefits">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Benefits</div><h2>K-SENIOR만의 특별한 기회</h2></div><p>교육 과정과 함께 다양한 미디어·모델 활동 및 회원 혜택을 제공합니다.</p></div>
+      <div class="benefit-grid" id="benefitGrid"></div>
+    </div>
+  </section>
+
+  <section id="faculty">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Instructors</div><h2>강사진</h2></div><p>강사진 확정 후 이름, 경력, 사진을 이 영역에 순차적으로 공개할 수 있습니다.</p></div>
+      <div class="faculty-grid" id="facultyGrid"></div>
+    </div>
+  </section>
+
+  <section class="soft" id="recruitment">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Audition</div><h2 id="recruitTitle"></h2></div><p id="recruitSubtitle"></p></div>
+      <div class="recruit-wrap">
+        <div class="recruit-table" id="recruitTable"></div>
+        <aside class="price-box">
+          <div class="small">1기 특별 수강료</div><h3>K-시니어 미디어 모델 아카데미</h3>
+          <div class="price-old" id="priceOld"></div><div class="price-arrow">↓</div><div class="price-new" id="priceNew"></div><div class="price-note" id="priceNote"></div>
+          <a class="btn" style="background:#fff;color:var(--navy);width:100%" href="#application">참가 신청하기</a>
+        </aside>
+      </div>
+      <ul class="recruit-notes" id="recruitNotes"></ul>
+    </div>
+  </section>
+
+  <section id="application">
+    <div class="wrap">
+      <div class="apply-box">
+        <div><div class="eyebrow" style="color:#fff">Application</div><h2 id="applicationTitle"></h2><p id="applicationDescription"></p><p class="privacy" id="privacyNote"></p></div>
+        <div class="apply-action"><a class="btn" id="applicationLink" href="#" target="_blank" rel="noopener"></a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-sponsors-bg">
+  <section class="soft" id="contact">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Contact</div><h2>문의 안내</h2></div><p>아카데미 참가 및 교육과 관련하여 궁금한 사항은 각 사무국으로 문의해 주세요.</p></div>
+      <div class="contact-grid">
+        <div class="contact-card"><h3>한국경제TV 사무국</h3><p>전화 <strong id="wowtvPhone"></strong></p><p><a id="wowtvLink" target="_blank" rel="noopener">한국경제TV 홈페이지 ↗</a></p></div>
+        <div class="contact-card"><h3>시니어패션모델협회(SFMA) 사무국</h3><p>전화 <strong id="sfmaPhone"></strong></p><p><a id="sfmaLink" target="_blank" rel="noopener">SFMA 홈페이지 ↗</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sponsors" id="sponsors">
+    <div class="wrap"><div class="section-head"><div><div class="eyebrow">Sponsors</div><h2>협찬사</h2></div><p>각 협찬사 로고를 누르면 연결된 홈페이지로 이동합니다.</p></div><div class="sponsor-grid" id="sponsorGrid"></div></div>
+  </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-logos" aria-label="주최 기관">
+      <a class="footer-logo-link" id="footerWowtvLink" href="https://www.wowtv.co.kr/" target="_blank" rel="noopener">
+        <img id="footerWowtvLogo" src="" alt="한국경제TV">
+      </a>
+      <span class="footer-x">×</span>
+      <a class="footer-logo-link" id="footerSfmaLink" href="https://www.sfma.kr/" target="_blank" rel="noopener">
+        <img id="footerSfmaLogo" src="" alt="사단법인 시니어패션모델협회">
+      </a>
+    </div>
+    <div class="footer-center">
+      <strong>© 2026 K-SENIOR MEDIA MODEL ACADEMY</strong>
+      <p id="footerMessage"></p>
+    </div>
+    <div class="footer-contact">
+      한국경제TV <a id="footerWowtvPhone" href="#"></a><span>·</span>SFMA <a id="footerSfmaPhone" href="#"></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const C = SITE_CONTENT;
+  const text = (id,value) => document.getElementById(id).textContent = value || "";
+
+  text("arsTitle", C.ars?.title || "ARS 결제 안내");
+  text("arsMessage", C.ars?.message || "ARS 결제 번호 및 안내 문구가 확정되면 이곳에 표시됩니다.");
+
+  text("brandEnglish",C.brand.english); text("brandKorean",C.brand.korean); text("brandSub",C.brand.sub);
+  const brandLink = document.getElementById("brandLink");
+  const brandLogo = document.getElementById("brandLogo");
+  if (C.brand.logo) {
+    brandLogo.src = C.brand.logo;
+    brandLogo.alt = C.brand.logoAlt || C.brand.korean || "K-시니어 미디어 모델 아카데미";
+    brandLink.classList.add("has-logo");
+    brandLogo.onerror = () => brandLink.classList.remove("has-logo");
+  }
+  text("heroEyebrow",C.hero.eyebrow); text("heroTitle",C.hero.title); text("heroDescription",C.hero.description); text("heroPrimary",C.hero.primaryButton); text("heroSecondary",C.hero.secondaryButton);
+  text("quickAudition",C.quickInfo.audition); text("quickCapacity",C.quickInfo.capacity); text("quickCourse",C.quickInfo.course); text("quickDeadline",C.quickInfo.deadline);
+  text("academyHeadline",C.academy.headline); text("academyQuote",`“${C.academy.quote}”`); text("academyText1",C.academy.text1); text("academyText2",C.academy.text2);
+
+  document.getElementById("featureGrid").innerHTML = C.features.map((x,i)=>`<article class="card"><div class="num">${String(i+1).padStart(2,"0")}</div><h3>${x.title}</h3><p>${x.text}</p></article>`).join("");
+  document.getElementById("curriculumGrid").innerHTML = C.curriculum.map(x=>`<article class="course"><div><h3>${x.title}</h3><p>${x.text}</p></div></article>`).join("");
+  document.getElementById("benefitGrid").innerHTML = C.benefits.map((x,i)=>`<article class="benefit"><div class="benefit-icon">${String(i+1).padStart(2,"0")}</div><h3>${x.title}</h3><p>${x.text}</p></article>`).join("");
+  document.getElementById("facultyGrid").innerHTML = C.instructors.map(x=>`<article class="faculty"><div class="faculty-photo">${x.photo ? `<img src="${x.photo}" alt="${x.name}">` : `PHOTO`}</div><div class="faculty-info"><h3>${x.name}</h3><p>${x.role}</p></div></article>`).join("");
+
+  text("recruitTitle",C.recruitment.title); text("recruitSubtitle",C.recruitment.subtitle);
+  document.getElementById("recruitTable").innerHTML = C.recruitment.items.map(x=>`<div class="recruit-row"><b>${x.label}</b><span>${x.value}</span></div>`).join("");
+  text("priceOld",`정상 수강료 ${C.recruitment.originalPrice}`); text("priceNew",C.recruitment.specialPrice); text("priceNote",C.recruitment.priceNote);
+  document.getElementById("recruitNotes").innerHTML = C.recruitment.notes.map(x=>`<li>※ ${x}</li>`).join("");
+
+  text("applicationTitle",C.application.title); text("applicationDescription",C.application.description); text("privacyNote",C.application.privacyNote); text("applicationLink",C.application.buttonText);
+  document.getElementById("applicationLink").href = C.application.applicationUrl || "#";
+
+  text("wowtvPhone",C.contact.wowtvPhone); text("sfmaPhone",C.contact.sfmaPhone);
+  document.getElementById("wowtvLink").href = C.contact.wowtvUrl; document.getElementById("sfmaLink").href = C.contact.sfmaUrl;
+  document.getElementById("footerWowtvLink").href = C.contact.wowtvUrl; document.getElementById("footerSfmaLink").href = C.contact.sfmaUrl;
+  text("footerWowtvPhone",C.contact.wowtvPhone); text("footerSfmaPhone",C.contact.sfmaPhone);
+  document.getElementById("footerWowtvPhone").href = `tel:${C.contact.wowtvPhone.replace(/-/g,"")}`;
+  document.getElementById("footerSfmaPhone").href = `tel:${C.contact.sfmaPhone.replace(/-/g,"")}`;
+
+  document.getElementById("sponsorGrid").innerHTML = C.sponsors.map(x=>`<a class="sponsor" href="${x.url}" target="_blank" rel="noopener">${x.logo ? `<img src="${x.logo}" alt="${x.name}">` : `<span>${x.name}<br><small style="font-weight:700;color:#7d858e">공식 홈페이지 ↗</small></span>`}</a>`).join("");
+
+  document.getElementById("footerWowtvLogo").src = C.footer.wowtvLogo || "";
+  document.getElementById("footerSfmaLogo").src = C.footer.sfmaLogo || "";
+  text("footerMessage",C.footer.message);
+
+
+
+  // 모집 안내 팝업
+  const popupConfig = C.popup || {};
+  const sitePopup = document.getElementById("sitePopup");
+  const popupToday = document.getElementById("popupToday");
+  const popupStorageKey = "kSeniorPosterPopupHiddenUntil_v2";
+  const isPopupHiddenToday = () => {
+    try { return localStorage.getItem(popupStorageKey) === new Date().toISOString().slice(0,10); } catch(e) { return false; }
+  };
+  const closeSitePopup = () => {
+    if (popupToday.checked) {
+      try { localStorage.setItem(popupStorageKey, new Date().toISOString().slice(0,10)); } catch(e) {}
+    }
+    sitePopup.classList.remove("is-open");
+    sitePopup.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  };
+  if (popupConfig.enabled && !isPopupHiddenToday()) {
+    const posterImage = popupConfig.posterImage || "";
+    const popupTarget = popupConfig.buttonUrl || C.application.applicationUrl || "#";
+    const posterWrap = document.getElementById("popupPosterWrap");
+    const poster = document.getElementById("popupPoster");
+    const posterAction = document.getElementById("popupPosterAction");
+    const posterButton = document.getElementById("popupPosterButton");
+    const textContent = document.getElementById("popupTextContent");
+
+    const showTextPopup = () => {
+      posterWrap.classList.remove("is-visible");
+      posterAction.classList.remove("is-visible");
+      textContent.classList.remove("is-hidden");
+      text("popupKicker", popupConfig.kicker || "K-SENIOR");
+      text("popupTitle", popupConfig.title || "K-SENIOR 1기 모집 안내");
+      text("popupMessage", popupConfig.message || "2026년 10월 17일 공개 오디션");
+      text("popupButton", popupConfig.buttonText || "참가신청 바로가기");
+      document.getElementById("popupButton").href = popupTarget;
+    };
+
+    if (posterImage) {
+      poster.alt = popupConfig.posterAlt || "K-SENIOR 안내 포스터";
+      text(posterButton.id, popupConfig.buttonText || "참가신청 바로가기");
+      posterButton.href = popupTarget;
+      poster.onload = () => {
+        posterWrap.classList.add("is-visible");
+        posterAction.classList.add("is-visible");
+        textContent.classList.add("is-hidden");
+      };
+      poster.onerror = showTextPopup;
+      poster.src = posterImage;
+    } else {
+      showTextPopup();
+    }
+    sitePopup.classList.add("is-open");
+    sitePopup.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+  }
+  document.getElementById("popupClose").addEventListener("click", closeSitePopup);
+  document.getElementById("popupTextClose").addEventListener("click", closeSitePopup);
+  sitePopup.addEventListener("click", e => { if (e.target === sitePopup) closeSitePopup(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && sitePopup.classList.contains("is-open")) closeSitePopup(); });
+
+
+  // 상단 메뉴 현재 섹션 표시 (Scroll Spy)
+  const navCategoryLinks = [...document.querySelectorAll('.navlinks a[href^="#"]')];
+  const categoryMap = [
+    { id: "academy", nav: "academy" },
+    { id: "curriculum", nav: "curriculum" },
+    { id: "benefits", nav: "benefits" },
+    { id: "faculty", nav: "faculty" },
+    { id: "recruitment", nav: "recruitment" },
+    { id: "application", nav: "recruitment" },
+    { id: "contact", nav: "contact" },
+    { id: "sponsors", nav: "contact" }
+  ];
+
+  const setActiveCategory = (targetId) => {
+    navCategoryLinks.forEach(link => {
+      const isActive = link.getAttribute('href') === `#${targetId}`;
+      link.classList.toggle('active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const updateActiveCategory = () => {
+    const fixedOffset = 48 + 78 + 28; // ARS 바 + 상단 메뉴 + 여유값
+    const y = window.scrollY + fixedOffset;
+    let current = null;
+
+    categoryMap.forEach(item => {
+      const section = document.getElementById(item.id);
+      if (section && section.offsetTop <= y) current = item.nav;
+    });
+
+    if (current) setActiveCategory(current);
+    else navCategoryLinks.forEach(link => {
+      link.classList.remove('active');
+      link.removeAttribute('aria-current');
+    });
+  };
+
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        updateActiveCategory();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+  navCategoryLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const targetId = link.getAttribute('href').slice(1);
+      setActiveCategory(targetId);
+    });
+  });
+  window.addEventListener('resize', updateActiveCategory);
+  updateActiveCategory();
+</script>
+</body>
+</html>

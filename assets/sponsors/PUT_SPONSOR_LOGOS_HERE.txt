@@ -1,0 +1,8 @@
+이 폴더에 협찬사 로고 4개와 푸터 로고 2개를 넣으세요.
+
+푸터 기본 파일명:
+- wowtv-logo.png
+- sfma-logo.png
+
+협찬사 로고 파일명은 content.js의 sponsors 항목과 정확히 일치해야 합니다.
+PNG/SVG 모두 지원합니다.

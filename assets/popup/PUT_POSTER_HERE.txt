@@ -1,0 +1,14 @@
+팝업 포스터 이미지 넣는 곳
+
+기본 파일명: poster.png
+경로: assets/popup/poster.png
+
+PNG, JPG, WEBP 사용 가능
+세로형 포스터 권장 비율: 약 4:5 ~ 2:3
+권장 크기: 가로 1000~1400px 정도
+
+다른 파일명을 쓰려면 content.js의 popup.posterImage 경로만 바꾸세요.
+예: posterImage: "assets/popup/k-senior-audition.jpg"
+
+포스터를 클릭하면 popup.buttonUrl 주소로 이동합니다.
+posterImage를 빈 문자열("")로 바꾸면 기존 텍스트형 팝업으로 돌아갑니다.
