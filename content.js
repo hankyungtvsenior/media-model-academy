@@ -3,9 +3,6 @@ const SITE_CONTENT = {
     english: "K-SENIOR MEDIA MODEL ACADEMY",
     korean: "K-시니어 미디어 모델 아카데미",
     sub: "한국경제TV × 사단법인 시니어패션모델협회",
-
-    // 로고 확정 전에는 빈칸("")으로 두면 기존 텍스트 로고가 표시됩니다.
-    // 로고 확정 후 예: "assets/brand/k-senior-logo.png"
     logo: "",
     logoAlt: "K-시니어 미디어 모델 아카데미"
   },
@@ -15,20 +12,13 @@ const SITE_CONTENT = {
     message: "ARS 결제 번호 및 안내 문구가 확정되면 이곳에 표시됩니다."
   },
 
-
   popup: {
     enabled: true,
-
-    // 포스터 팝업 사용 시 이미지 경로를 입력하세요. 비워두면 아래 텍스트형 팝업이 표시됩니다.
     posterImage: "assets/popup/poster.jpg",
     posterAlt: "K-시니어 미디어 모델 아카데미 1기 모집안내",
-
-    // 포스터 아래 참가신청 버튼을 눌렀을 때 이동할 주소
     buttonUrl: "https://form.naver.com/response/jNOhKvMCS5",
-
-    // posterImage를 비워둘 때만 사용하는 텍스트 팝업 내용
-    kicker: "K-SENIOR 1기 모집",
-    title: "K-SENIOR 1기 공개 오디션",
+    kicker: "K-SENIOR MEDIA MODEL ACADEMY 1기 모집",
+    title: "K-시니어 미디어 모델 아카데미 1기 공개 오디션",
     message: "2026년 10월 17일(토) 공개 오디션\n신청 마감 2026년 10월 15일 23:59",
     buttonText: "참가신청 바로가기"
   },
