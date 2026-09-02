@@ -86,7 +86,7 @@ const SITE_CONTENT = {
   ],
 
   recruitment: {
-    title: "2026 K-SENIOR MEDIA MODEL ACADEMY 1기 모집",
+    title: "2026 K-시니어 미디어 모델 아카데미 1기 모집",
     subtitle: "새로운 무대를 향한 첫걸음, 공개 오디션에서 시작합니다.",
     items: [
       { label: "공개 오디션", value: "2026년 10월 17일(토)" },
