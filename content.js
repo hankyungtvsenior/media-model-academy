@@ -79,14 +79,14 @@ const SITE_CONTENT = {
   ],
 
   instructors: [
-    { name: "강사 정보 준비 중", role: "강사진 정보가 확정되면 입력해 주세요.", photo: "" },
-    { name: "강사 정보 준비 중", role: "강사진 정보가 확정되면 입력해 주세요.", photo: "" },
-    { name: "강사 정보 준비 중", role: "강사진 정보가 확정되면 입력해 주세요.", photo: "" },
-    { name: "강사 정보 준비 중", role: "강사진 정보가 확정되면 입력해 주세요.", photo: "" }
+    { name: "강사진 추후 공개", role: "곧 공개됩니다.", photo: "" },
+    { name: "강사진 추후 공개", role: "곧 공개됩니다.", photo: "" },
+    { name: "강사진 추후 공개", role: "곧 공개됩니다.", photo: "" },
+    { name: "강사진 추후 공개", role: "곧 공개됩니다.", photo: "" }
   ],
 
   recruitment: {
-    title: "2026 K-SENIOR 1기 모집",
+    title: "2026 K-SENIOR MEDIA MODEL ACADEMY 1기 모집",
     subtitle: "새로운 무대를 향한 첫걸음, 공개 오디션에서 시작합니다.",
     items: [
       { label: "공개 오디션", value: "2026년 10월 17일(토)" },
