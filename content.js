@@ -70,56 +70,54 @@ const SITE_CONTENT = {
 
 instructors: [
   {
-  name: "윤일향",
-  role: "사단법인 시니어패션모델협회 이사장",
-  photos: [
-    "assets/instructors/instructor1-1.jpg",
-    "assets/instructors/instructor1-2.jpg",
-    "assets/instructors/instructor1-3.jpg"
-  ],
-  career: [
-    "사단법인 K뷰티연합회 의장",
-    "서울특별시 성동구립미술관 건립추진위원회 위원",
-    "용인대학교 대학원 경영학 박사",
-    "성동문화재단 「크리에이티브 X 성수」 기획위원회 위원",
-    "서울특별시 성동구의회 의장·국회의원·성동구청장 표창"
-  ]
-},
+    name: "윤일향",
+    role: "사단법인 시니어패션모델협회 이사장",
+    photos: [
+      "assets/instructors/instructor1-1.jpg",
+      "assets/instructors/instructor1-2.jpg"
+    ],
+    career: [
+      "사단법인 K뷰티연합회 의장",
+      "서울특별시 성동구립미술관 건립추진위원회 위원",
+      "용인대학교 대학원 경영학 박사",
+      "성동문화재단 「크리에이티브 X 성수」 기획위원회 위원",
+      "서울특별시 성동구의회 의장·국회의원·성동구청장 표창"
+    ]
+  },
 
- {
-  name: "오시은",
-  role: "패션모델 · 워킹교육 강사 · 패션/브랜드 콘텐츠 전문강사",
-  photos: [
-    "assets/instructors/instructor2-1.jpg",
-    "assets/instructors/instructor2-2.jpg",
-    "assets/instructors/instructor2-3.jpg"
-  ],
-  career: [
-    "동덕여자대학교 모델과 졸업",
-    "프리랜서 패션모델 및 모델 워킹교육 강사",
-    "SFMA·ELITE MODEL AGENCY 등 모델 워킹 및 교육 진행",
-    "Marc Jacobs·Dior·Prada 등 국내외 패션쇼 참여",
-    "ELLE·COSMOPOLITAN·BAZAAR·VOGUE GIRL 등 패션 미디어 활동",
-    "브랜드 광고·매거진·주얼리쇼 등 다수 프로젝트 참여"
-  ]
-},
-{
-  name: "황정환",
-  role: "패션모델 · 패션/미디어 콘텐츠 모델",
-  photos: [
-    "assets/instructors/instructor3-1.jpg",
-    "assets/instructors/instructor3-2.jpg",
-    "assets/instructors/instructor3-3.jpg"
-  ],
-  career: [
-    "국내외 패션위크 및 브랜드 런웨이 다수 참여",
-    "서울패션위크·밀라노 패션위크 등 패션쇼 활동",
-    "브랜드 룩북 및 패션필름 모델 다수 참여",
-    "광고·CF·방송 등 미디어 콘텐츠 출연",
-    "국내외 아티스트 뮤직비디오 다수 출연",
-    "패션·광고·영상 콘텐츠 전반에서 모델 활동"
-  ]
-}
+  {
+    name: "오시은",
+    role: "패션모델 · 워킹교육 강사 · 패션/브랜드 콘텐츠 전문강사",
+    photos: [
+      "assets/instructors/instructor2-1.jpg",
+      "assets/instructors/instructor2-2.jpg"
+    ],
+    career: [
+      "동덕여자대학교 모델과 졸업",
+      "프리랜서 패션모델 및 모델 워킹교육 강사",
+      "SFMA·ELITE MODEL AGENCY 등 모델 워킹 및 교육 진행",
+      "Marc Jacobs·Dior·Prada 등 국내외 패션쇼 참여",
+      "ELLE·COSMOPOLITAN·BAZAAR·VOGUE GIRL 등 패션 미디어 활동",
+      "브랜드 광고·매거진·주얼리쇼 등 다수 프로젝트 참여"
+    ]
+  },
+
+  {
+    name: "황정환",
+    role: "패션모델 · 패션/미디어 콘텐츠 모델",
+    photos: [
+      "assets/instructors/instructor3-1.jpg",
+      "assets/instructors/instructor3-2.jpg"
+    ],
+    career: [
+      "국내외 패션위크 및 브랜드 런웨이 다수 참여",
+      "서울패션위크·밀라노 패션위크 등 패션쇼 활동",
+      "브랜드 룩북 및 패션필름 모델 다수 참여",
+      "광고·CF·방송 등 미디어 콘텐츠 출연",
+      "국내외 아티스트 뮤직비디오 다수 출연",
+      "패션·광고·영상 콘텐츠 전반에서 모델 활동"
+    ]
+  }
 ],
 
   recruitment: {
