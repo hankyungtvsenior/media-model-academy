@@ -75,7 +75,7 @@
     .soft{background:linear-gradient(145deg,#faf8f3 0%,#f5f1e8 52%,#eee9df 100%)}
     .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:44px}
     .section-head h2{font-size:clamp(34px,5vw,54px);line-height:1.1;margin:8px 0 0;letter-spacing:-.04em}
-    .section-head p{max-width:540px;color:var(--muted);font-size:18px;margin:0}
+    .section-head p{max-width:540px;color:var(--muted);font-size:18px;margin:0;white-space:nowrap;}
     .intro-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
     .quote{font-size:34px;line-height:1.35;font-weight:800;letter-spacing:-.03em;color:var(--navy);white-space:pre-line}
     .bodycopy{font-size:18px;color:#4f5660}
@@ -162,6 +162,248 @@
     .popup-today input{width:20px;height:20px}
     .popup-text-close{border:0;background:none;color:var(--navy);font-weight:900;font-size:15px;cursor:pointer;padding:8px}
     @media(max-width:600px){.site-popup{padding:12px}.popup-card{width:min(94vw,520px);max-height:94vh;border-radius:16px}.popup-poster{max-height:80vh}.popup-head{padding:24px}.popup-head h2{font-size:26px}.popup-body{padding:24px}.popup-body p{font-size:17px}.popup-close{width:44px;height:44px;right:8px;top:8px}.popup-bottom{font-size:14px}}
+/* =========================
+   MOTION SYSTEM
+========================= */
+
+/* 기본 스크롤 등장 */
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity .75s ease,
+    transform .75s cubic-bezier(.22,.61,.36,1);
+}
+
+.motion-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* 왼쪽에서 살짝 들어오는 작은 영문 라벨 */
+.motion-eyebrow {
+  opacity: 0;
+  transform: translateX(-22px);
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.22,.61,.36,1);
+}
+
+.motion-eyebrow.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* 카드 순차 등장 */
+.motion-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .65s ease,
+    transform .65s cubic-bezier(.22,.61,.36,1);
+}
+
+.motion-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* HERO 처음 등장 */
+.hero .eyebrow,
+.hero h1,
+.hero > .wrap p,
+.hero .hero-actions,
+.hero .hero-panel {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroReveal .8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.hero .eyebrow {
+  animation-delay: .1s;
+}
+
+.hero h1 {
+  animation-delay: .22s;
+}
+
+.hero > .wrap p {
+  animation-delay: .34s;
+}
+
+.hero .hero-actions {
+  animation-delay: .46s;
+}
+
+.hero .hero-panel {
+  animation-delay: .58s;
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 버튼 Hover */
+.btn {
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(31,36,48,.16);
+}
+
+
+/* 일반 카드 Hover */
+.card,
+.course,
+.benefit,
+.faculty,
+.sponsor-card {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    filter .3s ease;
+}
+
+.card:hover,
+.course:hover,
+.benefit:hover,
+.faculty:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(31,36,48,.11);
+}
+
+
+/* 협찬사 */
+.sponsor-card:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.08);
+}
+
+.sponsor-card img {
+  transition: transform .3s ease;
+}
+
+.sponsor-card:hover img {
+  transform: scale(1.035);
+}
+
+
+/* 모션 최소화 설정 사용자 대응 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .motion-reveal,
+  .motion-eyebrow,
+  .motion-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+/* 강사진 무조건 세로 1열 */
+.faculty-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:24px !important;
+}
+
+/* 강사 1명 = 사진 왼쪽 + 약력 오른쪽 */
+.faculty{
+  display:grid !important;
+  grid-template-columns:220px minmax(0, 1fr) !important;
+  gap:36px !important;
+  align-items:center !important;
+
+  width:100% !important;
+  box-sizing:border-box;
+
+  padding:28px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+
+.faculty-photo{
+  width:220px;
+  aspect-ratio:4 / 5;
+  overflow:hidden;
+  border-radius:18px;
+  background:#eef0f2;
+}
+
+.faculty-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.faculty-info{
+  min-width:0;
+}
+
+/* 모바일에서는 사진 위, 약력 아래 */
+@media(max-width:700px){
+  .faculty{
+    grid-template-columns:1fr !important;
+    gap:22px !important;
+  }
+
+  .faculty-photo{
+    width:100%;
+    max-width:280px;
+    margin:0 auto;
+  }
+}
+/* =========================
+   강사진 사진 슬라이드쇼
+========================= */
+
+.faculty-photo{
+  position:relative;
+}
+
+.faculty-slide{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  opacity:0;
+
+  transition:opacity 1.6s ease-in-out;
+}
+
+.faculty-slide.active{
+  opacity:1;
+}
   </style>
 </head>
 <body>
@@ -352,8 +594,44 @@
 
   document.getElementById("featureGrid").innerHTML = C.features.map((x,i)=>`<article class="card"><div class="num">${String(i+1).padStart(2,"0")}</div><h3>${x.title}</h3><p>${x.text}</p></article>`).join("");
   document.getElementById("curriculumGrid").innerHTML = C.curriculum.map(x=>`<article class="course"><div><h3>${x.title}</h3><p>${x.text}</p></div></article>`).join("");
-  document.getElementById("benefitGrid").innerHTML = C.benefits.map((x,i)=>`<article class="benefit"><div class="benefit-icon">${String(i+1).padStart(2,"0")}</div><h3>${x.title}</h3><p>${x.text}</p></article>`).join("");
-  document.getElementById("facultyGrid").innerHTML = C.instructors.map(x=>`<article class="faculty"><div class="faculty-photo">${x.photo ? `<img src="${x.photo}" alt="${x.name}">` : `PHOTO`}</div><div class="faculty-info"><h3>${x.name}</h3><p>${x.role}</p></div></article>`).join("");
+  document.getElementById("facultyGrid").innerHTML =
+  C.instructors.map((x, instructorIndex) => `
+    <article class="faculty">
+
+      <div class="faculty-photo">
+        ${
+          x.photos && x.photos.length
+            ? x.photos.map((photo, photoIndex) => `
+                <img
+                  src="${photo}"
+                  alt="${x.name} ${photoIndex + 1}"
+                  class="faculty-slide ${photoIndex === 0 ? "active" : ""}"
+                >
+              `).join("")
+            : `<span>PHOTO</span>`
+        }
+      </div>
+
+      <div class="faculty-info">
+        <h3>${x.name}</h3>
+
+        ${
+          x.role
+            ? `<p class="faculty-role">${x.role}</p>`
+            : ""
+        }
+
+        ${
+          x.career && x.career.length
+            ? `<ul class="faculty-career">
+                ${x.career.map(item => `<li>${item}</li>`).join("")}
+               </ul>`
+            : ""
+        }
+      </div>
+
+    </article>
+  `).join("");
 
   text("recruitTitle",C.recruitment.title); text("recruitSubtitle",C.recruitment.subtitle);
   document.getElementById("recruitTable").innerHTML = C.recruitment.items.map(x=>`<div class="recruit-row"><b>${x.label}</b><span>${x.value}</span></div>`).join("");
@@ -496,5 +774,32 @@
   window.addEventListener('resize', updateActiveCategory);
   updateActiveCategory();
 </script>
+<script>
+  // 기존 사이트 JS 왕창
+</script>
+
+<script>
+  // 강사진 사진 슬라이드쇼
+  document.querySelectorAll(".faculty-photo").forEach((slider, sliderIndex) => {
+    const slides = slider.querySelectorAll(".faculty-slide");
+
+    if (slides.length <= 1) return;
+
+    let current = 0;
+
+    setTimeout(() => {
+      setInterval(() => {
+        slides[current].classList.remove("active");
+
+        current = (current + 1) % slides.length;
+
+        slides[current].classList.add("active");
+      }, 6000);
+    }, sliderIndex * 900);
+  });
+</script>
+
+</body>
+</html>
 </body>
 </html>
