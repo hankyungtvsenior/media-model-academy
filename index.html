@@ -6,7 +6,7 @@
   <meta name="description" content="K-시니어 미디어 모델 아카데미">
   <title>K-SENIOR MEDIA MODEL ACADEMY | K-시니어 미디어 모델 아카데미</title>
 
-  <script src="content.js?v=20260904-1"></script>
+  <script src="content.js?v=20260909-1"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +17,7 @@
       --ink:#1f2430;
       --navy:#273a52;
       --blue:#47637f;
+      --active:#557A9E;
       --sage:#8b9b8e;
       --ivory:#f5f1e8;
       --warm:#ded5c4;
@@ -28,13 +29,9 @@
       --max:1180px;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box}
 
-    html{
-      scroll-behavior:smooth;
-    }
+    html{scroll-behavior:smooth}
 
     body{
       margin:0;
@@ -45,12 +42,7 @@
       word-break:keep-all;
     }
 
-    button,
-    input,
-    textarea,
-    select{
-      font:inherit;
-    }
+    button,input,textarea,select{font:inherit}
 
     a{
       color:inherit;
@@ -62,9 +54,9 @@
       margin:0 auto;
     }
 
-    /* =========================
+    /* =====================
        ARS
-    ========================= */
+    ===================== */
 
     .ars-bar{
       position:fixed;
@@ -85,18 +77,12 @@
       box-shadow:0 4px 14px rgba(31,36,48,.12);
     }
 
-    .ars-bar strong{
-      margin-right:8px;
-      color:#fff;
-    }
+    .ars-bar strong{margin-right:8px}
+    .ars-bar span{color:#eef2f5}
 
-    .ars-bar span{
-      color:#eef2f5;
-    }
-
-    /* =========================
+    /* =====================
        HEADER
-    ========================= */
+    ===================== */
 
     .topbar{
       position:sticky;
@@ -120,7 +106,6 @@
       align-items:center;
       gap:12px;
       font-weight:900;
-      letter-spacing:.02em;
       min-width:0;
     }
 
@@ -133,18 +118,13 @@
       object-position:left center;
     }
 
+    .brand.has-logo .brand-logo{display:block}
+    .brand.has-logo .brand-fallback{display:none}
+
     .brand-fallback{
       display:flex;
       align-items:center;
       gap:12px;
-    }
-
-    .brand.has-logo .brand-logo{
-      display:block;
-    }
-
-    .brand.has-logo .brand-fallback{
-      display:none;
     }
 
     .brand-mark{
@@ -153,7 +133,6 @@
       border-radius:50%;
       background:linear-gradient(145deg,var(--navy),var(--sage));
       position:relative;
-      box-shadow:0 8px 20px rgba(39,58,82,.22);
       flex:none;
     }
 
@@ -173,9 +152,7 @@
       letter-spacing:.08em;
     }
 
-    .brand strong{
-      font-size:18px;
-    }
+    .brand strong{font-size:18px}
 
     .navlinks{
       display:flex;
@@ -187,7 +164,6 @@
     .navlinks a{
       padding:10px 0;
       position:relative;
-      transition:color .2s ease;
     }
 
     .navlinks a:after{
@@ -197,30 +173,23 @@
       right:0;
       bottom:5px;
       height:2px;
-      background:var(--sage);
+      background:var(--active);
       transform:scaleX(0);
       transform-origin:left;
       transition:.2s;
     }
 
-    .navlinks a:hover{
-      color:var(--blue);
-    }
-
-    .navlinks a:hover:after{
-      transform:scaleX(1);
-    }
-
+    .navlinks a:hover,
     .navlinks a.active{
-      color:#557A9E;
-      font-weight:900;
+      color:var(--active);
     }
 
+    .navlinks a:hover:after,
     .navlinks a.active:after{
       transform:scaleX(1);
-      background:#557A9E;
-      height:3px;
     }
+
+    .navlinks a.active:after{height:3px}
 
     .nav-cta{
       background:var(--navy);
@@ -232,9 +201,9 @@
       white-space:nowrap;
     }
 
-    /* =========================
+    /* =====================
        HERO
-    ========================= */
+    ===================== */
 
     .hero{
       background:linear-gradient(
@@ -246,7 +215,6 @@
       min-height:760px;
       display:flex;
       align-items:center;
-      position:relative;
       overflow:hidden;
     }
 
@@ -302,17 +270,13 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
       min-height:54px;
       padding:0 24px;
       border-radius:12px;
       font-weight:900;
       border:1px solid transparent;
       cursor:pointer;
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        filter .25s ease;
+      transition:.25s ease;
     }
 
     .btn:hover{
@@ -333,8 +297,8 @@
 
     .hero-panel{
       border-radius:34px;
-      background:rgba(255,255,255,.72);
-      border:1px solid rgba(255,255,255,.8);
+      background:rgba(255,255,255,.75);
+      border:1px solid rgba(255,255,255,.9);
       box-shadow:var(--shadow);
       padding:34px;
     }
@@ -352,10 +316,27 @@
       margin:10px 0 24px;
     }
 
-    .hero-facts{
-      display:grid;
-      gap:2px;
+    /* D-DAY */
+
+    .deadline-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 16px;
+      border-radius:999px;
+      background:var(--navy);
+      color:#fff;
+      font-size:14px;
+      font-weight:900;
+      margin-bottom:18px;
     }
+
+    .deadline-badge.closed{
+      background:#737a82;
+    }
+
+    .hero-facts{display:grid}
 
     .fact{
       display:grid;
@@ -363,12 +344,9 @@
       gap:12px;
       padding:15px 0;
       border-top:1px solid rgba(31,36,48,.1);
-      font-size:16px;
     }
 
-    .fact b{
-      color:var(--navy);
-    }
+    .fact b{color:var(--navy)}
 
     .tiny{
       font-size:13px;
@@ -376,13 +354,11 @@
       margin-top:20px;
     }
 
-    /* =========================
-       COMMON SECTION
-    ========================= */
+    /* =====================
+       COMMON
+    ===================== */
 
-    section{
-      padding:106px 0;
-    }
+    section{padding:106px 0}
 
     .soft{
       background:linear-gradient(
@@ -396,8 +372,8 @@
     .section-head{
       display:flex;
       justify-content:space-between;
-      gap:30px;
       align-items:end;
+      gap:30px;
       margin-bottom:44px;
     }
 
@@ -419,14 +395,12 @@
       display:grid;
       grid-template-columns:.85fr 1.15fr;
       gap:60px;
-      align-items:start;
     }
 
     .quote{
       font-size:34px;
       line-height:1.35;
       font-weight:800;
-      letter-spacing:-.03em;
       color:var(--navy);
       white-space:pre-line;
     }
@@ -436,13 +410,9 @@
       color:#4f5660;
     }
 
-    .bodycopy p{
-      margin-top:0;
-    }
-
-    /* =========================
+    /* =====================
        FEATURES
-    ========================= */
+    ===================== */
 
     .feature-grid{
       display:grid;
@@ -453,7 +423,7 @@
     .card{
       background:#fff;
       border:1px solid rgba(31,36,48,.08);
-      border-radius:var(--radius);
+      border-radius:24px;
       padding:30px;
       box-shadow:0 10px 28px rgba(31,36,48,.05);
     }
@@ -475,9 +445,9 @@
       color:var(--muted);
     }
 
-    /* =========================
+    /* =====================
        CURRICULUM
-    ========================= */
+    ===================== */
 
     .curriculum{
       display:grid;
@@ -491,7 +461,6 @@
       display:grid;
       grid-template-columns:64px 1fr;
       gap:20px;
-      align-items:start;
       padding:26px;
       border:1px solid var(--line);
       border-radius:20px;
@@ -520,9 +489,9 @@
       color:var(--muted);
     }
 
-    /* =========================
+    /* =====================
        BENEFITS
-    ========================= */
+    ===================== */
 
     .benefit-grid{
       display:grid;
@@ -537,6 +506,12 @@
       padding:26px 22px;
       min-height:220px;
       box-shadow:0 10px 28px rgba(31,36,48,.04);
+      transition:.3s ease;
+    }
+
+    .benefit:hover{
+      transform:translateY(-5px);
+      box-shadow:0 18px 40px rgba(31,36,48,.1);
     }
 
     .benefit-icon{
@@ -553,8 +528,8 @@
 
     .benefit h3{
       font-size:19px;
-      line-height:1.35;
       margin:0 0 10px;
+      line-height:1.35;
     }
 
     .benefit p{
@@ -563,9 +538,9 @@
       margin:0;
     }
 
-    /* =========================
+    /* =====================
        FACULTY
-    ========================= */
+    ===================== */
 
     .faculty-grid{
       display:grid;
@@ -578,33 +553,20 @@
       grid-template-columns:220px minmax(0,1fr);
       gap:36px;
       align-items:center;
-      width:100%;
       padding:28px;
       background:#fff;
       border:1px solid var(--line);
       border-radius:24px;
       box-shadow:var(--shadow);
-      transition:
-        transform .3s ease,
-        box-shadow .3s ease;
-    }
-
-    .faculty:hover{
-      transform:translateY(-5px);
-      box-shadow:0 18px 40px rgba(31,36,48,.11);
     }
 
     .faculty-photo{
       position:relative;
       width:220px;
-      aspect-ratio:4 / 5;
+      aspect-ratio:4/5;
       overflow:hidden;
       border-radius:18px;
       background:#eef0f2;
-      display:grid;
-      place-items:center;
-      color:var(--muted);
-      font-weight:900;
     }
 
     .faculty-slide{
@@ -613,24 +575,49 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      display:block;
       opacity:0;
       visibility:hidden;
-      z-index:1;
       transition:
-        opacity 1.2s ease-in-out,
-        visibility 1.2s ease-in-out;
+        opacity 1.2s ease,
+        visibility 1.2s ease;
     }
 
     .faculty-slide.active{
       opacity:1;
       visibility:visible;
-      z-index:2;
     }
 
-    .faculty-info{
-      min-width:0;
+    /* 사진 슬라이드 도트 */
+
+    .faculty-dots{
+      position:absolute;
+      left:50%;
+      bottom:12px;
+      transform:translateX(-50%);
+      z-index:5;
+      display:flex;
+      gap:7px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(20,25,32,.32);
+      backdrop-filter:blur(5px);
+    }
+
+    .faculty-dot{
+      width:7px;
+      height:7px;
       padding:0;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.48);
+      cursor:pointer;
+      transition:.25s;
+    }
+
+    .faculty-dot.active{
+      width:18px;
+      border-radius:999px;
+      background:#fff;
     }
 
     .faculty-info h3{
@@ -640,9 +627,9 @@
     }
 
     .faculty-role{
-      margin:0 0 18px !important;
-      color:var(--blue) !important;
-      font-size:16px !important;
+      margin:0 0 18px;
+      color:var(--blue);
+      font-size:16px;
       font-weight:800;
     }
 
@@ -656,9 +643,9 @@
       margin:5px 0;
     }
 
-    /* =========================
+    /* =====================
        RECRUITMENT
-    ========================= */
+    ===================== */
 
     .recruit-wrap{
       display:grid;
@@ -681,9 +668,7 @@
       border-bottom:1px solid var(--line);
     }
 
-    .recruit-row:last-child{
-      border-bottom:none;
-    }
+    .recruit-row:last-child{border-bottom:none}
 
     .recruit-row b{
       padding:20px 22px;
@@ -706,7 +691,6 @@
 
     .price-box .small{
       font-size:13px;
-      letter-spacing:.08em;
       font-weight:900;
       color:#c9d2dc;
     }
@@ -723,7 +707,6 @@
     }
 
     .price-arrow{
-      font-size:18px;
       color:#cbd2d9;
       margin:3px 0;
     }
@@ -731,7 +714,6 @@
     .price-new{
       font-size:42px;
       font-weight:900;
-      letter-spacing:-.04em;
     }
 
     .price-note{
@@ -748,13 +730,71 @@
       font-size:14px;
     }
 
-    .recruit-notes li{
-      margin:6px 0;
+    /* =====================
+       TIMELINE
+    ===================== */
+
+    .timeline-wrap{
+      margin-top:58px;
     }
 
-    /* =========================
+    .timeline-title{
+      font-size:28px;
+      margin:0 0 28px;
+      color:var(--navy);
+    }
+
+    .audition-timeline{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      position:relative;
+      gap:18px;
+    }
+
+    .audition-timeline:before{
+      content:"";
+      position:absolute;
+      left:9%;
+      right:9%;
+      top:25px;
+      height:2px;
+      background:#d5d8dc;
+      z-index:0;
+    }
+
+    .timeline-item{
+      position:relative;
+      z-index:1;
+      text-align:center;
+    }
+
+    .timeline-number{
+      width:52px;
+      height:52px;
+      margin:0 auto 16px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:#fff;
+      font-weight:900;
+      box-shadow:0 7px 20px rgba(39,58,82,.18);
+    }
+
+    .timeline-item h3{
+      margin:0 0 5px;
+      font-size:18px;
+    }
+
+    .timeline-item p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* =====================
        APPLICATION
-    ========================= */
+    ===================== */
 
     .apply-box{
       background:linear-gradient(135deg,var(--navy),#334f6e);
@@ -780,9 +820,9 @@
     }
 
     .privacy{
-      font-size:13px !important;
-      margin-top:18px !important;
-      color:#cbd3dc !important;
+      font-size:13px!important;
+      margin-top:18px!important;
+      color:#cbd3dc!important;
     }
 
     .apply-action{
@@ -796,9 +836,9 @@
       min-width:220px;
     }
 
-    /* =========================
+    /* =====================
        CONTACT
-    ========================= */
+    ===================== */
 
     .contact-sponsors-bg{
       background:linear-gradient(
@@ -832,8 +872,8 @@
     }
 
     .contact-card h3{
-      font-size:22px;
       margin:0 0 16px;
+      font-size:22px;
     }
 
     .contact-card p{
@@ -846,26 +886,22 @@
       text-underline-offset:3px;
     }
 
-    /* =========================
+    /* =====================
        SPONSORS
-    ========================= */
+    ===================== */
 
     .sponsors{
       padding:48px 0 84px;
-      background:transparent;
     }
 
     .sponsor-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:18px;
-      max-width:1100px;
-      margin:0 auto;
     }
 
     .sponsor{
       min-height:130px;
-      border:1px solid rgba(255,255,255,.14);
       border-radius:18px;
       display:flex;
       align-items:center;
@@ -873,13 +909,11 @@
       padding:22px;
       background:#273a52;
       transition:.2s;
-      box-shadow:0 8px 20px rgba(31,36,48,.10);
     }
 
     .sponsor:hover{
       transform:translateY(-3px);
       background:#314862;
-      box-shadow:0 14px 30px rgba(31,36,48,.18);
     }
 
     .sponsor img{
@@ -889,96 +923,142 @@
     }
 
     .sponsor span{
-      font-size:17px;
-      font-weight:900;
       color:#fff;
+      font-weight:900;
       text-align:center;
     }
 
-    .sponsor span small{
-      color:#d9e0e7 !important;
+    /* =====================
+   FOOTER
+===================== */
+
+footer{
+  background:#f8f6f0;
+  color:#344052;
+  padding:32px 0;
+  border-top:1px solid #ded8ca;
+}
+
+.footer-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:34px;
+  align-items:center;
+}
+
+.footer-logos{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:300px;
+}
+
+.footer-logo-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+}
+
+.footer-logo-link img{
+  display:block;
+  max-width:150px;
+  max-height:42px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+.footer-x{
+  color:#9a927f;
+  font-size:18px;
+  font-weight:400;
+  flex:none;
+}
+
+.footer-center{
+  text-align:center;
+  min-width:0;
+}
+
+.footer-center strong{
+  display:block;
+  color:#273a52;
+  font-size:14px;
+  letter-spacing:.02em;
+}
+
+.footer-center p{
+  margin:4px 0 0;
+  color:#6f7781;
+  font-size:13px;
+}
+
+.footer-contact{
+  text-align:right;
+  white-space:nowrap;
+  color:#586373;
+  font-size:14px;
+}
+
+.footer-contact a{
+  font-weight:800;
+  color:#273a52;
+}
+
+.footer-contact span{
+  color:#a7a092;
+  margin:0 7px;
+}
+
+@media(max-width:860px){
+  .footer-row{
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:20px;
+  }
+
+  .footer-logos{
+    justify-content:center;
+    min-width:0;
+  }
+
+  .footer-center{
+    text-align:center;
+  }
+
+  .footer-contact{
+    text-align:center;
+    white-space:normal;
+  }
+}
+
+@media(max-width:520px){
+  .footer-logo-link img{
+    max-width:125px;
+    max-height:36px;
+  }
+
+  .footer-logos{
+    gap:10px;
+  }
+
+  .footer-contact{
+    font-size:13px;
+  }
+}
+
+    /* =====================
+       MOBILE CTA
+    ===================== */
+
+    .mobile-apply-bar{
+      display:none;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer{
-      background:#f8f6f0;
-      color:#344052;
-      padding:32px 0;
-      border-top:1px solid #ded8ca;
-    }
-
-    .footer-row{
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      gap:34px;
-      align-items:center;
-    }
-
-    .footer-logos{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:300px;
-    }
-
-    .footer-logo-link{
-      display:flex;
-      align-items:center;
-    }
-
-    .footer-logo-link img{
-      display:block;
-      max-width:150px;
-      max-height:42px;
-      width:auto;
-      height:auto;
-      object-fit:contain;
-    }
-
-    .footer-x{
-      color:#9a927f;
-      font-size:18px;
-    }
-
-    .footer-center{
-      text-align:center;
-    }
-
-    .footer-center strong{
-      display:block;
-      color:#273a52;
-      font-size:14px;
-    }
-
-    .footer-center p{
-      margin:4px 0 0;
-      color:#6f7781;
-      font-size:13px;
-    }
-
-    .footer-contact{
-      text-align:right;
-      white-space:nowrap;
-      color:#586373;
-      font-size:14px;
-    }
-
-    .footer-contact a{
-      font-weight:800;
-      color:#273a52;
-    }
-
-    .footer-contact span{
-      color:#a7a092;
-      margin:0 7px;
-    }
-
-    /* =========================
+    /* =====================
        POPUP
-    ========================= */
+    ===================== */
 
     .site-popup{
       position:fixed;
@@ -992,9 +1072,7 @@
       backdrop-filter:blur(4px);
     }
 
-    .site-popup.is-open{
-      display:flex;
-    }
+    .site-popup.is-open{display:flex}
 
     .popup-card{
       position:relative;
@@ -1002,42 +1080,26 @@
       max-height:92vh;
       background:#fff;
       border-radius:20px;
-      box-shadow:0 24px 80px rgba(31,36,48,.32);
       overflow:hidden;
-      border:1px solid rgba(39,58,82,.12);
+      box-shadow:0 24px 80px rgba(31,36,48,.32);
     }
 
-    .popup-poster-wrap{
-      display:none;
-      background:#f2f2f2;
-      line-height:0;
-    }
+    .popup-poster-wrap{display:none}
+    .popup-poster-wrap.is-visible{display:block}
 
-    .popup-poster-wrap.is-visible{
+    .popup-poster{
+      width:100%;
+      max-height:78vh;
+      object-fit:contain;
       display:block;
     }
 
     .popup-poster-action{
       display:none;
       padding:18px 20px 6px;
-      background:#fff;
     }
 
-    .popup-poster-action.is-visible{
-      display:block;
-    }
-
-    .popup-poster-action .popup-apply{
-      display:flex;
-    }
-
-    .popup-poster{
-      display:block;
-      width:100%;
-      max-height:78vh;
-      object-fit:contain;
-      background:#f2f2f2;
-    }
+    .popup-poster-action.is-visible{display:block}
 
     .popup-close{
       position:absolute;
@@ -1046,22 +1108,15 @@
       z-index:3;
       width:48px;
       height:48px;
-      border:1px solid rgba(255,255,255,.38);
+      border:0;
       border-radius:50%;
       background:rgba(22,31,43,.76);
       color:#fff;
       font-size:30px;
-      line-height:1;
       cursor:pointer;
     }
 
-    .popup-text-content{
-      display:block;
-    }
-
-    .popup-text-content.is-hidden{
-      display:none;
-    }
+    .popup-text-content.is-hidden{display:none}
 
     .popup-head{
       background:var(--navy);
@@ -1072,25 +1127,17 @@
     .popup-kicker{
       font-size:14px;
       font-weight:900;
-      letter-spacing:.08em;
       color:#dce5ec;
-      margin-bottom:7px;
     }
 
     .popup-head h2{
       font-size:30px;
-      line-height:1.25;
-      margin:0;
-      padding-right:40px;
+      margin:5px 0 0;
     }
 
-    .popup-body{
-      padding:30px;
-    }
+    .popup-body{padding:30px}
 
     .popup-body p{
-      font-size:18px;
-      color:#4d5560;
       white-space:pre-line;
       margin:0 0 24px;
     }
@@ -1099,33 +1146,23 @@
       width:100%;
       background:var(--navy);
       color:#fff;
-      font-size:18px;
     }
 
-    .popup-controls{
-      padding:14px 18px;
-      background:#fff;
-    }
+    .popup-controls{padding:14px 18px}
 
     .popup-bottom{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:18px;
-      font-size:15px;
       color:var(--muted);
+      font-size:15px;
     }
 
     .popup-today{
       display:flex;
-      align-items:center;
       gap:8px;
-      cursor:pointer;
-    }
-
-    .popup-today input{
-      width:20px;
-      height:20px;
+      align-items:center;
     }
 
     .popup-text-close{
@@ -1133,18 +1170,16 @@
       background:none;
       color:var(--navy);
       font-weight:900;
-      font-size:15px;
       cursor:pointer;
-      padding:8px;
     }
 
-    /* =========================
+    /* =====================
        MOTION
-    ========================= */
+    ===================== */
 
     .motion-reveal{
       opacity:0;
-      transform:translateY(28px);
+      transform:translateY(26px);
       transition:
         opacity .75s ease,
         transform .75s cubic-bezier(.22,.61,.36,1);
@@ -1152,90 +1187,15 @@
 
     .motion-reveal.is-visible{
       opacity:1;
-      transform:translateY(0);
+      transform:none;
     }
 
-    .motion-eyebrow{
-      opacity:0;
-      transform:translateX(-22px);
-      transition:
-        opacity .7s ease,
-        transform .7s cubic-bezier(.22,.61,.36,1);
-    }
-
-    .motion-eyebrow.is-visible{
-      opacity:1;
-      transform:translateX(0);
-    }
-
-    .motion-card{
-      opacity:0;
-      transform:translateY(24px);
-      transition:
-        opacity .65s ease,
-        transform .65s cubic-bezier(.22,.61,.36,1);
-    }
-
-    .motion-card.is-visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .hero .eyebrow,
-    .hero h1,
-    .hero p,
-    .hero .hero-actions,
-    .hero .hero-panel{
-      opacity:0;
-      transform:translateY(24px);
-      animation:heroReveal .8s cubic-bezier(.22,.61,.36,1) forwards;
-    }
-
-    .hero .eyebrow{animation-delay:.1s;}
-    .hero h1{animation-delay:.22s;}
-    .hero p{animation-delay:.34s;}
-    .hero .hero-actions{animation-delay:.46s;}
-    .hero .hero-panel{animation-delay:.58s;}
-
-    @keyframes heroReveal{
-      from{
-        opacity:0;
-        transform:translateY(24px);
-      }
-
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    .card,
-    .course,
-    .benefit{
-      transition:
-        transform .3s ease,
-        box-shadow .3s ease;
-    }
-
-    .card:hover,
-    .course:hover,
-    .benefit:hover{
-      transform:translateY(-5px);
-      box-shadow:0 18px 40px rgba(31,36,48,.11);
-    }
-
-    /* =========================
+    /* =====================
        RESPONSIVE
-    ========================= */
+    ===================== */
 
     @media(max-width:980px){
-      .navlinks{
-        display:none;
-      }
-
-      .hero{
-        min-height:auto;
-      }
+      .navlinks{display:none}
 
       .hero-grid,
       .intro-grid,
@@ -1244,25 +1204,11 @@
         grid-template-columns:1fr;
       }
 
-      .feature-grid{
-        grid-template-columns:1fr;
-      }
-
-      .curriculum{
-        grid-template-columns:1fr;
-      }
-
-      .benefit-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .price-box{
-        position:static;
-      }
-
-      .apply-action{
-        justify-content:flex-start;
-      }
+      .feature-grid{grid-template-columns:1fr}
+      .curriculum{grid-template-columns:1fr}
+      .benefit-grid{grid-template-columns:repeat(2,1fr)}
+      .price-box{position:static}
+      .apply-action{justify-content:flex-start}
 
       .section-head{
         display:block;
@@ -1273,15 +1219,57 @@
       }
     }
 
-    @media(max-width:900px){
+    @media(max-width:800px){
+      .audition-timeline{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+
+      .audition-timeline:before{
+        left:25px;
+        right:auto;
+        top:20px;
+        bottom:20px;
+        width:2px;
+        height:auto;
+      }
+
+      .timeline-item{
+        display:grid;
+        grid-template-columns:52px 1fr;
+        column-gap:18px;
+        text-align:left;
+      }
+
+      .timeline-number{
+        grid-row:1 / span 2;
+        margin:0;
+      }
+
+      .timeline-item h3{
+        align-self:end;
+      }
+    }
+
+    @media(max-width:700px){
+      .faculty{
+        grid-template-columns:1fr;
+      }
+
+      .faculty-photo{
+        width:100%;
+        max-width:300px;
+        margin:0 auto;
+      }
+
+      .contact-grid,
       .sponsor-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:1fr 1fr;
       }
 
       .footer-row{
         grid-template-columns:1fr;
         text-align:center;
-        gap:20px;
       }
 
       .footer-logos{
@@ -1289,26 +1277,35 @@
         min-width:0;
       }
 
-      .footer-contact{
-        text-align:center;
-        white-space:normal;
-      }
-    }
+      .footer-contact{text-align:center}
 
-    @media(max-width:700px){
-      .faculty{
-        grid-template-columns:1fr;
-        gap:22px;
+      .mobile-apply-bar{
+        display:block;
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:90;
+        padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+        background:rgba(255,255,255,.94);
+        backdrop-filter:blur(12px);
+        border-top:1px solid rgba(31,36,48,.1);
       }
 
-      .faculty-photo{
+      .mobile-apply-bar a{
+        display:flex;
+        align-items:center;
+        justify-content:center;
         width:100%;
-        max-width:280px;
-        margin:0 auto;
+        min-height:54px;
+        border-radius:14px;
+        background:var(--navy);
+        color:#fff;
+        font-weight:900;
       }
 
-      .faculty-info{
-        text-align:left;
+      body{
+        padding-bottom:74px;
       }
     }
 
@@ -1317,54 +1314,19 @@
         width:min(var(--max),calc(100% - 26px));
       }
 
-      .nav{
-        min-height:68px;
-      }
-
-      .nav-cta{
-        padding:10px 14px;
-      }
-
-      .brand small{
-        display:none;
-      }
-
-      .brand strong{
-        font-size:15px;
-      }
+      h1{font-size:48px}
+      section{padding:76px 0}
 
       .hero-grid{
         padding:64px 0;
         gap:34px;
       }
 
-      h1{
-        font-size:48px;
-      }
-
-      .hero p{
-        font-size:18px;
-      }
-
-      .hero-panel{
-        padding:24px;
-      }
-
-      .fact{
-        grid-template-columns:96px 1fr;
-      }
-
-      section{
-        padding:76px 0;
-      }
-
-      .quote{
-        font-size:28px;
-      }
+      .hero p{font-size:18px}
 
       .benefit-grid,
-      .sponsor-grid,
-      .contact-grid{
+      .contact-grid,
+      .sponsor-grid{
         grid-template-columns:1fr;
       }
 
@@ -1373,7 +1335,7 @@
       }
 
       .recruit-row b{
-        padding-bottom:8px;
+        padding-bottom:7px;
       }
 
       .recruit-row span{
@@ -1388,87 +1350,21 @@
         font-size:32px;
       }
 
-      .btn{
-        width:100%;
-      }
-
-      .hero-actions{
-        display:grid;
-      }
-
-      .apply-action .btn{
-        min-width:0;
-      }
-
-      .popup-card{
-        width:min(94vw,520px);
-        max-height:94vh;
-        border-radius:16px;
-      }
-
-      .popup-poster{
-        max-height:80vh;
-      }
-
-      .popup-head{
-        padding:24px;
-      }
-
-      .popup-head h2{
-        font-size:26px;
-      }
-
-      .popup-body{
-        padding:24px;
-      }
-
-      .popup-body p{
-        font-size:17px;
-      }
-
-      .popup-close{
-        width:44px;
-        height:44px;
-        right:8px;
-        top:8px;
-      }
-    }
-
-    @media(max-width:520px){
-      .brand-logo{
-        max-width:190px;
-        height:44px;
-      }
-
-      .footer-logo-link img{
-        max-width:125px;
-        max-height:36px;
-      }
-
-      .footer-logos{
-        gap:10px;
-      }
-
-      .footer-contact{
-        font-size:13px;
-      }
+      .btn{width:100%}
     }
 
     @media(prefers-reduced-motion:reduce){
       *,
       *::before,
       *::after{
-        animation-duration:.01ms !important;
-        animation-iteration-count:1 !important;
-        transition-duration:.01ms !important;
-        scroll-behavior:auto !important;
+        animation-duration:.01ms!important;
+        transition-duration:.01ms!important;
+        scroll-behavior:auto!important;
       }
 
-      .motion-reveal,
-      .motion-eyebrow,
-      .motion-card{
-        opacity:1 !important;
-        transform:none !important;
+      .motion-reveal{
+        opacity:1!important;
+        transform:none!important;
       }
     }
   </style>
@@ -1476,7 +1372,7 @@
 
 <body>
 
-<div class="ars-bar" id="arsBar">
+<div class="ars-bar">
   <strong id="arsTitle"></strong>
   <span id="arsMessage"></span>
 </div>
@@ -1485,6 +1381,7 @@
   <div class="wrap nav">
 
     <a class="brand" id="brandLink" href="#home">
+
       <img
         class="brand-logo"
         id="brandLogo"
@@ -1492,7 +1389,7 @@
         alt="K-시니어 미디어 모델 아카데미"
       >
 
-      <span class="brand-fallback" id="brandFallback">
+      <span class="brand-fallback">
         <span class="brand-mark"></span>
 
         <span>
@@ -1500,6 +1397,7 @@
           <strong id="brandKorean"></strong>
         </span>
       </span>
+
     </a>
 
     <nav class="navlinks">
@@ -1518,31 +1416,30 @@
   </div>
 </header>
 
-<!-- 모집 팝업 -->
+<!-- POPUP -->
+
 <div
   class="site-popup"
   id="sitePopup"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="popupTitle"
   aria-hidden="true"
 >
+
   <div class="popup-card">
 
     <button
       class="popup-close"
       id="popupClose"
       type="button"
-      aria-label="팝업 닫기"
-    >
-      ×
-    </button>
+    >×</button>
 
-    <div class="popup-poster-wrap" id="popupPosterWrap">
+    <div
+      class="popup-poster-wrap"
+      id="popupPosterWrap"
+    >
       <img
         class="popup-poster"
         id="popupPoster"
-        alt="K-시니어 미디어 모델 아카데미 안내 포스터"
+        alt=""
       >
     </div>
 
@@ -1573,6 +1470,7 @@
       </div>
 
       <div class="popup-body">
+
         <p id="popupMessage"></p>
 
         <a
@@ -1581,11 +1479,12 @@
           target="_blank"
           rel="noopener"
         ></a>
-      </div>
 
+      </div>
     </div>
 
     <div class="popup-controls">
+
       <div class="popup-bottom">
 
         <label class="popup-today">
@@ -1613,10 +1512,13 @@
 <main>
 
   <!-- HERO -->
+
   <section class="hero" id="home">
+
     <div class="wrap hero-grid">
 
       <div>
+
         <div
           class="eyebrow"
           id="heroEyebrow"
@@ -1627,6 +1529,7 @@
         <p id="heroDescription"></p>
 
         <div class="hero-actions">
+
           <a
             class="btn primary"
             href="#recruitment"
@@ -1638,7 +1541,9 @@
             href="#academy"
             id="heroSecondary"
           ></a>
+
         </div>
+
       </div>
 
       <aside class="hero-panel">
@@ -1651,6 +1556,13 @@
           모집 일정 및 주요 안내
         </h2>
 
+        <div
+          class="deadline-badge"
+          id="deadlineBadge"
+        >
+          모집 마감까지 계산 중
+        </div>
+
         <div class="hero-facts">
 
           <div class="fact">
@@ -1660,12 +1572,18 @@
 
           <div class="fact">
             <b>모집 인원</b>
-            <span id="quickCapacity"></span>
+            <span
+              id="quickCapacity"
+              data-count-type="capacity"
+            ></span>
           </div>
 
           <div class="fact">
             <b>교육 과정</b>
-            <span id="quickCourse"></span>
+            <span
+              id="quickCourse"
+              data-count-type="course"
+            ></span>
           </div>
 
           <div class="fact">
@@ -1682,19 +1600,19 @@
       </aside>
 
     </div>
+
   </section>
 
   <!-- ACADEMY -->
+
   <section id="academy">
+
     <div class="wrap">
 
       <div class="section-head">
 
         <div>
-          <div class="eyebrow">
-            Academy
-          </div>
-
+          <div class="eyebrow">Academy</div>
           <h2 id="academyHeadline"></h2>
         </div>
 
@@ -1717,10 +1635,13 @@
       </div>
 
     </div>
+
   </section>
 
   <!-- FEATURES -->
+
   <section class="soft">
+
     <div class="wrap">
 
       <div class="section-head">
@@ -1730,9 +1651,7 @@
             Why K-Senior Media Model Academy
           </div>
 
-          <h2>
-            교육 특징
-          </h2>
+          <h2>교육 특징</h2>
         </div>
 
         <p>
@@ -1747,22 +1666,20 @@
       ></div>
 
     </div>
+
   </section>
 
   <!-- CURRICULUM -->
+
   <section id="curriculum">
+
     <div class="wrap">
 
       <div class="section-head">
 
         <div>
-          <div class="eyebrow">
-            Curriculum
-          </div>
-
-          <h2>
-            커리큘럼
-          </h2>
+          <div class="eyebrow">Curriculum</div>
+          <h2>커리큘럼</h2>
         </div>
 
         <p>
@@ -1777,42 +1694,54 @@
       ></div>
 
     </div>
+
   </section>
 
   <!-- BENEFITS -->
-<section class="soft" id="benefits">
-  <div class="wrap">
 
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">Benefits</div>
-        <h2>K-시니어 미디어 모델 아카데미만의 특별한 기회</h2>
-      </div>
+  <section
+    class="soft"
+    id="benefits"
+  >
 
-      <p>
-        교육 과정과 함께 다양한 미디어·모델 활동 및 회원 혜택을 제공합니다.
-      </p>
-    </div>
-
-    <div class="benefit-grid" id="benefitGrid"></div>
-
-  </div>
-</section>
-
-  <!-- FACULTY -->
-  <section id="faculty">
     <div class="wrap">
 
       <div class="section-head">
 
         <div>
-          <div class="eyebrow">
-            Instructors
-          </div>
+          <div class="eyebrow">Benefits</div>
 
           <h2>
-            강사진
+            K-시니어 미디어 모델 아카데미만의 특별한 기회
           </h2>
+        </div>
+
+        <p>
+          교육 과정과 함께 다양한 미디어·모델 활동 및 회원 혜택을 제공합니다.
+        </p>
+
+      </div>
+
+      <div
+        class="benefit-grid"
+        id="benefitGrid"
+      ></div>
+
+    </div>
+
+  </section>
+
+  <!-- FACULTY -->
+
+  <section id="faculty">
+
+    <div class="wrap">
+
+      <div class="section-head">
+
+        <div>
+          <div class="eyebrow">Instructors</div>
+          <h2>강사진</h2>
         </div>
 
         <p>
@@ -1827,22 +1756,22 @@
       ></div>
 
     </div>
+
   </section>
 
   <!-- RECRUITMENT -->
+
   <section
     class="soft"
     id="recruitment"
   >
+
     <div class="wrap">
 
       <div class="section-head">
 
         <div>
-          <div class="eyebrow">
-            Audition
-          </div>
-
+          <div class="eyebrow">Audition</div>
           <h2 id="recruitTitle"></h2>
         </div>
 
@@ -1903,11 +1832,52 @@
         id="recruitNotes"
       ></ul>
 
+      <!-- TIMELINE -->
+
+      <div class="timeline-wrap">
+
+        <h3 class="timeline-title">
+          참가부터 교육 시작까지
+        </h3>
+
+        <div class="audition-timeline">
+
+          <article class="timeline-item">
+            <div class="timeline-number">01</div>
+            <h3>참가신청</h3>
+            <p>온라인 참가신청서 접수</p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-number">02</div>
+            <h3>공개 오디션</h3>
+            <p>2026년 10월 17일</p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-number">03</div>
+            <h3>최종 선발</h3>
+            <p>오디션 심사 후 개별 안내</p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-number">04</div>
+            <h3>교육 시작</h3>
+            <p>2026년 10월 24일</p>
+          </article>
+
+        </div>
+
+      </div>
+
     </div>
+
   </section>
 
   <!-- APPLICATION -->
+
   <section id="application">
+
     <div class="wrap">
 
       <div class="apply-box">
@@ -1947,27 +1917,25 @@
       </div>
 
     </div>
+
   </section>
 
-  <!-- CONTACT + SPONSORS -->
+  <!-- CONTACT -->
+
   <div class="contact-sponsors-bg">
 
     <section
       class="soft"
       id="contact"
     >
+
       <div class="wrap">
 
         <div class="section-head">
 
           <div>
-            <div class="eyebrow">
-              Contact
-            </div>
-
-            <h2>
-              문의 안내
-            </h2>
+            <div class="eyebrow">Contact</div>
+            <h2>문의 안내</h2>
           </div>
 
           <p>
@@ -1980,9 +1948,7 @@
 
           <div class="contact-card">
 
-            <h3>
-              한국경제TV 사무국
-            </h3>
+            <h3>한국경제TV 사무국</h3>
 
             <p>
               전화
@@ -2027,24 +1993,23 @@
         </div>
 
       </div>
+
     </section>
+
+    <!-- SPONSORS -->
 
     <section
       class="sponsors"
       id="sponsors"
     >
+
       <div class="wrap">
 
         <div class="section-head">
 
           <div>
-            <div class="eyebrow">
-              Sponsors
-            </div>
-
-            <h2>
-              협찬사
-            </h2>
+            <div class="eyebrow">Sponsors</div>
+            <h2>협찬사</h2>
           </div>
 
           <p>
@@ -2059,6 +2024,7 @@
         ></div>
 
       </div>
+
     </section>
 
   </div>
@@ -2066,13 +2032,9 @@
 </main>
 
 <footer>
-
   <div class="wrap footer-row">
 
-    <div
-      class="footer-logos"
-      aria-label="주최 기관"
-    >
+    <div class="footer-logos" aria-label="주최 기관">
 
       <a
         class="footer-logo-link"
@@ -2088,9 +2050,7 @@
         >
       </a>
 
-      <span class="footer-x">
-        ×
-      </span>
+      <span class="footer-x">×</span>
 
       <a
         class="footer-logo-link"
@@ -2109,62 +2069,46 @@
     </div>
 
     <div class="footer-center">
-
-      <strong>
-        © 2026 K-시니어 미디어 모델 아카데미
-      </strong>
-
+      <strong>© 2026 K-SENIOR MEDIA MODEL ACADEMY</strong>
       <p id="footerMessage"></p>
-
     </div>
 
     <div class="footer-contact">
-
       한국경제TV
-      <a
-        id="footerWowtvPhone"
-        href="#"
-      ></a>
-
+      <a id="footerWowtvPhone" href="#"></a>
       <span>·</span>
-
       SFMA
-      <a
-        id="footerSfmaPhone"
-        href="#"
-      ></a>
-
+      <a id="footerSfmaPhone" href="#"></a>
     </div>
 
   </div>
-
 </footer>
+
+<!-- MOBILE CTA -->
+
+<div class="mobile-apply-bar">
+  <a
+    id="mobileApplicationLink"
+    href="#application"
+  >
+    1기 참가신청하기
+  </a>
+</div>
 
 <script>
   const C = SITE_CONTENT;
 
   const text = (id,value) => {
     const el = document.getElementById(id);
-    if (el) el.textContent = value || "";
+    if(el) el.textContent = value || "";
   };
 
-  /* =========================
-     ARS
-  ========================= */
+  /* =====================
+     BASIC CONTENT
+  ===================== */
 
-  text(
-    "arsTitle",
-    C.ars?.title || "ARS 결제 안내"
-  );
-
-  text(
-    "arsMessage",
-    C.ars?.message || "ARS 결제 번호가 정해지면 이곳에 표시됩니다."
-  );
-
-  /* =========================
-     BRAND
-  ========================= */
+  text("arsTitle",C.ars?.title);
+  text("arsMessage",C.ars?.message);
 
   text("brandEnglish",C.brand?.english);
   text("brandKorean",C.brand?.korean);
@@ -2183,19 +2127,17 @@
 
     brandLogo.alt =
       C.brand.logoAlt ||
-      C.brand.korean ||
-      "K-시니어 미디어 모델 아카데미";
+      C.brand.korean;
 
-    brandLink.classList.add("has-logo");
+    brandLink.classList.add(
+      "has-logo"
+    );
 
-    brandLogo.onerror = () => {
-      brandLink.classList.remove("has-logo");
-    };
+    brandLogo.onerror = () =>
+      brandLink.classList.remove(
+        "has-logo"
+      );
   }
-
-  /* =========================
-     HERO
-  ========================= */
 
   text("heroEyebrow",C.hero?.eyebrow);
   text("heroTitle",C.hero?.title);
@@ -2208,14 +2150,7 @@
   text("quickCourse",C.quickInfo?.course);
   text("quickDeadline",C.quickInfo?.deadline);
 
-  /* =========================
-     ACADEMY
-  ========================= */
-
-  text(
-    "academyHeadline",
-    C.academy?.headline
-  );
+  text("academyHeadline",C.academy?.headline);
 
   text(
     "academyQuote",
@@ -2224,114 +2159,79 @@
       : ""
   );
 
-  text(
-    "academyText1",
-    C.academy?.text1
-  );
+  text("academyText1",C.academy?.text1);
+  text("academyText2",C.academy?.text2);
 
-  text(
-    "academyText2",
-    C.academy?.text2
-  );
-
-  /* =========================
+  /* =====================
      FEATURES
-  ========================= */
+  ===================== */
 
-  const featureGrid =
-    document.getElementById("featureGrid");
-
-  if(Array.isArray(C.features)){
-
-    featureGrid.innerHTML =
-      C.features.map((x,i)=>`
+  document.getElementById(
+    "featureGrid"
+  ).innerHTML =
+    (C.features || []).map(
+      (x,i)=>`
         <article class="card">
-
           <div class="num">
             ${String(i+1).padStart(2,"0")}
           </div>
-
-          <h3>
-            ${x.title || ""}
-          </h3>
-
-          <p>
-            ${x.text || ""}
-          </p>
-
+          <h3>${x.title}</h3>
+          <p>${x.text}</p>
         </article>
-      `).join("");
-  }
+      `
+    ).join("");
 
-  /* =========================
+  /* =====================
      CURRICULUM
-  ========================= */
+  ===================== */
 
-  const curriculumGrid =
-    document.getElementById("curriculumGrid");
-
-  if(Array.isArray(C.curriculum)){
-
-    curriculumGrid.innerHTML =
-      C.curriculum.map(x=>`
+  document.getElementById(
+    "curriculumGrid"
+  ).innerHTML =
+    (C.curriculum || []).map(
+      x=>`
         <article class="course">
-
           <div>
-
-            <h3>
-              ${x.title || ""}
-            </h3>
-
-            <p>
-              ${x.text || ""}
-            </p>
-
+            <h3>${x.title}</h3>
+            <p>${x.text}</p>
           </div>
-
         </article>
-      `).join("");
-  }
+      `
+    ).join("");
 
-  /* =========================
+  /* =====================
      BENEFITS
-  ========================= */
+     중요: 특별한 기회 섹션 유지
+  ===================== */
 
-  const benefitGrid =
-    document.getElementById("benefitGrid");
-
-  if(Array.isArray(C.benefits)){
-
-    benefitGrid.innerHTML =
-      C.benefits.map((x,i)=>`
+  document.getElementById(
+    "benefitGrid"
+  ).innerHTML =
+    (C.benefits || []).map(
+      (x,i)=>`
         <article class="benefit">
 
           <div class="benefit-icon">
             ${String(i+1).padStart(2,"0")}
           </div>
 
-          <h3>
-            ${x.title || ""}
-          </h3>
+          <h3>${x.title}</h3>
 
-          <p>
-            ${x.text || ""}
-          </p>
+          <p>${x.text}</p>
 
         </article>
-      `).join("");
-  }
+      `
+    ).join("");
 
-  /* =========================
+  /* =====================
      FACULTY
-  ========================= */
+  ===================== */
 
-  const facultyGrid =
-    document.getElementById("facultyGrid");
-
-  if(Array.isArray(C.instructors)){
-
-    facultyGrid.innerHTML =
-      C.instructors.map(x=>`
+  document.getElementById(
+    "facultyGrid"
+  ).innerHTML =
+    (C.instructors || []).map(
+      x=>`
 
         <article class="faculty">
 
@@ -2341,29 +2241,46 @@
               Array.isArray(x.photos) &&
               x.photos.length
 
-              ? x.photos.map(
+              ? x.photos.slice(0,2).map(
                   (photo,index)=>`
-
                     <img
                       src="${photo}"
-                      alt="${x.name || "강사"} 프로필 사진 ${index+1}"
+                      alt="${x.name} 프로필 사진 ${index+1}"
                       class="faculty-slide ${index===0 ? "active" : ""}"
                       loading="lazy"
                     >
-
                   `
                 ).join("")
 
-              : `<span>PHOTO</span>`
+              : ""
+            }
+
+            ${
+              Array.isArray(x.photos) &&
+              x.photos.length > 1
+
+              ? `
+                <div class="faculty-dots">
+                  ${x.photos.slice(0,2).map(
+                    (_,index)=>`
+                      <button
+                        class="faculty-dot ${index===0 ? "active" : ""}"
+                        type="button"
+                        aria-label="${index+1}번째 사진"
+                      ></button>
+                    `
+                  ).join("")}
+                </div>
+              `
+
+              : ""
             }
 
           </div>
 
           <div class="faculty-info">
 
-            <h3>
-              ${x.name || ""}
-            </h3>
+            <h3>${x.name || ""}</h3>
 
             ${
               x.role
@@ -2376,72 +2293,46 @@
             }
 
             ${
-              Array.isArray(x.career) &&
-              x.career.length
-
+              Array.isArray(x.career)
               ? `
                 <ul class="faculty-career">
-
                   ${x.career.map(
                     item=>`
                       <li>${item}</li>
                     `
                   ).join("")}
-
                 </ul>
               `
-
               : ""
             }
 
           </div>
 
         </article>
+      `
+    ).join("");
 
-      `).join("");
-  }
-
-  /* =========================
-     FACULTY SLIDESHOW
-  ========================= */
+  /* =====================
+     FACULTY SLIDES
+  ===================== */
 
   document
     .querySelectorAll(".faculty-photo")
     .forEach((slider,sliderIndex)=>{
 
-      const getSlides = () =>
+      const slides =
         Array.from(
-          slider.querySelectorAll(".faculty-slide")
-        ).filter(
-          img => !img.classList.contains("image-error")
+          slider.querySelectorAll(
+            ".faculty-slide"
+          )
         );
 
-      slider
-        .querySelectorAll(".faculty-slide")
-        .forEach(img=>{
-
-          img.addEventListener("error",()=>{
-
-            img.classList.add("image-error");
-            img.style.display = "none";
-
-            const usableSlides = getSlides();
-
-            if(
-              usableSlides.length &&
-              !usableSlides.some(
-                slide =>
-                  slide.classList.contains("active")
-              )
-            ){
-              usableSlides[0]
-                .classList.add("active");
-            }
-          });
-
-        });
-
-      let slides = getSlides();
+      const dots =
+        Array.from(
+          slider.querySelectorAll(
+            ".faculty-dot"
+          )
+        );
 
       if(slides.length <= 1){
         return;
@@ -2449,37 +2340,66 @@
 
       let current = 0;
 
-      setTimeout(()=>{
+      const showSlide = index => {
 
-        setInterval(()=>{
-
-          slides = getSlides();
-
-          if(slides.length <= 1){
-            return;
+        slides.forEach(
+          (slide,i)=>{
+            slide.classList.toggle(
+              "active",
+              i === index
+            );
           }
+        );
 
-          slides.forEach(
-            slide =>
-              slide.classList.remove("active")
+        dots.forEach(
+          (dot,i)=>{
+            dot.classList.toggle(
+              "active",
+              i === index
+            );
+          }
+        );
+
+        current = index;
+      };
+
+      dots.forEach(
+        (dot,index)=>{
+
+          dot.addEventListener(
+            "click",
+            ()=>{
+              showSlide(index);
+            }
           );
 
-          current =
-            (current + 1) %
-            slides.length;
+        }
+      );
 
-          slides[current]
-            .classList.add("active");
+      setTimeout(
+        ()=>{
 
-        },6000);
+          setInterval(
+            ()=>{
 
-      },sliderIndex * 900);
+              showSlide(
+                (current + 1) %
+                slides.length
+              );
+
+            },
+            6000
+          );
+
+        },
+        sliderIndex * 900
+      );
 
     });
 
-  /* =========================
+  /* =====================
      RECRUITMENT
-  ========================= */
+  ===================== */
 
   text(
     "recruitTitle",
@@ -2491,34 +2411,21 @@
     C.recruitment?.subtitle
   );
 
-  const recruitTable =
-    document.getElementById("recruitTable");
-
-  if(Array.isArray(C.recruitment?.items)){
-
-    recruitTable.innerHTML =
-      C.recruitment.items.map(x=>`
-
+  document.getElementById(
+    "recruitTable"
+  ).innerHTML =
+    (C.recruitment?.items || []).map(
+      x=>`
         <div class="recruit-row">
-
-          <b>
-            ${x.label || ""}
-          </b>
-
-          <span>
-            ${x.value || ""}
-          </span>
-
+          <b>${x.label}</b>
+          <span>${x.value}</span>
         </div>
-
-      `).join("");
-  }
+      `
+    ).join("");
 
   text(
     "priceOld",
-    C.recruitment?.originalPrice
-      ? `정상 수강료 ${C.recruitment.originalPrice}`
-      : ""
+    `정상 수강료 ${C.recruitment?.originalPrice || ""}`
   );
 
   text(
@@ -2531,24 +2438,73 @@
     C.recruitment?.priceNote
   );
 
-  const recruitNotes =
-    document.getElementById("recruitNotes");
+  document.getElementById(
+    "recruitNotes"
+  ).innerHTML =
+    (C.recruitment?.notes || []).map(
+      x=>`
+        <li>※ ${x}</li>
+      `
+    ).join("");
 
-  if(Array.isArray(C.recruitment?.notes)){
+  /* =====================
+     D-DAY
+  ===================== */
 
-    recruitNotes.innerHTML =
-      C.recruitment.notes.map(
-        x=>`
-          <li>
-            ※ ${x}
-          </li>
-        `
-      ).join("");
-  }
+  const deadlineBadge =
+    document.getElementById(
+      "deadlineBadge"
+    );
 
-  /* =========================
+  const deadline =
+    new Date(
+      "2026-10-15T23:59:59+09:00"
+    );
+
+  const updateDeadline = () => {
+
+    const now =
+      new Date();
+
+    const diff =
+      deadline.getTime() -
+      now.getTime();
+
+    if(diff < 0){
+
+      deadlineBadge.textContent =
+        "모집 마감";
+
+      deadlineBadge.classList.add(
+        "closed"
+      );
+
+      return;
+    }
+
+    const days =
+      Math.ceil(
+        diff /
+        (1000 * 60 * 60 * 24)
+      );
+
+    if(days === 0){
+
+      deadlineBadge.textContent =
+        "오늘 모집 마감";
+
+    }else{
+
+      deadlineBadge.textContent =
+        `모집 마감 D-${days}`;
+    }
+  };
+
+  updateDeadline();
+
+  /* =====================
      APPLICATION
-  ========================= */
+  ===================== */
 
   text(
     "applicationTitle",
@@ -2570,15 +2526,32 @@
     C.application?.buttonText
   );
 
-  const applicationLink =
-    document.getElementById("applicationLink");
+  const applicationUrl =
+    C.application?.applicationUrl ||
+    "#";
 
-  applicationLink.href =
-    C.application?.applicationUrl || "#";
+  document.getElementById(
+    "applicationLink"
+  ).href =
+    applicationUrl;
 
-  /* =========================
+  const mobileLink =
+    document.getElementById(
+      "mobileApplicationLink"
+    );
+
+  mobileLink.href =
+    applicationUrl;
+
+  mobileLink.target =
+    "_blank";
+
+  mobileLink.rel =
+    "noopener";
+
+  /* =====================
      CONTACT
-  ========================= */
+  ===================== */
 
   text(
     "wowtvPhone",
@@ -2590,59 +2563,51 @@
     C.contact?.sfmaPhone
   );
 
-  document.getElementById("wowtvLink").href =
+  document.getElementById(
+    "wowtvLink"
+  ).href =
     C.contact?.wowtvUrl || "#";
 
-  document.getElementById("sfmaLink").href =
+  document.getElementById(
+    "sfmaLink"
+  ).href =
     C.contact?.sfmaUrl || "#";
 
-  document.getElementById("footerWowtvLink").href =
+  document.getElementById(
+    "footerWowtvLink"
+  ).href =
     C.contact?.wowtvUrl || "#";
 
-  document.getElementById("footerSfmaLink").href =
+  document.getElementById(
+    "footerSfmaLink"
+  ).href =
     C.contact?.sfmaUrl || "#";
 
-  text(
-    "footerWowtvPhone",
-    C.contact?.wowtvPhone
-  );
+  text("footerWowtvPhone", C.contact?.wowtvPhone);
+text("footerSfmaPhone", C.contact?.sfmaPhone);
 
-  text(
-    "footerSfmaPhone",
-    C.contact?.sfmaPhone
-  );
+if (C.contact?.wowtvPhone) {
+  document.getElementById("footerWowtvPhone").href =
+    `tel:${C.contact.wowtvPhone.replace(/-/g,"")}`;
+}
 
-  if(C.contact?.wowtvPhone){
+if (C.contact?.sfmaPhone) {
+  document.getElementById("footerSfmaPhone").href =
+    `tel:${C.contact.sfmaPhone.replace(/-/g,"")}`;
+}
 
-    document
-      .getElementById("footerWowtvPhone")
-      .href =
-        `tel:${C.contact.wowtvPhone.replace(/-/g,"")}`;
-  }
-
-  if(C.contact?.sfmaPhone){
-
-    document
-      .getElementById("footerSfmaPhone")
-      .href =
-        `tel:${C.contact.sfmaPhone.replace(/-/g,"")}`;
-  }
-
-  /* =========================
+  /* =====================
      SPONSORS
-  ========================= */
+  ===================== */
 
-  const sponsorGrid =
-    document.getElementById("sponsorGrid");
-
-  if(Array.isArray(C.sponsors)){
-
-    sponsorGrid.innerHTML =
-      C.sponsors.map(x=>`
-
+  document.getElementById(
+    "sponsorGrid"
+  ).innerHTML =
+    (C.sponsors || []).map(
+      x=>`
         <a
           class="sponsor"
-          href="${x.url || "#"}"
+          href="${x.url}"
           target="_blank"
           rel="noopener"
         >
@@ -2653,40 +2618,31 @@
             ? `
               <img
                 src="${x.logo}"
-                alt="${x.name || "협찬사"}"
+                alt="${x.name}"
               >
             `
 
             : `
-              <span>
-                ${x.name || ""}
-                <br>
-                <small>
-                  공식 홈페이지 ↗
-                </small>
-              </span>
+              <span>${x.name}</span>
             `
           }
 
         </a>
+      `
+    ).join("");
 
-      `).join("");
-  }
-
-  /* =========================
+  /* =====================
      FOOTER
-  ========================= */
+  ===================== */
 
-  const footerWowtvLogo =
-    document.getElementById("footerWowtvLogo");
-
-  const footerSfmaLogo =
-    document.getElementById("footerSfmaLogo");
-
-  footerWowtvLogo.src =
+  document.getElementById(
+    "footerWowtvLogo"
+  ).src =
     C.footer?.wowtvLogo || "";
 
-  footerSfmaLogo.src =
+  document.getElementById(
+    "footerSfmaLogo"
+  ).src =
     C.footer?.sfmaLogo || "";
 
   text(
@@ -2694,23 +2650,138 @@
     C.footer?.message
   );
 
-  /* =========================
+  /* =====================
+     COUNT UP
+  ===================== */
+
+  const animateNumber = (
+    element,
+    target,
+    suffix
+  )=>{
+
+    const duration =
+      900;
+
+    const start =
+      performance.now();
+
+    const frame = now => {
+
+      const progress =
+        Math.min(
+          (now - start) /
+          duration,
+          1
+        );
+
+      const eased =
+        1 -
+        Math.pow(
+          1 - progress,
+          3
+        );
+
+      element.textContent =
+        `${Math.round(target * eased)}${suffix}`;
+
+      if(progress < 1){
+
+        requestAnimationFrame(
+          frame
+        );
+      }
+    };
+
+    requestAnimationFrame(
+      frame
+    );
+  };
+
+  const countObserver =
+    new IntersectionObserver(
+      entries=>{
+
+        entries.forEach(
+          entry=>{
+
+            if(
+              !entry.isIntersecting
+            ){
+              return;
+            }
+
+            const el =
+              entry.target;
+
+            if(
+              el.dataset.countType ===
+              "capacity"
+            ){
+
+              animateNumber(
+                el,
+                20,
+                "명"
+              );
+
+            }
+
+            if(
+              el.dataset.countType ===
+              "course"
+            ){
+
+              animateNumber(
+                el,
+                15,
+                "주 전문과정"
+              );
+
+            }
+
+            countObserver.unobserve(
+              el
+            );
+          }
+        );
+
+      },
+      {
+        threshold:.5
+      }
+    );
+
+  document
+    .querySelectorAll(
+      "[data-count-type]"
+    )
+    .forEach(
+      el =>
+        countObserver.observe(el)
+    );
+
+  /* =====================
      POPUP
-  ========================= */
+  ===================== */
 
   const popupConfig =
     C.popup || {};
 
   const sitePopup =
-    document.getElementById("sitePopup");
+    document.getElementById(
+      "sitePopup"
+    );
 
   const popupToday =
-    document.getElementById("popupToday");
+    document.getElementById(
+      "popupToday"
+    );
 
   const popupStorageKey =
     "kSeniorPosterPopupHiddenUntil_v2";
 
-  const isPopupHiddenToday = () => {
+  const isPopupHiddenToday = ()=>{
 
     try{
 
@@ -2729,7 +2800,7 @@
     }
   };
 
-  const closeSitePopup = () => {
+  const closeSitePopup = ()=>{
 
     if(popupToday.checked){
 
@@ -2745,14 +2816,17 @@
       }catch(e){}
     }
 
-    sitePopup.classList.remove("is-open");
+    sitePopup.classList.remove(
+      "is-open"
+    );
 
     sitePopup.setAttribute(
       "aria-hidden",
       "true"
     );
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+      "";
   };
 
   if(
@@ -2760,22 +2834,14 @@
     !isPopupHiddenToday()
   ){
 
-    const posterImage =
-      popupConfig.posterImage || "";
-
-    const popupTarget =
-      popupConfig.buttonUrl ||
-      C.application?.applicationUrl ||
-      "#";
+    const poster =
+      document.getElementById(
+        "popupPoster"
+      );
 
     const posterWrap =
       document.getElementById(
         "popupPosterWrap"
-      );
-
-    const poster =
-      document.getElementById(
-        "popupPoster"
       );
 
     const posterAction =
@@ -2793,94 +2859,92 @@
         "popupTextContent"
       );
 
-    const showTextPopup = () => {
+    const popupTarget =
+      popupConfig.buttonUrl ||
+      applicationUrl;
 
-      posterWrap
-        .classList
-        .remove("is-visible");
+    const showTextPopup = ()=>{
 
-      posterAction
-        .classList
-        .remove("is-visible");
+      posterWrap.classList.remove(
+        "is-visible"
+      );
 
-      textContent
-        .classList
-        .remove("is-hidden");
+      posterAction.classList.remove(
+        "is-visible"
+      );
+
+      textContent.classList.remove(
+        "is-hidden"
+      );
 
       text(
         "popupKicker",
-        popupConfig.kicker ||
-        "K-SENIOR MEDIA MODEL ACADEMY"
+        popupConfig.kicker
       );
 
       text(
         "popupTitle",
-        popupConfig.title ||
-        "K-시니어 미디어 모델 아카데미 1기 모집 안내"
+        popupConfig.title
       );
 
       text(
         "popupMessage",
-        popupConfig.message ||
-        "2026년 10월 17일 공개 오디션"
+        popupConfig.message
       );
 
       text(
         "popupButton",
-        popupConfig.buttonText ||
-        "참가신청 바로가기"
+        popupConfig.buttonText
       );
 
-      document
-        .getElementById("popupButton")
-        .href =
-          popupTarget;
+      document.getElementById(
+        "popupButton"
+      ).href =
+        popupTarget;
     };
 
-    if(posterImage){
+    if(popupConfig.posterImage){
 
       poster.alt =
-        popupConfig.posterAlt ||
-        "K-시니어 미디어 모델 아카데미 안내 포스터";
+        popupConfig.posterAlt || "";
 
-      text(
-        "popupPosterButton",
-        popupConfig.buttonText ||
-        "참가신청 바로가기"
-      );
+      poster.src =
+        popupConfig.posterImage;
 
       posterButton.href =
         popupTarget;
 
-      poster.onload = () => {
+      text(
+        "popupPosterButton",
+        popupConfig.buttonText
+      );
 
-        posterWrap
-          .classList
-          .add("is-visible");
+      poster.onload = ()=>{
 
-        posterAction
-          .classList
-          .add("is-visible");
+        posterWrap.classList.add(
+          "is-visible"
+        );
 
-        textContent
-          .classList
-          .add("is-hidden");
+        posterAction.classList.add(
+          "is-visible"
+        );
+
+        textContent.classList.add(
+          "is-hidden"
+        );
       };
 
       poster.onerror =
         showTextPopup;
-
-      poster.src =
-        posterImage;
 
     }else{
 
       showTextPopup();
     }
 
-    sitePopup
-      .classList
-      .add("is-open");
+    sitePopup.classList.add(
+      "is-open"
+    );
 
     sitePopup.setAttribute(
       "aria-hidden",
@@ -2891,291 +2955,69 @@
       "hidden";
   }
 
-  document
-    .getElementById("popupClose")
-    .addEventListener(
-      "click",
-      closeSitePopup
-    );
+  document.getElementById(
+    "popupClose"
+  ).addEventListener(
+    "click",
+    closeSitePopup
+  );
 
-  document
-    .getElementById("popupTextClose")
-    .addEventListener(
-      "click",
-      closeSitePopup
-    );
+  document.getElementById(
+    "popupTextClose"
+  ).addEventListener(
+    "click",
+    closeSitePopup
+  );
 
-  sitePopup
-    .addEventListener(
-      "click",
-      e => {
-
-        if(e.target === sitePopup){
-          closeSitePopup();
-        }
-
-      }
-    );
-
-  document
-    .addEventListener(
-      "keydown",
-      e => {
-
-        if(
-          e.key === "Escape" &&
-          sitePopup.classList.contains(
-            "is-open"
-          )
-        ){
-          closeSitePopup();
-        }
-
-      }
-    );
-
-  /* =========================
-     SCROLL SPY
-  ========================= */
-
-  const navCategoryLinks =
-    [
-      ...document.querySelectorAll(
-        '.navlinks a[href^="#"]'
-      )
-    ];
-
-  const categoryMap = [
-    {
-      id:"academy",
-      nav:"academy"
-    },
-    {
-      id:"curriculum",
-      nav:"curriculum"
-    },
-    {
-      id:"benefits",
-      nav:"benefits"
-    },
-    {
-      id:"faculty",
-      nav:"faculty"
-    },
-    {
-      id:"recruitment",
-      nav:"recruitment"
-    },
-    {
-      id:"application",
-      nav:"recruitment"
-    },
-    {
-      id:"contact",
-      nav:"contact"
-    },
-    {
-      id:"sponsors",
-      nav:"contact"
-    }
-  ];
-
-  const setActiveCategory =
-    targetId => {
-
-      navCategoryLinks.forEach(link=>{
-
-        const isActive =
-          link.getAttribute("href") ===
-          `#${targetId}`;
-
-        link.classList.toggle(
-          "active",
-          isActive
-        );
-
-        if(isActive){
-
-          link.setAttribute(
-            "aria-current",
-            "page"
-          );
-
-        }else{
-
-          link.removeAttribute(
-            "aria-current"
-          );
-        }
-
-      });
-    };
-
-  const updateActiveCategory = () => {
-
-    const fixedOffset =
-      48 + 78 + 28;
-
-    const y =
-      window.scrollY +
-      fixedOffset;
-
-    let current =
-      null;
-
-    categoryMap.forEach(item=>{
-
-      const section =
-        document.getElementById(
-          item.id
-        );
+  sitePopup.addEventListener(
+    "click",
+    e=>{
 
       if(
-        section &&
-        section.offsetTop <= y
+        e.target === sitePopup
       ){
-        current =
-          item.nav;
+        closeSitePopup();
       }
-
-    });
-
-    if(current){
-
-      setActiveCategory(
-        current
-      );
-
-    }else{
-
-      navCategoryLinks.forEach(
-        link=>{
-
-          link.classList.remove(
-            "active"
-          );
-
-          link.removeAttribute(
-            "aria-current"
-          );
-
-        }
-      );
-    }
-  };
-
-  let scrollTicking =
-    false;
-
-  window.addEventListener(
-    "scroll",
-    ()=>{
-
-      if(!scrollTicking){
-
-        window.requestAnimationFrame(
-          ()=>{
-
-            updateActiveCategory();
-
-            scrollTicking =
-              false;
-          }
-        );
-
-        scrollTicking =
-          true;
-      }
-
-    },
-    {
-      passive:true
     }
   );
 
-  navCategoryLinks.forEach(
-    link=>{
-
-      link.addEventListener(
-        "click",
-        ()=>{
-
-          const targetId =
-            link
-              .getAttribute("href")
-              .slice(1);
-
-          setActiveCategory(
-            targetId
-          );
-        }
-      );
-
-    }
-  );
-
-  window.addEventListener(
-    "resize",
-    updateActiveCategory
-  );
-
-  updateActiveCategory();
-
-  /* =========================
+  /* =====================
      SCROLL MOTION
-  ========================= */
+  ===================== */
 
-  const revealElements = [
-    ...document.querySelectorAll(
-      ".section-head, .intro-grid, .recruit-wrap, .apply-box, .contact-grid"
-    )
-  ];
+  const motionTargets =
+    document.querySelectorAll(
+      ".section-head, .intro-grid, .timeline-wrap, .apply-box, .contact-grid"
+    );
 
-  revealElements.forEach(
-    element => {
-      element.classList.add(
+  motionTargets.forEach(
+    el =>
+      el.classList.add(
         "motion-reveal"
-      );
-    }
+      )
   );
 
-  const motionCards = [
-    ...document.querySelectorAll(
-      ".card, .course, .benefit, .faculty, .sponsor"
-    )
-  ];
-
-  motionCards.forEach(
-    (element,index)=>{
-
-      element.classList.add(
-        "motion-card"
-      );
-
-      element.style.transitionDelay =
-        `${Math.min(index % 5,4) * 70}ms`;
-
-    }
-  );
-
-  const observer =
+  const motionObserver =
     new IntersectionObserver(
       entries=>{
 
-        entries.forEach(entry=>{
+        entries.forEach(
+          entry=>{
 
-          if(entry.isIntersecting){
+            if(
+              entry.isIntersecting
+            ){
 
-            entry.target
-              .classList
-              .add("is-visible");
+              entry.target.classList.add(
+                "is-visible"
+              );
 
-            observer.unobserve(
-              entry.target
-            );
+              motionObserver.unobserve(
+                entry.target
+              );
+            }
           }
-
-        });
+        );
 
       },
       {
@@ -3183,15 +3025,81 @@
       }
     );
 
-  document
-    .querySelectorAll(
-      ".motion-reveal, .motion-card, .motion-eyebrow"
-    )
-    .forEach(
-      element => {
-        observer.observe(element);
+  motionTargets.forEach(
+    el =>
+      motionObserver.observe(el)
+  );
+
+  /* =====================
+     SCROLL SPY
+  ===================== */
+
+  const navLinks =
+    [
+      ...document.querySelectorAll(
+        '.navlinks a[href^="#"]'
+      )
+    ];
+
+  const map = [
+    ["academy","academy"],
+    ["curriculum","curriculum"],
+    ["benefits","benefits"],
+    ["faculty","faculty"],
+    ["recruitment","recruitment"],
+    ["application","recruitment"],
+    ["contact","contact"],
+    ["sponsors","contact"]
+  ];
+
+  const updateNav = ()=>{
+
+    const y =
+      window.scrollY +
+      155;
+
+    let current =
+      null;
+
+    map.forEach(
+      ([sectionId,navId])=>{
+
+        const section =
+          document.getElementById(
+            sectionId
+          );
+
+        if(
+          section &&
+          section.offsetTop <= y
+        ){
+          current =
+            navId;
+        }
       }
     );
+
+    navLinks.forEach(
+      link =>{
+
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") ===
+          `#${current}`
+        );
+      }
+    );
+  };
+
+  window.addEventListener(
+    "scroll",
+    updateNav,
+    {
+      passive:true
+    }
+  );
+
+  updateNav();
 
 </script>
 
