@@ -977,6 +977,41 @@
    FOOTER
 ===================== */
 
+    /* Sponsor marquee: continuous, pauses on hover */
+    .sponsor-grid{
+      display:block;
+      overflow:hidden;
+      position:relative;
+    }
+    .sponsor-track{
+      display:flex;
+      width:max-content;
+      gap:18px;
+      animation:sponsor-marquee var(--sponsor-duration, 44s) linear infinite;
+      will-change:transform;
+    }
+    .sponsor-grid:hover .sponsor-track,
+    .sponsor-grid:focus-within .sponsor-track{animation-play-state:paused}
+    .sponsor-track .sponsor{
+      flex:0 0 clamp(180px, 21vw, 260px);
+      width:clamp(180px, 21vw, 260px);
+    }
+    @keyframes sponsor-marquee{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+    @media(max-width:700px){
+      .sponsor-grid{display:block}
+      .sponsor-track .sponsor{flex-basis:165px;width:165px}
+    }
+    @media(max-width:620px){
+      .sponsor-grid{display:block}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .sponsor-track{animation:none;will-change:auto}
+      .sponsor-grid{overflow-x:auto}
+    }
+
 footer{
   background:#f8f6f0;
   color:#344052;
@@ -2645,36 +2680,24 @@ if (C.contact?.sfmaPhone) {
      SPONSORS
   ===================== */
 
-  document.getElementById(
-    "sponsorGrid"
-  ).innerHTML =
-    (C.sponsors || []).map(
-      x=>`
-        <a
-          class="sponsor"
-          href="${x.url}"
-          target="_blank"
-          rel="noopener"
-        >
+  const sponsorGrid = document.getElementById("sponsorGrid");
+  const sponsorItems = (C.sponsors || []);
+  const sponsorCard = (x, duplicate = false) => `
+    <a class="sponsor" href="${x.url || '#'}"
+       ${x.url ? 'target="_blank" rel="noopener"' : ''}
+       ${duplicate ? 'tabindex="-1" aria-hidden="true"' : ''}>
+      ${x.logo ? `<img src="${x.logo}" alt="${duplicate ? '' : x.name}" loading="lazy">`
+               : `<span>${x.name}</span>`}
+    </a>`;
 
-          ${
-            x.logo
-
-            ? `
-              <img
-                src="${x.logo}"
-                alt="${x.name}"
-              >
-            `
-
-            : `
-              <span>${x.name}</span>
-            `
-          }
-
-        </a>
-      `
-    ).join("");
+  if(sponsorItems.length){
+    const originals = sponsorItems.map(x => sponsorCard(x)).join("");
+    const copies = sponsorItems.map(x => sponsorCard(x, true)).join("");
+    sponsorGrid.innerHTML = `<div class="sponsor-track">${originals}${copies}</div>`;
+    sponsorGrid.querySelector(".sponsor-track").style.setProperty(
+      "--sponsor-duration", `${Math.max(28, sponsorItems.length * 4)}s`
+    );
+  }
 
   /* =====================
      FOOTER

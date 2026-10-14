@@ -161,10 +161,16 @@ instructors: [
   },
 
   sponsors: [
-    { name: "이루탄 메디케어", logo: "assets/sponsors/erutan.png", url: "https://erutan.co.kr/" },
-    { name: "세라치과", logo: "assets/sponsors/sera.svg", url: "https://www.ceradento.com/" },
-    { name: "에듀윌", logo: "assets/sponsors/eduwill.png", url: "https://www.eduwill.net/sites/home" },
-    { name: "법무법인 한평", logo: "assets/sponsors/hanpyung.svg", url: "https://jbaelaw.com/" }
+    { name: "ledas", logo: "assets/sponsors/ledas_logo.png", url: "https://www.kbjledas.com/new/main/main.php" },
+    { name: "300water", logo: "assets/sponsors/300water_logo.png", url: "https://www.saranghaewater.kr/" },
+    { name: "ceradental", logo: "assets/sponsors/로고3.png", url: "https://www.ceradento.com/" },
+    { name: "NG", logo: "assets/sponsors/NG_logo.png", url: "" },
+    { name: "erutan", logo: "assets/sponsors/erutan_logo", url: "https://erutan.co.kr/" },
+    { name: "coreana", logo: "assets/sponsors/coreana_logo.png", url: "https://www.coreana.com/" },
+    { name: "KENICHI_STUDIO", logo: "assets/sponsors/KENICHI_STUDIO_logo.png", url: "" },
+    { name: "tonce", logo: "assets/sponsors/tonce_logo.png", url: "https://tonce.co/" },
+    { name: "PepsDay", logo: "assets/sponsors/PepsDay_logo.png", url: "" },
+    { name: "HP", logo: "assets/sponsors/HP_logo.png", url: "https://jbaelaw.com/" },
   ],
 
   footer: {
