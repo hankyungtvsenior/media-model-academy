@@ -163,9 +163,9 @@ instructors: [
   sponsors: [
     { name: "ledas", logo: "assets/sponsors/ledas_logo.png", url: "https://www.kbjledas.com/new/main/main.php" },
     { name: "300water", logo: "assets/sponsors/300water_logo.png", url: "https://www.saranghaewater.kr/" },
-    { name: "ceradental", logo: "assets/sponsors/로고3.png", url: "https://www.ceradento.com/" },
+    { name: "ceradental", logo: "assets/sponsors/ceradental_logo.png", url: "https://www.ceradento.com/" },
     { name: "NG", logo: "assets/sponsors/NG_logo.png", url: "" },
-    { name: "erutan", logo: "assets/sponsors/erutan_logo", url: "https://erutan.co.kr/" },
+    { name: "erutan", logo: "assets/sponsors/erutan_logo.png", url: "https://erutan.co.kr/" },
     { name: "coreana", logo: "assets/sponsors/coreana_logo.png", url: "https://www.coreana.com/" },
     { name: "KENICHI_STUDIO", logo: "assets/sponsors/KENICHI_STUDIO_logo.png", url: "" },
     { name: "tonce", logo: "assets/sponsors/tonce_logo.png", url: "https://tonce.co/" },
