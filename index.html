@@ -448,8 +448,6 @@
     /* =====================
        CURRICULUM
     ===================== */
-  if (document.getElementById("curriculumGrid")) {
-
 
     .curriculum{
       display:grid;
@@ -591,8 +589,6 @@
     /* =====================
        FACULTY
     ===================== */
-  if (document.getElementById("facultyGrid")) {
-
 
     .faculty-grid{
       display:grid;
@@ -2214,24 +2210,6 @@ footer{
     ).join("");
 
   /* =====================
-     CURRICULUM
-  ===================== */
-
-  document.getElementById(
-    "curriculumGrid"
-  ).innerHTML =
-    (C.curriculum || []).map(
-      x=>`
-        <article class="course">
-          <div>
-            <h3>${x.title}</h3>
-            <p>${x.text}</p>
-          </div>
-        </article>
-      `
-    ).join("");
-
-  /* =====================
      BENEFITS
      중요: 특별한 기회 섹션 유지
   ===================== */
@@ -2254,183 +2232,6 @@ footer{
         </article>
       `
     ).join("");
-
-  /* =====================
-     FACULTY
-  ===================== */
-
-  document.getElementById(
-    "facultyGrid"
-  ).innerHTML =
-    (C.instructors || []).map(
-      x=>`
-
-        <article class="faculty">
-
-          <div class="faculty-photo">
-
-            ${
-              Array.isArray(x.photos) &&
-              x.photos.length
-
-              ? x.photos.slice(0,2).map(
-                  (photo,index)=>`
-                    <img
-                      src="${photo}"
-                      alt="${x.name} 프로필 사진 ${index+1}"
-                      class="faculty-slide ${index===0 ? "active" : ""}"
-                      loading="lazy"
-                    >
-                  `
-                ).join("")
-
-              : ""
-            }
-
-            ${
-              Array.isArray(x.photos) &&
-              x.photos.length > 1
-
-              ? `
-                <div class="faculty-dots">
-                  ${x.photos.slice(0,2).map(
-                    (_,index)=>`
-                      <button
-                        class="faculty-dot ${index===0 ? "active" : ""}"
-                        type="button"
-                        aria-label="${index+1}번째 사진"
-                      ></button>
-                    `
-                  ).join("")}
-                </div>
-              `
-
-              : ""
-            }
-
-          </div>
-
-          <div class="faculty-info">
-
-            <h3>${x.name || ""}</h3>
-
-            ${
-              x.role
-              ? `
-                <p class="faculty-role">
-                  ${x.role}
-                </p>
-              `
-              : ""
-            }
-
-            ${
-              Array.isArray(x.career)
-              ? `
-                <ul class="faculty-career">
-                  ${x.career.map(
-                    item=>`
-                      <li>${item}</li>
-                    `
-                  ).join("")}
-                </ul>
-              `
-              : ""
-            }
-
-          </div>
-
-        </article>
-      `
-    ).join("");
-
-
-  }
-
-  /* =====================
-     FACULTY SLIDES
-  ===================== */
-
-  document
-    .querySelectorAll(".faculty-photo")
-    .forEach((slider,sliderIndex)=>{
-
-      const slides =
-        Array.from(
-          slider.querySelectorAll(
-            ".faculty-slide"
-          )
-        );
-
-      const dots =
-        Array.from(
-          slider.querySelectorAll(
-            ".faculty-dot"
-          )
-        );
-
-      if(slides.length <= 1){
-        return;
-      }
-
-      let current = 0;
-
-      const showSlide = index => {
-
-        slides.forEach(
-          (slide,i)=>{
-            slide.classList.toggle(
-              "active",
-              i === index
-            );
-          }
-        );
-
-        dots.forEach(
-          (dot,i)=>{
-            dot.classList.toggle(
-              "active",
-              i === index
-            );
-          }
-        );
-
-        current = index;
-      };
-
-      dots.forEach(
-        (dot,index)=>{
-
-          dot.addEventListener(
-            "click",
-            ()=>{
-              showSlide(index);
-            }
-          );
-
-        }
-      );
-
-      setTimeout(
-        ()=>{
-
-          setInterval(
-            ()=>{
-
-              showSlide(
-                (current + 1) %
-                slides.length
-              );
-
-            },
-            6000
-          );
-
-        },
-        sliderIndex * 900
-      );
-
-    });
 
   /* =====================
      RECRUITMENT
