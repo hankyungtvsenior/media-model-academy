@@ -17,12 +17,42 @@
 footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344052}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:30px}.footer-logos{display:flex;align-items:center;gap:14px}.footer-logos img{max-width:150px;max-height:42px;object-fit:contain}.footer-logos span{color:#9a927f}.footer-center{text-align:center}.footer-center strong{font-size:14px}.footer-center p{margin:4px 0 0;color:#6f7781;font-size:13px}.footer-contact{text-align:right;font-size:14px}.footer-contact a{font-weight:800;color:var(--navy)}
 .lightbox{position:fixed;inset:0;background:rgba(12,18,28,.94);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:65px 60px 45px}.lightbox img{max-width:100%;max-height:calc(100vh - 155px);object-fit:contain}.lb-close,.lb-prev,.lb-next{position:absolute;border:0;background:rgba(255,255,255,.16);color:white;border-radius:50%;display:grid;place-items:center}.lb-close{top:16px;right:20px;width:44px;height:44px;font-size:26px}.lb-prev,.lb-next{top:50%;width:48px;height:48px;font-size:30px}.lb-prev{left:12px}.lb-next{right:12px}.lb-caption{color:white;margin-top:15px;text-align:center;font-size:14px}
 @media(max-width:980px){.navlinks{display:none}.albums{grid-template-columns:repeat(2,1fr)}.photos{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.nav{min-height:70px}.brand strong{font-size:14px}.brand small{font-size:9px}.brand-mark{width:32px;height:32px}.nav-cta{font-size:12px;padding:9px 12px}.hero{padding:62px 0}.albums{grid-template-columns:1fr}.photos{grid-template-columns:repeat(2,1fr)}.head{display:block}.head p{margin-top:8px}.footer-row{flex-direction:column;text-align:center}.footer-contact{text-align:center}.lightbox{padding:65px 12px}.lb-prev,.lb-next{top:auto;bottom:55px}.lb-prev{left:20px}.lb-next{right:20px}.lb-caption{padding-bottom:55px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+/* Shared dropdown navigation */
+.navlinks{align-items:center;gap:20px}
+.navlinks .nav-group{position:relative;display:flex;align-items:center}
+.navlinks .nav-parent{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.navlinks .nav-parent::after{display:none}
+.navlinks .nav-parent .nav-chevron{font-size:10px;transition:transform .2s}
+.navlinks .nav-group:hover .nav-chevron,.navlinks .nav-group:focus-within .nav-chevron{transform:rotate(180deg)}
+.navlinks .nav-dropdown{position:absolute;top:100%;left:0;min-width:178px;padding:9px;background:#fff;border:1px solid #e6e3dc;border-radius:12px;box-shadow:0 12px 30px rgba(17,33,54,.13);display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;transform:translateY(7px);transition:opacity .2s,transform .2s,visibility .2s;z-index:100}
+.navlinks .nav-group:hover .nav-dropdown,.navlinks .nav-group:focus-within .nav-dropdown,.navlinks .nav-group.is-open .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.navlinks .nav-dropdown a{display:block;padding:12px 14px;border-radius:7px;white-space:nowrap;color:#273a52;text-decoration:none}
+.navlinks .nav-dropdown a::after{display:none}
+.navlinks .nav-dropdown a:hover,.navlinks .nav-dropdown a.active{background:#edf1f4;color:#294e76}
+.mobile-nav-toggle{display:none;border:1px solid #dce1e5;background:#fff;border-radius:9px;padding:9px 12px;color:#273a52;font-weight:800;cursor:pointer}
+@media(max-width:980px){
+  .mobile-nav-toggle{display:block;order:3}
+  .topbar .nav{position:relative}
+  .topbar .navlinks{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 15px 28px rgba(0,0,0,.13);padding:14px 18px;z-index:110;flex-direction:column;align-items:stretch;gap:4px;max-height:calc(100vh - 100px);overflow-y:auto}
+  .topbar .navlinks.mobile-open{display:flex}
+  .navlinks .nav-group{display:block}
+  .navlinks .nav-parent{width:100%;justify-content:space-between;padding:13px 8px}
+  .navlinks>a{padding:13px 8px}
+  .navlinks .nav-dropdown{position:static;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:#f6f7f8;padding:3px 8px;margin:0 0 8px;min-width:0}
+  .navlinks .nav-group.is-open .nav-dropdown{display:flex}
+}
 </style>
 <script src="gallery-content.js"></script>
 </head>
 <body>
 <div class="ars-bar"><strong>ARS 결제 안내</strong><span>ARS 번호가 확정되면 이곳에 표시됩니다.</span></div>
-<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html"><span class="brand-mark"></span><span><small>K-SENIOR MEDIA MODEL ACADEMY</small><strong>K-시니어 미디어 모델 아카데미</strong></span></a><nav class="navlinks"><a href="index.html#academy">아카데미 소개</a><a href="curriculum.html">커리큘럼</a><a href="index.html#benefits">교육생 특전</a><a href="faculty.html">강사진</a><a href="gallery.html" class="active" aria-current="page">행사 갤러리</a><a href="index.html#contact">문의</a></nav><a class="nav-cta" href="index.html">메인으로 돌아가기</a></div></header>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html"><span class="brand-mark"></span><span><small>K-SENIOR MEDIA MODEL ACADEMY</small><strong>K-시니어 미디어 모델 아카데미</strong></span></a><nav class="navlinks" aria-label="주요 메뉴">
+ <div class="nav-group"><a class="nav-parent" href="index.html#academy" aria-haspopup="true" aria-expanded="false">아카데미 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="index.html#benefits">교육생 특전</a><a href="index.html#recruitment">1기 모집</a></div></div>
+ <div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html">커리큘럼</a><a href="faculty.html">강사진</a></div></div>
+ <a href="gallery.html" class="active" aria-current="page">행사 갤러리</a>
+ <a href="index.html#contact">문의</a>
+ </nav><button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">☰ 메뉴</button><a class="nav-cta" href="index.html">메인으로 돌아가기</a></div></header>
 <div class="hero"><div class="wrap"><div class="eyebrow">EVENT GALLERY</div><h1>행사 갤러리</h1><p>함께한 순간들을 사진으로 만나보세요.</p><div class="crumb"><a href="index.html">HOME</a> / 행사 갤러리</div></div></div>
 <main class="main"><div class="wrap"><div id="listView"><div class="head"><h2>행사별 앨범</h2><p>행사를 선택하면 사진을 볼 수 있습니다.</p></div><div class="albums" id="albums"></div></div><div id="detailView" class="hidden"><button class="back" id="backBtn" type="button">← 전체 앨범으로</button><div class="head"><div><div class="eyebrow" id="albumDate"></div><h2 id="albumTitle"></h2></div><p id="albumDescription"></p></div><div class="photos" id="photos"></div></div></div></main>
 <footer><div class="wrap footer-row"><div class="footer-logos"><a href="https://www.wowtv.co.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/hankyungtv.png" alt="한국경제TV"></a><span>×</span><a href="https://www.sfma.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/sfma.png" alt="시니어패션모델협회"></a></div><div class="footer-center"><strong>K-시니어 미디어 모델 아카데미</strong><p>여러분의 새로운 도전과 멋진 시작을 응원합니다.</p></div><div class="footer-contact"><a href="tel:02-6676-0448">02-6676-0448</a> · <a href="tel:010-4214-7787">010-4214-7787</a></div></div></footer>
@@ -47,4 +77,14 @@ footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344
  const hash=decodeURIComponent(location.hash.slice(1));const selected=albums.find(a=>a.id===hash);if(selected)openAlbum(selected);
 })();
 </script>
-</body></html>
+<script>
+(function(){
+ const btn=document.querySelector('.mobile-nav-toggle'),nav=document.querySelector('.topbar .navlinks');
+ if(!btn||!nav)return;
+ btn.addEventListener('click',()=>{const open=nav.classList.toggle('mobile-open');btn.setAttribute('aria-expanded',String(open));});
+ nav.querySelectorAll('.nav-group .nav-parent').forEach(link=>{
+   link.addEventListener('click',e=>{if(window.matchMedia('(max-width:980px)').matches){e.preventDefault();const group=link.closest('.nav-group');const open=group.classList.toggle('is-open');link.setAttribute('aria-expanded',String(open));}});
+ });
+ nav.querySelectorAll('.nav-dropdown a,.navlinks>a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('mobile-open');btn.setAttribute('aria-expanded','false')}));
+})();
+</script></body></html>
