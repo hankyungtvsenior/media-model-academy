@@ -161,16 +161,17 @@ instructors: [
   },
 
   sponsors: [
-    { name: "ledas", logo: "assets/sponsors/ledas_logo.png", url: "https://www.kbjledas.com/new/main/main.php" },
-    { name: "300water", logo: "assets/sponsors/300water_logo.png", url: "https://www.saranghaewater.kr/" },
-    { name: "ceradental", logo: "assets/sponsors/ceradental_logo.png", url: "https://www.ceradento.com/" },
-    { name: "NG", logo: "assets/sponsors/NG_logo.png", url: "" },
-    { name: "erutan", logo: "assets/sponsors/erutan_logo.png", url: "https://erutan.co.kr/" },
-    { name: "coreana", logo: "assets/sponsors/coreana_logo.png", url: "https://www.coreana.com/" },
-    { name: "KENICHI_STUDIO", logo: "assets/sponsors/KENICHI_STUDIO_logo.png", url: "" },
-    { name: "tonce", logo: "assets/sponsors/tonce_logo.png", url: "https://tonce.co/" },
-    { name: "PepsDay", logo: "assets/sponsors/PepsDay_logo.png", url: "" },
-    { name: "HP", logo: "assets/sponsors/HP_logo.png", url: "https://jbaelaw.com/" },
+    { name: "협찬사 1", logo: "assets/sponsors/로고1.png", url: "" },
+    { name: "협찬사 2", logo: "assets/sponsors/로고2.png", url: "" },
+    { name: "협찬사 3", logo: "assets/sponsors/로고3.png", url: "" },
+    { name: "협찬사 4", logo: "assets/sponsors/로고4.png", url: "" },
+    { name: "협찬사 5", logo: "assets/sponsors/로고5.png", url: "" },
+    { name: "협찬사 6", logo: "assets/sponsors/로고6.png", url: "" },
+    { name: "협찬사 7", logo: "assets/sponsors/로고7.png", url: "" },
+    { name: "협찬사 8", logo: "assets/sponsors/로고8.png", url: "" },
+    { name: "협찬사 9", logo: "assets/sponsors/로고9.png", url: "" },
+    { name: "협찬사 10", logo: "assets/sponsors/로고10.png", url: "" },
+    { name: "협찬사 11", logo: "assets/sponsors/로고11.png", url: "" }
   ],
 
   footer: {
