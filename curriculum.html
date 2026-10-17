@@ -115,13 +115,48 @@ footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344
   .navlinks .nav-dropdown{position:static;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:#f6f7f8;padding:3px 8px;margin:0 0 8px;min-width:0}
   .navlinks .nav-group.is-open .nav-dropdown{display:flex}
 }
+
+/* 15-week teaching plan */
+.main{padding:58px 0 86px}
+.plan-overview{display:grid;grid-template-columns:1.5fr .7fr 1.15fr;gap:12px;margin-bottom:40px}
+.plan-overview>div{background:#f7f5f0;border:1px solid #e7e1d8;border-radius:14px;padding:19px 22px;display:flex;flex-direction:column;gap:4px}
+.plan-overview span{font-size:13px;color:#697381;font-weight:700}
+.plan-overview strong{font-size:17px;color:var(--navy)}
+.plan-heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:16px}
+.plan-heading h2{margin:0;font-size:27px;letter-spacing:-.035em;color:var(--navy)}
+.plan-heading p{margin:0;color:var(--muted);font-size:14px}
+.plan-table-wrap{border:1px solid #d9dfe3;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(31,36,48,.045)}
+.plan-table{border-collapse:collapse;width:100%;table-layout:fixed}
+.plan-table thead{background:var(--navy);color:#fff}
+.plan-table th,.plan-table td{padding:16px 24px;text-align:left;border-bottom:1px solid #e5e8ea}
+.plan-table thead th:first-child{width:130px;text-align:center}
+.plan-table tbody th{background:#f4f6f7;text-align:center;color:var(--navy);font-weight:800;font-size:15px}
+.plan-table tbody td strong{display:block;color:#283c54;font-size:17px;margin-bottom:3px}
+.plan-table tbody td span{display:block;color:#606a75;font-size:14px;line-height:1.65}
+.plan-table tbody tr:nth-child(even) td{background:#fbfcfc}
+.plan-table tbody tr:last-child th,.plan-table tbody tr:last-child td{border-bottom:0}
+@media(max-width:700px){.main{padding:35px 0 65px}.plan-overview{grid-template-columns:1fr;gap:9px;margin-bottom:28px}.plan-overview>div{padding:12px 16px}.plan-heading{display:block}.plan-heading h2{font-size:23px}.plan-heading p{margin-top:4px}.plan-table thead th:first-child{width:75px}.plan-table th,.plan-table td{padding:13px 11px}.plan-table tbody td strong{font-size:15px}.plan-table tbody td span{font-size:13px}}
 </style></head><body><div class="ars-bar"><strong>ARS 결제 안내</strong><span>ARS 번호가 확정되면 이곳에 표시됩니다.</span></div>
 <header class="topbar"><div class="wrap nav"><a class="brand" href="index.html"><span class="brand-mark"></span><span><small>K-SENIOR MEDIA MODEL ACADEMY</small><strong>K-시니어 미디어 모델 아카데미</strong></span></a><nav class="navlinks" aria-label="주요 메뉴">
  <div class="nav-group"><a class="nav-parent" href="index.html#academy" aria-haspopup="true" aria-expanded="false">아카데미 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="index.html#benefits">교육생 특전</a><a href="index.html#recruitment">1기 모집</a></div></div>
  <div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html" class="active" aria-current="page">커리큘럼</a><a href="faculty.html">강사진</a></div></div>
  <a href="gallery.html">행사 갤러리</a>
- <a href="index.html#contact">문의</a>
- </nav><button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">☰ 메뉴</button><a class="nav-cta" href="index.html">메인으로 돌아가기</a></div></header><div class="hero"><div class="wrap"><div class="eyebrow">CURRICULUM</div><h1>커리큘럼</h1><p>전문 교육 과정을 소개합니다.</p><div class="crumb"><a href="index.html">HOME</a> / 커리큘럼</div></div></div><main class="main"><div class="wrap"><div class="curriculum" id="curriculumGrid"></div></div></main><footer><div class="wrap footer-row"><div class="footer-logos"><a href="https://www.wowtv.co.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/hankyungtv.png" alt="한국경제TV"></a><span>×</span><a href="https://www.sfma.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/sfma.png" alt="시니어패션모델협회"></a></div><div class="footer-center"><strong>K-시니어 미디어 모델 아카데미</strong><p>여러분의 새로운 도전과 멋진 시작을 응원합니다.</p></div><div class="footer-contact"><a href="tel:02-6676-0448">02-6676-0448</a> · <a href="tel:010-4214-7787">010-4214-7787</a></div></div></footer><script>const C=SITE_CONTENT;const grid=document.getElementById("curriculumGrid");grid.innerHTML=(C.curriculum||[]).map(x=>`<article class="course"><div><h3>${x.title}</h3><p>${x.text}</p></div></article>`).join("");</script><script>
+ <a href="contact.html">문의</a>
+ </nav><button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">☰ 메뉴</button><a class="nav-cta" href="index.html">메인으로 돌아가기</a></div></header><div class="hero"><div class="wrap"><div class="eyebrow">CURRICULUM</div><h1>커리큘럼</h1><p>전문 교육 과정을 소개합니다.</p><div class="crumb"><a href="index.html">HOME</a> / 커리큘럼</div></div></div><main class="main"><div class="wrap"><div class="plan-overview" aria-label="강의 개요"><div><span>강좌명</span><strong>K-시니어 미디어 모델 아카데미</strong></div><div><span>교육 기간</span><strong>15주 과정</strong></div><div><span>강사진</span><strong>윤일향 · 오시은 · 황정환</strong></div></div><div class="plan-heading"><h2>주차별 강의계획</h2><p>퍼포먼스 워킹의 기초부터 최종 무대 발표까지</p></div><div class="plan-table-wrap"><table class="plan-table"><thead><tr><th scope="col">주차</th><th scope="col">강의 주제 및 내용</th></tr></thead><tbody><tr><th scope="row">1주차</th><td><strong>퍼포먼스 워킹의 시작 &amp; OT</strong><span>일반 워킹이 아닌 ‘무대 위 존재감’ 이해 + 기본 움직임 테스트</span></td></tr>
+<tr><th scope="row">2주차</th><td><strong>Body &amp; Movement</strong><span>몸의 중심, 속도, 정지, 방향 전환을 퍼포먼스로 연결</span></td></tr>
+<tr><th scope="row">3주차</th><td><strong>Walk as Expression</strong><span>워킹과 포즈의 대한 전반적인 무대를 통해 감정과 캐릭터 표현하기</span></td></tr>
+<tr><th scope="row">4주차</th><td><strong>Rhythm &amp; Music</strong><span>음악의 박자·템포·강약에 따라 워킹 변화</span></td></tr>
+<tr><th scope="row">5주차</th><td><strong>Gaze &amp; Attitude</strong><span>시선, 표정, 머리·어깨·손의 움직임으로 무대에서의 캐릭터 만들기</span></td></tr>
+<tr><th scope="row">6주차</th><td><strong>Space &amp; Formation</strong><span>무대 공간 활용, 간격, 대형, 교차 동선</span></td></tr>
+<tr><th scope="row">7주차</th><td><strong>Solo Performance</strong><span>개인별 20~30초 퍼포먼스를 구성하여 무대에서 사용하기</span></td></tr>
+<tr><th scope="row">8주차</th><td><strong>Partner Performance</strong><span>2~3인이 만드는 퍼포먼스 워킹 과제</span></td></tr>
+<tr><th scope="row">9주차</th><td><strong>Group Performance</strong><span>여러 명이 하나의 움직임을 만드는 군무형 워킹</span></td></tr>
+<tr><th scope="row">10주차</th><td><strong>Fashion &amp; Character</strong><span>의상/스타일에 맞는 워킹과 캐릭터 구축</span></td></tr>
+<tr><th scope="row">11주차</th><td><strong>Collection Analysis</strong><span>하나의 컬렉션을 정하고 콘셉트·음악·움직임 분석</span></td></tr>
+<tr><th scope="row">12주차</th><td><strong>Choreography</strong><span>최종 퍼포먼스 전체 구성 및 개인 역할 배정</span></td></tr>
+<tr><th scope="row">13주차</th><td><strong>Blocking</strong><span>실제 무대처럼 입·퇴장, 동선, 포메이션 완성</span></td></tr>
+<tr><th scope="row">14주차</th><td><strong>Full Rehearsal</strong><span>음악·의상·동선까지 포함한 실전 리허설</span></td></tr>
+<tr><th scope="row">15주차</th><td><strong>Final Performance</strong><span>최종 퍼포먼스 발표 + 피드백</span></td></tr></tbody></table></div></div></main><footer><div class="wrap footer-row"><div class="footer-logos"><a href="https://www.wowtv.co.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/hankyungtv.png" alt="한국경제TV"></a><span>×</span><a href="https://www.sfma.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/sfma.png" alt="시니어패션모델협회"></a></div><div class="footer-center"><strong>K-시니어 미디어 모델 아카데미</strong><p>여러분의 새로운 도전과 멋진 시작을 응원합니다.</p></div><div class="footer-contact"><a href="tel:02-6676-0448">02-6676-0448</a> · <a href="tel:010-4214-7787">010-4214-7787</a></div></div></footer><script>
 (function(){
  const btn=document.querySelector('.mobile-nav-toggle'),nav=document.querySelector('.topbar .navlinks');
  if(!btn||!nav)return;
