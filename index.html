@@ -1571,7 +1571,7 @@ footer{
  <div class="nav-group"><a class="nav-parent" href="#academy" aria-haspopup="true" aria-expanded="false">아카데미 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="#benefits">교육생 특전</a><a href="#recruitment">1기 모집</a></div></div>
  <div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html">커리큘럼</a><a href="faculty.html">강사진</a></div></div>
  <a href="gallery.html">행사 갤러리</a>
- <a href="#contact">문의</a>
+ <a href="contact.html">문의</a>
  </nav><button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">☰ 메뉴</button>
 
     <a class="nav-cta" href="#recruitment">
@@ -2029,82 +2029,8 @@ footer{
 
   </section>
 
-  <!-- CONTACT -->
 
   <div class="contact-sponsors-bg">
-
-    <section
-      class="soft"
-      id="contact"
-    >
-
-      <div class="wrap">
-
-        <div class="section-head">
-
-          <div>
-            <div class="eyebrow">Contact</div>
-            <h2>문의 안내</h2>
-          </div>
-
-          <p>
-            아카데미 참가 및 교육과 관련하여 궁금한 사항은 각 사무국으로 문의해 주세요.
-          </p>
-
-        </div>
-
-        <div class="contact-grid">
-
-          <div class="contact-card">
-
-            <h3>한국경제TV 사무국</h3>
-
-            <p>
-              전화
-              <strong id="wowtvPhone"></strong>
-            </p>
-
-            <p>
-              <a
-                id="wowtvLink"
-                target="_blank"
-                rel="noopener"
-              >
-                한국경제TV 홈페이지 ↗
-              </a>
-            </p>
-
-          </div>
-
-          <div class="contact-card">
-
-            <h3>
-              시니어패션모델협회(SFMA) 사무국
-            </h3>
-
-            <p>
-              전화
-              <strong id="sfmaPhone"></strong>
-            </p>
-
-            <p>
-              <a
-                id="sfmaLink"
-                target="_blank"
-                rel="noopener"
-              >
-                SFMA 홈페이지 ↗
-              </a>
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
     <!-- SPONSORS -->
 
     <section
@@ -2137,7 +2063,6 @@ footer{
     </section>
 
   </div>
-
 </main>
 
 <footer>
@@ -2467,28 +2392,30 @@ footer{
     "noopener";
 
   /* =====================
-     CONTACT
+     SPONSORS
   ===================== */
 
-  text(
-    "wowtvPhone",
-    C.contact?.wowtvPhone
-  );
+  const sponsorGrid = document.getElementById("sponsorGrid");
+  const sponsorItems = (C.sponsors || []);
+  const sponsorCard = (x, duplicate = false) => `
+    <a class="sponsor" href="${x.url || '#'}"
+       ${x.url ? 'target="_blank" rel="noopener"' : ''}
+       ${duplicate ? 'tabindex="-1" aria-hidden="true"' : ''}>
+      ${x.logo ? `<img src="${x.logo}" alt="${duplicate ? '' : x.name}" loading="lazy">`
+               : `<span>${x.name}</span>`}
+    </a>`;
 
-  text(
-    "sfmaPhone",
-    C.contact?.sfmaPhone
-  );
+  if(sponsorItems.length){
+    const originals = sponsorItems.map(x => sponsorCard(x)).join("");
+    const copies = sponsorItems.map(x => sponsorCard(x, true)).join("");
+    sponsorGrid.innerHTML = `<div class="sponsor-track">${originals}${copies}</div>`;
+    sponsorGrid.querySelector(".sponsor-track").style.setProperty(
+      "--sponsor-duration", `${Math.max(28, sponsorItems.length * 4)}s`
+    );
+  }
 
-  document.getElementById(
-    "wowtvLink"
-  ).href =
-    C.contact?.wowtvUrl || "#";
 
-  document.getElementById(
-    "sfmaLink"
-  ).href =
-    C.contact?.sfmaUrl || "#";
+  /* CONTACT는 contact.html에서 렌더링 */
 
   document.getElementById(
     "footerWowtvLink"
@@ -2512,29 +2439,6 @@ if (C.contact?.sfmaPhone) {
   document.getElementById("footerSfmaPhone").href =
     `tel:${C.contact.sfmaPhone.replace(/-/g,"")}`;
 }
-
-  /* =====================
-     SPONSORS
-  ===================== */
-
-  const sponsorGrid = document.getElementById("sponsorGrid");
-  const sponsorItems = (C.sponsors || []);
-  const sponsorCard = (x, duplicate = false) => `
-    <a class="sponsor" href="${x.url || '#'}"
-       ${x.url ? 'target="_blank" rel="noopener"' : ''}
-       ${duplicate ? 'tabindex="-1" aria-hidden="true"' : ''}>
-      ${x.logo ? `<img src="${x.logo}" alt="${duplicate ? '' : x.name}" loading="lazy">`
-               : `<span>${x.name}</span>`}
-    </a>`;
-
-  if(sponsorItems.length){
-    const originals = sponsorItems.map(x => sponsorCard(x)).join("");
-    const copies = sponsorItems.map(x => sponsorCard(x, true)).join("");
-    sponsorGrid.innerHTML = `<div class="sponsor-track">${originals}${copies}</div>`;
-    sponsorGrid.querySelector(".sponsor-track").style.setProperty(
-      "--sponsor-duration", `${Math.max(28, sponsorItems.length * 4)}s`
-    );
-  }
 
   /* =====================
      FOOTER
@@ -2950,9 +2854,7 @@ if (C.contact?.sfmaPhone) {
     ["academy","academy"],
     ["benefits","benefits"],
     ["recruitment","recruitment"],
-    ["application","recruitment"],
-    ["contact","contact"],
-    ["sponsors","contact"]
+    ["application","recruitment"]
   ];
 
   const updateNav = ()=>{
