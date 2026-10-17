@@ -13,7 +13,7 @@ const SITE_CONTENT = {
   },
 
   popup: {
-    enabled: true,
+    enabled: false,
     posterImage: "assets/popup/poster.jpg",
     posterAlt: "K-시니어 미디어 모델 아카데미 1기 모집안내",
     buttonUrl: "https://form.naver.com/response/jNOhKvMCS5",
