@@ -1451,6 +1451,16 @@ footer{
       }
     }
   
+/* Disabled registration links (keep original layout and styling). */
+.application-closed, .mobile-apply-bar .application-closed {
+  background:#7c858e !important;
+  color:#fff !important;
+  cursor:not-allowed !important;
+  pointer-events:none !important;
+  box-shadow:none !important;
+  transform:none !important;
+}
+
 /* Shared dropdown navigation */
 .navlinks{align-items:center;gap:20px}
 .navlinks .nav-group{position:relative;display:flex;align-items:center}
@@ -2368,6 +2378,8 @@ footer{
     C.application?.buttonText
   );
 
+  const applicationOpen = C.application?.enabled !== false;
+
   const applicationUrl =
     C.application?.applicationUrl ||
     "#";
@@ -2390,6 +2402,24 @@ footer{
 
   mobileLink.rel =
     "noopener";
+
+  // 모집 마감 시 모든 신청 경로를 비활성화합니다.
+  if (!applicationOpen) {
+    text("applicationTitle", "1기 참가신청이 마감되었습니다.");
+    text("applicationDescription", "K-시니어 미디어 모델 아카데미 1기 모집에 보내주신 관심에 감사드립니다.");
+    document.getElementById("privacyNote").style.display = "none";
+
+    [document.getElementById("applicationLink"), mobileLink].forEach(link => {
+      link.removeAttribute("href");
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+      link.setAttribute("aria-disabled", "true");
+      link.setAttribute("tabindex", "-1");
+      link.textContent = "신청 마감";
+      link.classList.add("application-closed");
+    });
+  }
+
 
   /* =====================
      SPONSORS
@@ -2639,6 +2669,7 @@ if (C.contact?.sfmaPhone) {
   };
 
   if(
+    applicationOpen &&
     popupConfig.enabled &&
     !isPopupHiddenToday()
   ){

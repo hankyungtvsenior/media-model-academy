@@ -143,6 +143,7 @@ instructors: [
   },
 
   application: {
+    enabled: false, // true: 신청 가능, false: 신청 마감
     title: "참가신청서를 작성해 주세요.",
     description: "작성해 주신 내용은 오디션 심사 및 참가자 선발을 위해 활용됩니다.",
     privacyNote: "신청서 제출 전 개인정보 수집·이용 및 사진·영상·초상권 활용 동의 내용을 반드시 확인해 주시기 바랍니다.",
