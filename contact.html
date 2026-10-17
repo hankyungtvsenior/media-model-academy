@@ -1520,7 +1520,23 @@ footer{
       #benefitGrid.benefit-grid > .benefit:last-child { grid-column: 1 / -1; }
     }
 
-</style><style>.contact-page-hero{padding:76px 0 60px;background:linear-gradient(135deg,#faf8f2,#f5f1e8 55%,#eee8dc)}.contact-page-hero h1{font-size:clamp(36px,5vw,58px);margin:8px 0 12px;color:#273a52}.contact-page-hero p{color:#68707a}.contact-page-hero .crumb{font-size:14px;margin-top:24px}.contact-page-hero .crumb a{text-decoration:underline}.contact-sponsors-bg #contact{padding-top:68px}.contact-sponsors-bg .sponsors{padding-bottom:90px}</style></head><body><div class="ars-bar"><strong>ARS 결제 안내</strong><span id="arsMessage"></span></div><header class="topbar">
+</style><style>.contact-page-hero{padding:76px 0 60px;background:linear-gradient(135deg,#faf8f2,#f5f1e8 55%,#eee8dc)}.contact-page-hero h1{font-size:clamp(36px,5vw,58px);margin:8px 0 12px;color:#273a52}.contact-page-hero p{color:#68707a}.contact-page-hero .crumb{font-size:14px;margin-top:24px}.contact-page-hero .crumb a{text-decoration:underline}.contact-sponsors-bg #contact{padding-top:68px}.contact-sponsors-bg .sponsors{padding-bottom:90px}</style><style>
+/* Contact page only: compact, single-heading layout */
+.contact-compact-main{background:linear-gradient(145deg,#faf8f3 0%,#f5f1e8 55%,#eee9df 100%)}
+.contact-compact-section{padding:42px 0 76px;min-height:0}
+.contact-breadcrumb{font-size:13px;color:#68707a;margin:0 0 18px}
+.contact-breadcrumb a{color:#273a52;text-decoration:underline;text-underline-offset:3px}
+.contact-breadcrumb span{margin:0 6px;color:#a7a092}
+.contact-compact-heading{margin:0 0 28px}
+.contact-compact-heading .eyebrow{font-size:12px}
+.contact-compact-heading h1{font-size:clamp(32px,4vw,44px);line-height:1.2;letter-spacing:-.04em;color:#273a52;margin:10px 0 8px}
+.contact-compact-heading p{font-size:15px;color:#68707a;margin:0;max-width:760px}
+.contact-compact-section .contact-grid{gap:18px}
+.contact-compact-section .contact-card{padding:24px 28px;border-radius:12px;box-shadow:0 10px 25px rgba(31,36,48,.05)}
+.contact-compact-section .contact-card h3{font-size:19px;margin:0 0 10px}
+.contact-compact-section .contact-card p{font-size:14px;margin:5px 0}
+@media(max-width:700px){.contact-compact-section{padding:30px 0 52px}.contact-compact-section .contact-grid{grid-template-columns:1fr;gap:12px}.contact-compact-section .contact-card{padding:20px}.contact-compact-heading{margin-bottom:22px}}
+</style></head><body><div class="ars-bar"><strong>ARS 결제 안내</strong><span id="arsMessage"></span></div><header class="topbar">
   <div class="wrap nav">
 
     <a class="brand" id="brandLink" href="#home">
@@ -1555,31 +1571,16 @@ footer{
     </a>
 
   </div>
-</header><section class="contact-page-hero"><div class="wrap"><div class="eyebrow">CONTACT</div><h1>문의 안내</h1><p>아카데미 관련 문의처를 확인하실 수 있습니다.</p><div class="crumb"><a href="index.html">HOME</a> / 문의</div></div></section><main>  <!-- CONTACT -->
-
-  <div class="contact-sponsors-bg">
-
-    <section
-      class="soft"
-      id="contact"
-    >
-
-      <div class="wrap">
-
-        <div class="section-head">
-
-          <div>
-            <div class="eyebrow">Contact</div>
-            <h2>문의 안내</h2>
-          </div>
-
-          <p>
-            아카데미 참가 및 교육과 관련하여 궁금한 사항은 각 사무국으로 문의해 주세요.
-          </p>
-
-        </div>
-
-        <div class="contact-grid">
+</header><main class="contact-compact-main">
+  <section class="contact-compact-section" id="contact">
+    <div class="wrap">
+      <nav class="contact-breadcrumb" aria-label="현재 위치"><a href="index.html">HOME</a><span aria-hidden="true"> / </span>문의</nav>
+      <div class="contact-compact-heading">
+        <div class="eyebrow">CONTACT</div>
+        <h1>문의 안내</h1>
+        <p>아카데미 참가 및 교육과 관련하여 궁금한 사항은 각 사무국으로 문의해 주세요.</p>
+      </div>
+      <div class="contact-grid">
 
           <div class="contact-card">
 
@@ -1630,8 +1631,6 @@ footer{
       </div>
 
     </section>
-
-  </div>
 </main><footer>
   <div class="wrap footer-row">
 
