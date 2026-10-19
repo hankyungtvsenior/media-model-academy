@@ -7,12 +7,12 @@ const GALLERY_ALBUMS = [
     date: "2026.10.17",
     description: "K-시니어 미디어 모델 아카데미 제1기 공개 오디션 현장",
     photos: [
-      "assets/gallery/시니어오디션_16.jpg",
-      "assets/gallery/시니어오디션_20.jpg",
-      "assets/gallery/시니어오디션_21.jpg",
-      "assets/gallery/시니어오디션_31.jpg",
-      "assets/gallery/시니어오디션_39.jpg",
-      "assets/gallery/시니어오디션_37.jpg",
+      "assets/hero/시니어오디션_16.jpg",
+      "assets/hero/시니어오디션_20.jpg",
+      "assets/hero/시니어오디션_21.jpg",
+      "assets/hero/시니어오디션_31.jpg",
+      "assets/hero/시니어오디션_39.jpg",
+      "assets/hero/시니어오디션_37.jpg",
     ]
   }
 ];
