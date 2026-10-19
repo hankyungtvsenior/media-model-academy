@@ -9,7 +9,7 @@ const SITE_CONTENT = {
 
   ars: {
     title: "ARS 결제 안내",
-    message: "070-0000-0000"
+    message: "02-3490-4600"
   },
 
   popup: {
