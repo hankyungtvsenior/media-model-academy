@@ -1555,6 +1555,27 @@ footer{
 @media (max-width: 980px) {
   .topbar .navlinks { flex: none; justify-content: flex-start; gap: 4px; font-size: 16px; }
 }
+
+/* Hero event-photo carousel */
+.hero-slideshow{min-width:0;width:100%;position:relative}
+.hero-slide-stage{position:relative;aspect-ratio:4/4.15;max-height:530px;min-height:300px;border-radius:30px;overflow:hidden;background:linear-gradient(140deg,#e7e7df,#bfcbd2);box-shadow:0 22px 55px rgba(31,36,48,.12)}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
+.hero-slide.is-active{opacity:1}
+.hero-slide-empty[hidden]{display:none}
+.hero-slide-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#273a52;text-align:center;padding:25px;letter-spacing:.07em}
+.hero-slide-empty-icon{font-size:44px;font-weight:300;color:#718594}
+.hero-slide-empty strong{font-size:clamp(13px,1.5vw,19px)}
+.hero-slide-empty span:last-child{font-size:14px;letter-spacing:0}
+.hero-slide-controls{display:flex;align-items:center;justify-content:center;gap:15px;margin-top:14px}
+.hero-slide-controls[hidden]{display:none}
+.hero-slide-arrow{width:35px;height:35px;border-radius:50%;border:1px solid #c9d0d3;background:#fff;color:#273a52;font-size:26px;line-height:1;cursor:pointer}
+.hero-slide-dots{display:flex;gap:8px;align-items:center}
+.hero-slide-dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#b9c0c6;cursor:pointer;transition:width .2s,background .2s}
+.hero-slide-dot.is-active{width:24px;border-radius:10px;background:#273a52}
+@media(max-width:980px){.hero-slide-stage{aspect-ratio:5/3;max-height:490px}}
+@media(max-width:620px){.hero-slide-stage{aspect-ratio:4/3;min-height:230px;border-radius:20px}}
+@media(prefers-reduced-motion:reduce){.hero-slide{transition:none}}
+
 </style>
 </head>
 
@@ -1728,57 +1749,19 @@ footer{
 
       </div>
 
-      <aside class="hero-panel">
-
-        <div class="label">
-          2026 K-SENIOR MEDIA MODEL ACADEMY 1기
-        </div>
-
-        <h2>
-          모집 일정 및 주요 안내
-        </h2>
-
-        <div
-          class="deadline-badge"
-          id="deadlineBadge"
-        >
-          모집 마감까지 계산 중
-        </div>
-
-        <div class="hero-facts">
-
-          <div class="fact">
-            <b>공개 오디션</b>
-            <span id="quickAudition"></span>
+      <aside class="hero-slideshow" aria-label="아카데미 행사 사진 슬라이드">
+        <div class="hero-slide-stage" id="heroSlideStage">
+          <div class="hero-slide-empty" id="heroSlideEmpty">
+            <span class="hero-slide-empty-icon">✦</span>
+            <strong>K-SENIOR MEDIA MODEL ACADEMY</strong>
+            <span>행사 현장의 순간들</span>
           </div>
-
-          <div class="fact">
-            <b>모집 인원</b>
-            <span
-              id="quickCapacity"
-              data-count-type="capacity"
-            ></span>
-          </div>
-
-          <div class="fact">
-            <b>교육 과정</b>
-            <span
-              id="quickCourse"
-              data-count-type="course"
-            ></span>
-          </div>
-
-          <div class="fact">
-            <b>신청 마감</b>
-            <span id="quickDeadline"></span>
-          </div>
-
         </div>
-
-        <div class="tiny">
-          ※ 신청자가 많을 경우 조기 마감될 수 있습니다.
+        <div class="hero-slide-controls" id="heroSlideControls" hidden>
+          <button type="button" class="hero-slide-arrow" id="heroSlidePrev" aria-label="이전 사진">‹</button>
+          <div class="hero-slide-dots" id="heroSlideDots" aria-label="사진 선택"></div>
+          <button type="button" class="hero-slide-arrow" id="heroSlideNext" aria-label="다음 사진">›</button>
         </div>
-
       </aside>
 
     </div>
@@ -2196,10 +2179,70 @@ footer{
   text("heroPrimary",C.hero?.primaryButton);
   text("heroSecondary",C.hero?.secondaryButton);
 
-  text("quickAudition",C.quickInfo?.audition);
-  text("quickCapacity",C.quickInfo?.capacity);
-  text("quickCourse",C.quickInfo?.course);
-  text("quickDeadline",C.quickInfo?.deadline);
+
+  /* HERO PHOTO SLIDESHOW
+     Add photos under assets/hero/ and edit the filenames here. */
+  const heroPhotoFiles = [
+    "assets/hero/slide1.jpg",
+    "assets/hero/slide2.jpg",
+    "assets/hero/slide3.jpg",
+    "assets/hero/slide4.jpg"
+  ];
+  const heroStage = document.getElementById("heroSlideStage");
+  const heroControls = document.getElementById("heroSlideControls");
+  const heroDots = document.getElementById("heroSlideDots");
+  const heroSlides = [];
+  let heroCurrent = 0;
+  let heroTimer;
+  const heroShow = index => {
+    if (!heroSlides.length) return;
+    heroCurrent = (index + heroSlides.length) % heroSlides.length;
+    heroSlides.forEach((slide, i) => slide.classList.toggle("is-active", i === heroCurrent));
+    [...heroDots.children].forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === heroCurrent);
+      dot.setAttribute("aria-current", i === heroCurrent ? "true" : "false");
+    });
+  };
+  const heroStop = () => clearInterval(heroTimer);
+  const heroStart = () => {
+    heroStop();
+    if (heroSlides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      heroTimer = setInterval(() => heroShow(heroCurrent + 1), 4500);
+    }
+  };
+  const heroRefresh = () => {
+    if (!heroSlides.length) return;
+    document.getElementById("heroSlideEmpty").hidden = true;
+    heroSlides.forEach((slide, i) => {
+      slide.style.zIndex = 1;
+      slide.classList.toggle("is-active", i === heroCurrent);
+    });
+    heroControls.hidden = heroSlides.length < 2;
+    heroDots.replaceChildren();
+    heroSlides.forEach((slide, i) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "hero-slide-dot";
+      dot.setAttribute("aria-label", `사진 ${i + 1} 보기`);
+      dot.addEventListener("click", () => { heroShow(i); heroStart(); });
+      heroDots.appendChild(dot);
+    });
+    heroShow(0);
+    heroStart();
+  };
+  heroPhotoFiles.forEach((src, i) => {
+    const img = new Image();
+    img.className = "hero-slide";
+    img.alt = `K-시니어 미디어 모델 아카데미 행사 사진 ${i + 1}`;
+    img.onload = () => { heroSlides.push(img); heroStage.appendChild(img); heroRefresh(); };
+    img.onerror = () => {};
+    img.src = src;
+  });
+  document.getElementById("heroSlidePrev").addEventListener("click", () => { heroShow(heroCurrent - 1); heroStart(); });
+  document.getElementById("heroSlideNext").addEventListener("click", () => { heroShow(heroCurrent + 1); heroStart(); });
+  heroStage.addEventListener("mouseenter", heroStop);
+  heroStage.addEventListener("mouseleave", heroStart);
+  document.addEventListener("visibilitychange", () => document.hidden ? heroStop() : heroStart());
 
   text("academyHeadline",C.academy?.headline);
 
@@ -2305,61 +2348,6 @@ footer{
         <li>※ ${x}</li>
       `
     ).join("");
-
-  /* =====================
-     D-DAY
-  ===================== */
-
-  const deadlineBadge =
-    document.getElementById(
-      "deadlineBadge"
-    );
-
-  const deadline =
-    new Date(
-      "2026-10-15T23:59:59+09:00"
-    );
-
-  const updateDeadline = () => {
-
-    const now =
-      new Date();
-
-    const diff =
-      deadline.getTime() -
-      now.getTime();
-
-    if(diff < 0){
-
-      deadlineBadge.textContent =
-        "모집 마감";
-
-      deadlineBadge.classList.add(
-        "closed"
-      );
-
-      return;
-    }
-
-    const days =
-      Math.ceil(
-        diff /
-        (1000 * 60 * 60 * 24)
-      );
-
-    if(days === 0){
-
-      deadlineBadge.textContent =
-        "오늘 모집 마감";
-
-    }else{
-
-      deadlineBadge.textContent =
-        `모집 마감 D-${days}`;
-    }
-  };
-
-  updateDeadline();
 
   /* =====================
      APPLICATION
