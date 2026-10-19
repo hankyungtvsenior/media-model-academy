@@ -1561,6 +1561,7 @@ footer{
 .hero-slide-stage{position:relative;aspect-ratio:4/4.15;max-height:530px;min-height:300px;border-radius:30px;overflow:hidden;background:linear-gradient(140deg,#e7e7df,#bfcbd2);box-shadow:0 22px 55px rgba(31,36,48,.12)}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
 .hero-slide.is-active{opacity:1}
+.hero-slide-stage video.hero-slide{object-fit:cover;pointer-events:none}
 .hero-slide-empty[hidden]{display:none}
 .hero-slide-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#273a52;text-align:center;padding:25px;letter-spacing:.07em}
 .hero-slide-empty-icon{font-size:44px;font-weight:300;color:#718594}
@@ -1929,7 +1930,7 @@ footer{
             style="background:#fff;color:var(--navy);width:100%"
             href="#application"
           >
-            신청 마감
+            참가 신청하기
           </a>
 
         </aside>
@@ -2180,69 +2181,122 @@ footer{
   text("heroSecondary",C.hero?.secondaryButton);
 
 
-  /* HERO PHOTO SLIDESHOW
-     Add photos under assets/hero/ and edit the filenames here. */
-  const heroPhotoFiles = [
-    "assets/hero/slide1.jpg",
-    "assets/hero/slide2.jpg",
-    "assets/hero/slide3.jpg",
-    "assets/hero/slide4.jpg"
+  /* HERO SLIDESHOW: photos 4.5 seconds, video highlight 5 seconds.
+     Upload assets/hero/highlight.mp4. Change startAt to choose the highlight start time. */
+  const heroMedia = [
+    { type: "image", src: "assets/hero/slide1.jpg" },
+    { type: "video", src: "assets/hero/highlight.mp4", startAt: 8, duration: 5 },
+    { type: "image", src: "assets/hero/slide2.jpg" },
+    { type: "image", src: "assets/hero/slide3.jpg" },
+    { type: "image", src: "assets/hero/slide4.jpg" }
   ];
   const heroStage = document.getElementById("heroSlideStage");
   const heroControls = document.getElementById("heroSlideControls");
   const heroDots = document.getElementById("heroSlideDots");
   const heroSlides = [];
   let heroCurrent = 0;
-  let heroTimer;
+  let heroTimer = null;
+  let heroPaused = false;
+  const heroStop = () => {
+    clearTimeout(heroTimer);
+    heroTimer = null;
+  };
   const heroShow = index => {
     if (!heroSlides.length) return;
+    heroStop();
     heroCurrent = (index + heroSlides.length) % heroSlides.length;
-    heroSlides.forEach((slide, i) => slide.classList.toggle("is-active", i === heroCurrent));
+    heroSlides.forEach(({ element, media }, i) => {
+      const active = i === heroCurrent;
+      element.classList.toggle("is-active", active);
+      if (media.type === "video") {
+        if (active) {
+          const seek = () => {
+            const end = Number.isFinite(element.duration) ? element.duration : Infinity;
+            element.currentTime = Math.min(media.startAt || 0, Math.max(0, end - 0.1));
+            if (!heroPaused && !document.hidden) element.play().catch(() => {});
+          };
+          if (element.readyState >= 1) seek();
+          else element.addEventListener("loadedmetadata", seek, { once: true });
+        } else {
+          element.pause();
+        }
+      }
+    });
     [...heroDots.children].forEach((dot, i) => {
       dot.classList.toggle("is-active", i === heroCurrent);
       dot.setAttribute("aria-current", i === heroCurrent ? "true" : "false");
     });
+    heroStart();
   };
-  const heroStop = () => clearInterval(heroTimer);
   const heroStart = () => {
     heroStop();
+    if (!heroSlides.length || heroPaused || document.hidden) return;
+    const active = heroSlides[heroCurrent];
+    if (active.media.type === "video") active.element.play().catch(() => {});
     if (heroSlides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      heroTimer = setInterval(() => heroShow(heroCurrent + 1), 4500);
+      const ms = active.media.type === "video" ? (active.media.duration || 5) * 1000 : 4500;
+      heroTimer = setTimeout(() => heroShow(heroCurrent + 1), ms);
     }
   };
   const heroRefresh = () => {
     if (!heroSlides.length) return;
     document.getElementById("heroSlideEmpty").hidden = true;
-    heroSlides.forEach((slide, i) => {
-      slide.style.zIndex = 1;
-      slide.classList.toggle("is-active", i === heroCurrent);
-    });
     heroControls.hidden = heroSlides.length < 2;
     heroDots.replaceChildren();
     heroSlides.forEach((slide, i) => {
       const dot = document.createElement("button");
       dot.type = "button";
       dot.className = "hero-slide-dot";
-      dot.setAttribute("aria-label", `사진 ${i + 1} 보기`);
-      dot.addEventListener("click", () => { heroShow(i); heroStart(); });
+      dot.setAttribute("aria-label", `슬라이드 ${i + 1} 보기`);
+      dot.addEventListener("click", () => heroShow(i));
       heroDots.appendChild(dot);
     });
     heroShow(0);
-    heroStart();
   };
-  heroPhotoFiles.forEach((src, i) => {
-    const img = new Image();
-    img.className = "hero-slide";
-    img.alt = `K-시니어 미디어 모델 아카데미 행사 사진 ${i + 1}`;
-    img.onload = () => { heroSlides.push(img); heroStage.appendChild(img); heroRefresh(); };
-    img.onerror = () => {};
-    img.src = src;
+  // Preserve the specified order even when images and video load at different speeds.
+  const loadedMedia = new Array(heroMedia.length);
+  const addMedia = (media, element, index) => {
+    loadedMedia[index] = { media, element };
+    heroSlides.splice(0, heroSlides.length, ...loadedMedia.filter(Boolean));
+    heroSlides.forEach(({ element: item }) => {
+      item.style.zIndex = 1;
+      heroStage.appendChild(item);
+    });
+    heroRefresh();
+  };
+  heroMedia.forEach((media, i) => {
+    if (media.type === "video") {
+      const video = document.createElement("video");
+      video.className = "hero-slide";
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("aria-label", "아카데미 행사 영상 하이라이트");
+      video.addEventListener("loadedmetadata", () => addMedia(media, video, i), { once: true });
+      video.addEventListener("error", () => {});
+      video.src = media.src;
+    } else {
+      const img = new Image();
+      img.className = "hero-slide";
+      img.alt = `K-시니어 미디어 모델 아카데미 행사 사진 ${i + 1}`;
+      img.onload = () => addMedia(media, img, i);
+      img.onerror = () => {};
+      img.src = media.src;
+    }
   });
-  document.getElementById("heroSlidePrev").addEventListener("click", () => { heroShow(heroCurrent - 1); heroStart(); });
-  document.getElementById("heroSlideNext").addEventListener("click", () => { heroShow(heroCurrent + 1); heroStart(); });
-  heroStage.addEventListener("mouseenter", heroStop);
-  heroStage.addEventListener("mouseleave", heroStart);
-  document.addEventListener("visibilitychange", () => document.hidden ? heroStop() : heroStart());
+  document.getElementById("heroSlidePrev").addEventListener("click", () => heroShow(heroCurrent - 1));
+  document.getElementById("heroSlideNext").addEventListener("click", () => heroShow(heroCurrent + 1));
+  heroStage.addEventListener("mouseenter", () => { heroPaused = true; heroStop(); heroSlides.forEach(s => { if (s.media.type === "video") s.element.pause(); }); });
+  heroStage.addEventListener("mouseleave", () => { heroPaused = false; heroStart(); });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      heroStop();
+      heroSlides.forEach(s => { if (s.media.type === "video") s.element.pause(); });
+    } else heroStart();
+  });
 
   text("academyHeadline",C.academy?.headline);
 
