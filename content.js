@@ -9,7 +9,7 @@ const SITE_CONTENT = {
 
   ars: {
     title: "ARS 결제 안내",
-    message: "ARS 번호가 확정되면 이곳에 표시됩니다."
+    message: "070-0000-0000"
   },
 
   popup: {
