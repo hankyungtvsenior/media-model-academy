@@ -27,6 +27,12 @@
 @media(max-width:650px){.news-link{gap:12px;padding:18px 8px;flex-wrap:wrap}.news-title{font-size:15px;flex-basis:calc(100% - 30px)}.news-date{order:3;margin-left:auto;font-size:12px}.news-arrow{order:2}}
 footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344052}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:30px}.footer-logos{display:flex;align-items:center;gap:14px}.footer-logos img{max-width:150px;max-height:42px;object-fit:contain}.footer-center{text-align:center}.footer-center strong{font-size:14px}.footer-center p{margin:4px 0 0;color:#6f7781;font-size:13px}.footer-contact{text-align:right;font-size:14px}.footer-contact a{font-weight:800;color:var(--navy)}
 @media(max-width:1100px) and (min-width:981px){.navlinks{gap:19px;font-size:15px}}@media(max-width:980px){.mobile-nav-toggle{display:block}.nav{position:relative}.navlinks{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 15px 28px rgba(0,0,0,.13);padding:14px 18px;z-index:110;flex-direction:column;align-items:stretch;gap:4px;max-height:calc(100vh - 120px);overflow-y:auto}.navlinks.mobile-open{display:flex}.nav-group{display:block}.nav-parent{width:100%;justify-content:space-between;padding:13px 8px}.navlinks>a{padding:13px 8px}.nav-dropdown{position:static;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:#f6f7f8;padding:3px 8px;margin:0 0 8px;min-width:0}.nav-group.is-open .nav-dropdown{display:flex}}@media(max-width:650px){.wrap{width:calc(100% - 28px)}.brand strong{font-size:13px}.brand small{font-size:9px}.brand-mark{width:32px;height:32px}.ars-bar{font-size:12px}.page-head{padding:50px 0 40px}.footer-row{flex-direction:column;text-align:center}.footer-contact{text-align:center}}
+
+/* Shared header alignment with index (10): fixed ARS, sticky navigation. */
+body { padding-top: 48px; }
+.ars-bar { position:fixed; top:0; left:0; width:100%; height:48px; min-height:48px; z-index:100; box-sizing:border-box; }
+.topbar { position:sticky; top:48px; z-index:50; }
+
 </style>
 <script src="news-content.js" defer></script>
 </head><body>

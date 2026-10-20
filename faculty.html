@@ -150,11 +150,18 @@ footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344
 @media (max-width: 980px) {
   .topbar .navlinks { flex: none; justify-content: flex-start; gap: 4px; font-size: 16px; }
 }
+
+/* Shared header alignment with index (10): fixed ARS, sticky navigation. */
+body { padding-top: 48px; }
+.ars-bar { position:fixed; top:0; left:0; width:100%; height:48px; min-height:48px; z-index:100; box-sizing:border-box; }
+.topbar { position:sticky; top:48px; z-index:50; }
+
 </style></head><body><div class="ars-bar"><strong>ARS 결제 안내</strong><span>ARS 번호가 확정되면 이곳에 표시됩니다.</span></div>
 <header class="topbar"><div class="wrap nav"><a class="brand" href="index.html"><span class="brand-mark"></span><span><small>K-SENIOR MEDIA MODEL ACADEMY</small><strong>K-시니어 미디어 모델 아카데미</strong></span></a><nav class="navlinks" aria-label="주요 메뉴">
  <div class="nav-group"><a class="nav-parent" href="index.html#academy" aria-haspopup="true" aria-expanded="false">아카데미 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="index.html#benefits">교육생 특전</a><a href="index.html#recruitment">1기 모집</a></div></div>
  <div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html">커리큘럼</a><a href="faculty.html" class="active" aria-current="page">강사진</a></div></div>
  <a href="gallery.html">행사 갤러리</a>
+ <a href="news.html">언론보도</a>
  <a href="contact.html">문의</a>
  </nav><button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">☰ 메뉴</button></div></header><div class="hero"><div class="wrap"><div class="eyebrow">INSTRUCTORS</div><h1>강사진</h1><p>각 분야의 전문 강사진이 함께합니다.</p><div class="crumb"><a href="index.html">HOME</a> / 강사진</div></div></div><main class="main"><div class="wrap"><div class="faculty-grid" id="facultyGrid"></div></div></main><footer><div class="wrap footer-row"><div class="footer-logos"><a href="https://www.wowtv.co.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/hankyungtv.png" alt="한국경제TV"></a><span>×</span><a href="https://www.sfma.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/sfma.png" alt="시니어패션모델협회"></a></div><div class="footer-center"><strong>K-시니어 미디어 모델 아카데미</strong><p>여러분의 새로운 도전과 멋진 시작을 응원합니다.</p></div><div class="footer-contact"><a href="tel:02-6676-0448">02-6676-0448</a> · <a href="tel:010-4214-7787">010-4214-7787</a></div></div></footer><script>const C=SITE_CONTENT;const grid=document.getElementById("facultyGrid");grid.innerHTML=(C.instructors||[]).map(x=>`<article class="faculty"><div class="faculty-photo">${(x.photos||[]).slice(0,2).map((src,i)=>`<img class="faculty-slide ${i===0?'active':''}" src="${src}" alt="${x.name} 사진 ${i+1}" loading="lazy">`).join('')}<div class="faculty-dots">${(x.photos||[]).slice(0,2).map((_,i)=>`<button type="button" class="faculty-dot ${i===0?'active':''}" aria-label="사진 ${i+1}"></button>`).join('')}</div></div><div class="faculty-info"><h3>${x.name}</h3><p class="faculty-role">${x.role||''}</p><ul class="faculty-career">${(x.career||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div></article>`).join('');document.querySelectorAll('.faculty-photo').forEach(photo=>{const imgs=[...photo.querySelectorAll('.faculty-slide')],dots=[...photo.querySelectorAll('.faculty-dot')];if(imgs.length<2)return;let i=0;const show=n=>{i=n;imgs.forEach((el,j)=>el.classList.toggle('active',j===i));dots.forEach((el,j)=>el.classList.toggle('active',j===i))};dots.forEach((d,j)=>d.addEventListener('click',()=>show(j)));setInterval(()=>show((i+1)%imgs.length),6000)});</script><script>
 (function(){
