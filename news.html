@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="K-시니어 미디어 모델 아카데미 언론보도 및 뉴스">
+<title>언론보도 | K-시니어 미디어 모델 아카데미</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#273a52;--gold:#c9a45c;--ink:#1f2430;--muted:#68707a;--line:#e7e1d6;--max:1180px}
+*{box-sizing:border-box}body{margin:0;padding-top:48px;color:var(--ink);font:16px/1.7 "Noto Sans KR",sans-serif;word-break:keep-all;background:#fff}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+.ars-bar{position:fixed;top:0;left:0;width:100%;height:48px;z-index:100;background:var(--navy);color:white;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;padding:8px 14px;gap:9px}
+.topbar{position:sticky;top:48px;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid #e6e3dc;backdrop-filter:blur(14px)}.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;gap:12px;align-items:center;font-weight:900;min-width:0}.brand-mark{width:40px;height:40px;border-radius:50%;background:linear-gradient(145deg,var(--navy),#8b9b8e);flex:none}.brand small{display:block;font-size:11px;color:var(--muted);letter-spacing:.08em}.brand strong{font-size:18px}.navlinks{display:flex;align-items:center;justify-content:center;flex:1;gap:34px;font-size:17px;font-weight:700}.navlinks>a{white-space:nowrap}.navlinks a:hover,.navlinks a.active{color:#557a9e}.nav-group{position:relative;display:flex;align-items:center}.nav-parent{display:flex;align-items:center;gap:8px;white-space:nowrap}.nav-chevron{font-size:10px}.nav-dropdown{position:absolute;top:100%;left:0;min-width:190px;padding:9px;background:white;border:1px solid #e6e3dc;border-radius:12px;box-shadow:0 12px 30px rgba(17,33,54,.13);display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;transform:translateY(7px);transition:.2s;z-index:100;font-size:15px}.nav-group:hover .nav-dropdown,.nav-group:focus-within .nav-dropdown,.nav-group.is-open .nav-dropdown{opacity:1;visibility:visible;transform:none}.nav-dropdown a{padding:12px 14px;border-radius:7px;white-space:nowrap}.nav-dropdown a:hover{background:#edf1f4}.mobile-nav-toggle{display:none;border:1px solid #dce1e5;background:white;border-radius:9px;padding:9px 12px;color:var(--navy);font-weight:800;cursor:pointer}
+.page-head{padding:64px 0 48px;background:linear-gradient(105deg,#f2e5c9 0%,#fbf7ed 44%,#fffdfa 100%);border-bottom:5px solid var(--navy)}.eyebrow{font-size:13px;font-weight:900;color:#9e793a;letter-spacing:.16em}.page-head h1{font-size:clamp(36px,5vw,54px);letter-spacing:-.05em;line-height:1.25;margin:9px 0 12px;color:var(--navy)}.page-head p{color:#576273;font-size:17px;margin:0}
+.main{padding:48px 0 110px;min-height:450px}
+.news-list{border-top:2px solid var(--navy)}
+.news-item{border-bottom:1px solid var(--line)}
+.news-link{display:flex;align-items:center;gap:22px;padding:21px 18px;transition:background .2s;color:var(--ink)}
+.news-link:hover,.news-link:focus-visible{background:#faf8f2}
+.news-title{flex:1;min-width:0;font-size:17px;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+.news-date{flex:none;font-size:14px;color:var(--muted);white-space:nowrap}
+.news-arrow{flex:none;color:#9b7b43;font-size:19px}
+.news-link:not([href]){cursor:default;opacity:.6}
+.empty{padding:75px 20px;border:1px dashed #d5cbb7;border-radius:18px;background:#faf8f2;text-align:center;color:#6f7781}
+.empty strong{display:block;font-size:20px;color:var(--navy);margin-bottom:6px}
+@media(max-width:650px){.news-link{gap:12px;padding:18px 8px;flex-wrap:wrap}.news-title{font-size:15px;flex-basis:calc(100% - 30px)}.news-date{order:3;margin-left:auto;font-size:12px}.news-arrow{order:2}}
+footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344052}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:30px}.footer-logos{display:flex;align-items:center;gap:14px}.footer-logos img{max-width:150px;max-height:42px;object-fit:contain}.footer-center{text-align:center}.footer-center strong{font-size:14px}.footer-center p{margin:4px 0 0;color:#6f7781;font-size:13px}.footer-contact{text-align:right;font-size:14px}.footer-contact a{font-weight:800;color:var(--navy)}
+@media(max-width:1100px) and (min-width:981px){.navlinks{gap:19px;font-size:15px}}@media(max-width:980px){.mobile-nav-toggle{display:block}.nav{position:relative}.navlinks{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 15px 28px rgba(0,0,0,.13);padding:14px 18px;z-index:110;flex-direction:column;align-items:stretch;gap:4px;max-height:calc(100vh - 120px);overflow-y:auto}.navlinks.mobile-open{display:flex}.nav-group{display:block}.nav-parent{width:100%;justify-content:space-between;padding:13px 8px}.navlinks>a{padding:13px 8px}.nav-dropdown{position:static;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:#f6f7f8;padding:3px 8px;margin:0 0 8px;min-width:0}.nav-group.is-open .nav-dropdown{display:flex}}@media(max-width:650px){.wrap{width:calc(100% - 28px)}.brand strong{font-size:13px}.brand small{font-size:9px}.brand-mark{width:32px;height:32px}.ars-bar{font-size:12px}.page-head{padding:50px 0 40px}.footer-row{flex-direction:column;text-align:center}.footer-contact{text-align:center}}
+</style>
+<script src="news-content.js" defer></script>
+</head><body>
+<div class="ars-bar"><strong>ARS 결제 안내</strong><span>ARS 번호가 확정되면 이곳에 표시됩니다.</span></div>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html"><span class="brand-mark"></span><span><small>K-SENIOR MEDIA MODEL ACADEMY</small><strong>K-시니어 미디어 모델 아카데미</strong></span></a><nav class="navlinks" aria-label="주요 메뉴">
+<div class="nav-group"><a class="nav-parent" href="index.html#academy" aria-haspopup="true" aria-expanded="false">아카데미 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="index.html#benefits">교육생 특전</a><a href="index.html#recruitment">1기 모집</a></div></div>
+<div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html">커리큘럼</a><a href="faculty.html">강사진</a></div></div>
+<a href="gallery.html">행사 갤러리</a><a href="news.html" class="active" aria-current="page">언론보도</a><a href="contact.html">문의</a></nav><button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">☰ 메뉴</button></div></header>
+<div class="page-head"><div class="wrap"><div class="eyebrow">PRESS & MEDIA</div><h1>언론보도</h1><p>K-시니어 미디어 모델 아카데미의 소식을 전합니다.</p></div></div>
+<main class="main"><div class="wrap"><div id="newsList" class="news-list"></div><div id="newsEmpty" class="empty" hidden><strong>등록된 언론보도가 없습니다.</strong>새로운 소식을 준비하고 있습니다.</div></div></main>
+<footer><div class="wrap footer-row"><div class="footer-logos"><a href="https://www.wowtv.co.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/hankyungtv.png" alt="한국경제TV"></a><span>×</span><a href="https://www.sfma.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/sfma.png" alt="시니어패션모델협회"></a></div><div class="footer-center"><strong>K-시니어 미디어 모델 아카데미</strong><p>여러분의 새로운 도전과 멋진 시작을 응원합니다.</p></div><div class="footer-contact"><a href="tel:02-6676-0448">02-6676-0448</a> · <a href="tel:010-4214-7787">010-4214-7787</a></div></div></footer>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+ const btn=document.querySelector('.mobile-nav-toggle'),nav=document.querySelector('.navlinks');
+ btn.addEventListener('click',()=>{const open=nav.classList.toggle('mobile-open');btn.setAttribute('aria-expanded',String(open))});
+ nav.querySelectorAll('.nav-parent').forEach(link=>link.addEventListener('click',e=>{if(matchMedia('(max-width:980px)').matches){e.preventDefault();const group=link.closest('.nav-group');const open=group.classList.toggle('is-open');link.setAttribute('aria-expanded',String(open))}}));
+ const data=Array.isArray(window.NEWS_ARTICLES)?window.NEWS_ARTICLES:[];
+ const list=document.getElementById('newsList');document.getElementById('newsEmpty').hidden=data.length>0;
+ data.forEach(article=>{
+  const item=document.createElement('div');item.className='news-item';
+  const link=document.createElement('a');link.className='news-link';
+  if(article.url){link.href=article.url;link.target='_blank';link.rel='noopener noreferrer'}
+  const title=document.createElement('span');title.className='news-title';title.textContent=article.title||'제목 없음';
+  const date=document.createElement('time');date.className='news-date';date.textContent=[article.publisher,article.date].filter(Boolean).join(' · ');
+  const arrow=document.createElement('span');arrow.className='news-arrow';arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');
+  link.append(title,date,arrow);item.append(link);list.append(item);
+ });
+});
+</script></body></html>
