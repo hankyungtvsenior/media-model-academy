@@ -1553,7 +1553,7 @@ body { padding-top: 48px; }
 .contact-compact-section .contact-card h3{font-size:19px;margin:0 0 10px}
 .contact-compact-section .contact-card p{font-size:14px;margin:5px 0}
 @media(max-width:700px){.contact-compact-section{padding:30px 0 52px}.contact-compact-section .contact-grid{grid-template-columns:1fr;gap:12px}.contact-compact-section .contact-card{padding:20px}.contact-compact-heading{margin-bottom:22px}}
-</style></head><body><div class="ars-bar"><strong>ARS 결제 안내</strong><span id="arsMessage"></span></div><header class="topbar">
+</style></head><body><div class="ars-bar"><strong id="arsTitle">ARS 결제 안내</strong><span id="arsMessage"></span></div><header class="topbar">
   <div class="wrap nav">
 
     <a class="brand" id="brandLink" href="#home">
@@ -1699,6 +1699,7 @@ body { padding-top: 48px; }
 </footer><script>
 const C=SITE_CONTENT;
 const text=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value||'';};
+text('arsTitle',C.ars?.title);
 text('arsMessage',C.ars?.message);
 text('wowtvPhone',C.contact?.wowtvPhone);
 text('sfmaPhone',C.contact?.sfmaPhone);
