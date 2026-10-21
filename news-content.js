@@ -3,6 +3,11 @@
 // date는 기사 보도일입니다.
 window.NEWS_ARTICLES = [
   {
+    title: '[K-시니어 미디어모델 아카데미 오디션] 거를 타선이 없는 모델 후보들',
+    url: 'https://n.news.naver.com/mnews/article/215/0001269980',
+    date: '2026.10.21', publisher: '한국경제TV'
+  },
+  {
     title: '"나 TV 나왔어"...오늘만큼은 리센느보다 돋보여',
     url: 'https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610210048&t=NN',
     date: '2026.10.21', publisher: '한국경제TV'
