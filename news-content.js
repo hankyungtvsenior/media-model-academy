@@ -3,6 +3,16 @@
 // date는 기사 보도일입니다.
 window.NEWS_ARTICLES = [
   {
+    title: '"나 TV 나왔어"...오늘만큼은 리센느보다 돋보여',
+    url: 'https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610210048&t=NN',
+    date: '2026.10.21', publisher: '한국경제TV'
+  },
+  {
+    title: '[K-시니어 미디어모델 아카데미 오디션] 모델들이 더 빛날 수 있도록... 분주한 스텝들',
+    url: 'https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610210043&t=NN',
+    date: '2026.10.21', publisher: '한국경제TV'
+  },
+   {
     title: '[K-시니어 미디어모델 아카데미 오디션] "누구를 선발해야 하나"…심사위원들의 깊어지는 고민',
     url: 'https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610190063&t=NN',
     date: '2026.10.19', publisher: '한국경제TV'
