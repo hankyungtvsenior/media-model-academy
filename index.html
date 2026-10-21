@@ -1578,6 +1578,8 @@ footer{
 @media(prefers-reduced-motion:reduce){.hero-slide{transition:none}}
 
 
+.hero-slide-dots[hidden]{display:none}
+.hero-slide-count{font-size:13px;font-weight:800;color:#273a52;min-width:45px;text-align:center}
 /* Full-height hero imagery: fills the entire right side, edge to edge */
 @media (min-width: 981px) {
   .hero { min-height: 760px; }
@@ -2259,18 +2261,46 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
   /* HERO SLIDESHOW: photos 4.5 seconds, video highlight 5 seconds.
      Upload assets/hero/highlight.mp4. Change startAt to choose the highlight start time. */
   const heroMedia = [
-    { type: "image", src: "assets/hero/시니어오디션_16.jpg" },
-    { type: "video", src: "assets/hero/highlight.mp4", startAt: 8, duration: 5 },
-    { type: "image", src: "assets/hero/시니어오디션_20.jpg" },
-    { type: "image", src: "assets/hero/시니어오디션_21.jpg" },
-    { type: "image", src: "assets/hero/시니어오디션_31.jpg" },
-    { type: "image", src: "assets/hero/시니어오디션_37.jpg" },
-    { type: "image", src: "assets/hero/시니어오디션_39.jpg" }
+    { type: "image", src: "assets/gallery/audition-2026/audition_1.jpg" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_2.jpg" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_3.jpg" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_4.jpg" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_5.jpg" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_6.jpg" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_7.jpg" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_8.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_9.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_10.png" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_11.png" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_13.png" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_14.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_15.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_16.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_17.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_18.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_19.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_20.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_21.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_22.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_23.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_24.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_25.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_26.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_27.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_28.png" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_29.png" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_30.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_31.JPG" },
+    { type: "image", src: "assets/gallery/audition-2026/audition_32.JPG" }
   ];
   const heroStage = document.getElementById("heroSlideStage");
   const heroControls = document.getElementById("heroSlideControls");
   const heroDots = document.getElementById("heroSlideDots");
   const heroSlides = [];
+  const heroSlideCount = document.createElement("span");
+  heroSlideCount.className = "hero-slide-count";
+  heroSlideCount.setAttribute("aria-live", "off");
+  heroDots.after(heroSlideCount);
   let heroCurrent = 0;
   let heroTimer = null;
   let heroPaused = false;
@@ -2282,6 +2312,7 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
     if (!heroSlides.length) return;
     heroStop();
     heroCurrent = (index + heroSlides.length) % heroSlides.length;
+    heroSlideCount.textContent = `${heroCurrent + 1} / ${heroSlides.length}`;
     heroSlides.forEach(({ element, media }, i) => {
       const active = i === heroCurrent;
       element.classList.toggle("is-active", active);
@@ -2319,6 +2350,7 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
     if (!heroSlides.length) return;
     document.getElementById("heroSlideEmpty").hidden = true;
     heroControls.hidden = heroSlides.length < 2;
+    heroDots.hidden = heroSlides.length > 12;
     heroDots.replaceChildren();
     heroSlides.forEach((slide, i) => {
       const dot = document.createElement("button");
