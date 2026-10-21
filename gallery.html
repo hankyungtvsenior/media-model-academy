@@ -54,45 +54,132 @@ footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344
   .topbar .navlinks { flex: none; justify-content: flex-start; gap: 4px; font-size: 16px; }
 }
 
-/* Shared header alignment with index (10): fixed ARS, sticky navigation. */
-body { padding-top: 48px; }
-.ars-bar { position:fixed; top:0; left:0; width:100%; height:48px; min-height:48px; z-index:100; box-sizing:border-box; }
-.topbar { position:sticky; top:48px; z-index:50; }
-
+/* Album detail: large automatic slideshow and continuous thumbnail ribbon */
+.album-viewer{max-width:920px;margin:0 auto}
+.album-stage{position:relative;display:flex;align-items:center;justify-content:center;height:clamp(310px,55vw,585px);background:#15253a;border-radius:20px;overflow:hidden}
+.album-stage img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .35s ease}
+.album-stage img.changing{opacity:.3}
+.album-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border:1px solid #ffffff80;border-radius:50%;background:#17283dbb;color:white;font-size:30px;display:grid;place-items:center;line-height:1}
+.album-nav.prev{left:15px}.album-nav.next{right:15px}
+.album-counter{position:absolute;right:17px;bottom:16px;padding:5px 13px;background:#142238bb;color:white;border-radius:20px;font-size:13px;font-weight:800}
+.album-thumbs-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:21px 0 12px;color:#273a52;font-weight:800;font-size:14px}
+.album-thumb-window{overflow:hidden;position:relative;border-radius:12px}
+.album-thumb-track{display:flex;gap:12px;width:max-content;animation:album-thumb-scroll var(--thumb-duration,75s) linear infinite;will-change:transform}
+.album-thumb-window:hover .album-thumb-track,.album-thumb-window:focus-within .album-thumb-track{animation-play-state:paused}
+.album-thumb{flex:0 0 126px;width:126px;height:94px;padding:0;border:3px solid transparent;border-radius:10px;background:#e7e9eb;overflow:hidden;transition:border-color .2s,opacity .2s;opacity:.8}
+.album-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.album-thumb.is-selected{border-color:#b58c43;opacity:1}.album-thumb:hover{opacity:1}
+@keyframes album-thumb-scroll{to{transform:translateX(calc(-50% - 6px))}}
+@media(max-width:620px){.album-stage{height:360px;border-radius:14px}.album-nav{width:36px;height:36px;font-size:25px}.album-nav.prev{left:8px}.album-nav.next{right:8px}.album-thumb{flex-basis:94px;width:94px;height:72px}.album-thumb-track{gap:9px}@keyframes album-thumb-scroll{to{transform:translateX(calc(-50% - 4.5px))}}}
+@media(prefers-reduced-motion:reduce){.album-thumb-track{animation:none}.album-thumb-window{overflow-x:auto}.album-stage img{transition:none}}
 </style>
 <script src="gallery-content.js"></script>
-<script src="content.js?v=20261020-ars"></script></head>
+</head>
 <body>
-<div class="ars-bar"><strong id="arsTitle">ARS 결제 안내</strong><span id="arsMessage"></span></div>
+<div class="ars-bar"><strong>ARS 결제 안내</strong><span>ARS 번호가 확정되면 이곳에 표시됩니다.</span></div>
 <header class="topbar"><div class="wrap nav"><a class="brand" href="index.html"><span class="brand-mark"></span><span><small>K-SENIOR MEDIA MODEL ACADEMY</small><strong>K-시니어 미디어 모델 아카데미</strong></span></a><nav class="navlinks" aria-label="주요 메뉴">
  <div class="nav-group"><a class="nav-parent" href="index.html#academy" aria-haspopup="true" aria-expanded="false">아카데미 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="index.html#benefits">교육생 특전</a><a href="index.html#recruitment">1기 모집</a></div></div>
  <div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html">커리큘럼</a><a href="faculty.html">강사진</a></div></div>
  <a href="gallery.html" class="active" aria-current="page">행사 갤러리</a>
- <a href="news.html">언론보도</a>
  <a href="contact.html">문의</a>
  </nav><button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">☰ 메뉴</button></div></header>
 <div class="hero"><div class="wrap"><div class="eyebrow">EVENT GALLERY</div><h1>행사 갤러리</h1><p>함께한 순간들을 사진으로 만나보세요.</p><div class="crumb"><a href="index.html">HOME</a> / 행사 갤러리</div></div></div>
-<main class="main"><div class="wrap"><div id="listView"><div class="head"><h2>행사별 앨범</h2><p>행사를 선택하면 사진을 볼 수 있습니다.</p></div><div class="albums" id="albums"></div></div><div id="detailView" class="hidden"><button class="back" id="backBtn" type="button">← 전체 앨범으로</button><div class="head"><div><div class="eyebrow" id="albumDate"></div><h2 id="albumTitle"></h2></div><p id="albumDescription"></p></div><div class="photos" id="photos"></div></div></div></main>
+<main class="main"><div class="wrap"><div id="listView"><div class="head"><h2>행사별 앨범</h2><p>행사를 선택하면 사진을 볼 수 있습니다.</p></div><div class="albums" id="albums"></div></div><div id="detailView" class="hidden"><button class="back" id="backBtn" type="button">← 전체 앨범으로</button><div class="head"><div><div class="eyebrow" id="albumDate"></div><h2 id="albumTitle"></h2></div><p id="albumDescription"></p></div><div class="album-viewer" id="albumViewer">
+  <div class="album-stage" id="albumStage" aria-label="앨범 사진 자동 슬라이드">
+    <img id="albumMainImage" alt="">
+    <button class="album-nav prev" id="albumPrev" type="button" aria-label="이전 사진">‹</button>
+    <button class="album-nav next" id="albumNext" type="button" aria-label="다음 사진">›</button>
+    <span class="album-counter" id="albumCounter" aria-live="polite"></span>
+  </div>
+  <div class="album-thumbs-heading"><span>사진 미리보기</span><span>사진을 선택하면 크게 볼 수 있습니다</span></div>
+  <div class="album-thumb-window" id="albumThumbWindow" aria-label="전체 사진 미리보기">
+    <div class="album-thumb-track" id="albumThumbTrack"></div>
+  </div>
+</div></div></div></main>
 <footer><div class="wrap footer-row"><div class="footer-logos"><a href="https://www.wowtv.co.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/hankyungtv.png" alt="한국경제TV"></a><span>×</span><a href="https://www.sfma.kr/" target="_blank" rel="noopener"><img src="assets/sponsors/sfma.png" alt="시니어패션모델협회"></a></div><div class="footer-center"><strong>K-시니어 미디어 모델 아카데미</strong><p>여러분의 새로운 도전과 멋진 시작을 응원합니다.</p></div><div class="footer-contact"><a href="tel:02-6676-0448">02-6676-0448</a> · <a href="tel:010-4214-7787">010-4214-7787</a></div></div></footer>
 <div class="lightbox hidden" id="lightbox" role="dialog" aria-modal="true" aria-label="사진 크게 보기"><button type="button" class="lb-close" id="lbClose" aria-label="닫기">×</button><button type="button" class="lb-prev" id="lbPrev" aria-label="이전 사진">‹</button><img id="lbImage" alt=""><button type="button" class="lb-next" id="lbNext" aria-label="다음 사진">›</button><div class="lb-caption" id="lbCaption"></div></div>
 <script>
 (()=>{
- const albums=typeof GALLERY_ALBUMS!=='undefined'?GALLERY_ALBUMS:[];
- const $=id=>document.getElementById(id);
- const create=(tag,cls,text)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el};
- function imageOrFallback(src,alt,container){const img=create('img');img.alt=alt;img.loading='lazy';img.src=src;img.onerror=()=>{img.remove();container.append(create('div','fallback','사진 준비 중'))};container.append(img)}
- function showList(){history.replaceState(null,'',location.pathname);$('listView').classList.remove('hidden');$('detailView').classList.add('hidden');window.scrollTo({top:0,behavior:'smooth'})}
- function openAlbum(album){history.replaceState(null,'','#'+encodeURIComponent(album.id));$('listView').classList.add('hidden');$('detailView').classList.remove('hidden');$('albumDate').textContent=album.date||'';$('albumTitle').textContent=album.title;$('albumDescription').textContent=album.description||'';const grid=$('photos');grid.replaceChildren();if(!album.photos?.length){grid.append(create('div','empty','사진이 등록되면 이곳에 표시됩니다.'))}else album.photos.forEach((src,i)=>{const b=create('button','photo');b.type='button';b.setAttribute('aria-label',`${i+1}번 사진 확대`);imageOrFallback(src,`${album.title} ${i+1}번 사진`,b);b.onclick=()=>openLightbox(album,i);grid.append(b)});window.scrollTo({top:0,behavior:'smooth'})}
- const list=$('albums');if(!albums.length)list.append(create('div','empty','등록된 행사 앨범이 없습니다.'));
- albums.forEach(album=>{const b=create('button','album');b.type='button';const cover=create('div','cover');if(album.photos?.length)imageOrFallback(album.photos[0],album.title,cover);else cover.append(create('div','fallback','사진 준비 중'));b.append(cover);const info=create('div','album-info');info.append(create('div','album-date',album.date||''),create('h3','',album.title),create('p','',album.description||''),create('div','album-bottom',`${album.photos?.length||0}장 · 앨범 보기 →`));b.append(info);b.onclick=()=>openAlbum(album);list.append(b)});
- $('backBtn').onclick=showList;
- let currentAlbum=null,currentIndex=0,lastFocus=null;
- function openLightbox(album,i){currentAlbum=album;currentIndex=i;lastFocus=document.activeElement;$('lightbox').classList.remove('hidden');document.body.style.overflow='hidden';showPhoto();$('lbClose').focus()}
- function showPhoto(){const src=currentAlbum.photos[currentIndex];$('lbImage').src=src;$('lbImage').alt=`${currentAlbum.title} ${currentIndex+1}번 사진`;$('lbCaption').textContent=`${currentAlbum.title} · ${currentIndex+1} / ${currentAlbum.photos.length}`}
- function step(n){if(!currentAlbum)return;currentIndex=(currentIndex+n+currentAlbum.photos.length)%currentAlbum.photos.length;showPhoto()}
- function close(){if($('lightbox').classList.contains('hidden'))return;$('lightbox').classList.add('hidden');document.body.style.overflow='';currentAlbum=null;lastFocus?.focus()}
- $('lbClose').onclick=close;$('lbPrev').onclick=()=>step(-1);$('lbNext').onclick=()=>step(1);$('lightbox').onclick=e=>{if(e.target===$('lightbox'))close()};document.addEventListener('keydown',e=>{if($('lightbox').classList.contains('hidden'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
- const hash=decodeURIComponent(location.hash.slice(1));const selected=albums.find(a=>a.id===hash);if(selected)openAlbum(selected);
+  const albums = typeof GALLERY_ALBUMS !== 'undefined' ? GALLERY_ALBUMS : [];
+  const $ = id => document.getElementById(id);
+  const create = (tag,cls,text) => {const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e};
+  let activeAlbum=null, activeIndex=0, slideTimer=null, lightboxAlbum=null, lightboxIndex=0, lastFocus=null;
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function imageOrFallback(src,alt,container){
+    const img=create('img');img.alt=alt;img.loading='lazy';img.src=src;
+    img.onerror=()=>{img.remove();container.append(create('div','fallback','사진 준비 중'))};container.append(img);
+  }
+  function stopAuto(){if(slideTimer!==null){clearInterval(slideTimer);slideTimer=null}}
+  function startAuto(){stopAuto();if(activeAlbum?.photos?.length>1&&!reducedMotion&&!document.hidden)slideTimer=setInterval(()=>showSlide(activeIndex+1),4500)}
+  function showSlide(index){
+    if(!activeAlbum?.photos?.length)return;
+    const photos=activeAlbum.photos;
+    activeIndex=(index+photos.length)%photos.length;
+    const main=$('albumMainImage');main.src=photos[activeIndex];main.alt=`${activeAlbum.title} ${activeIndex+1}번 사진`;
+    $('albumCounter').textContent=`${activeIndex+1} / ${photos.length}`;
+    $('albumThumbTrack').querySelectorAll('.album-thumb').forEach(b=>{
+      const selected=Number(b.dataset.index)===activeIndex;
+      b.classList.toggle('is-selected',selected);b.setAttribute('aria-pressed',String(selected));
+    });
+  }
+  function buildThumbs(album){
+    const track=$('albumThumbTrack');track.replaceChildren();
+    const photos=album.photos||[];
+    if(!photos.length)return;
+    // Two identical sets create a seamless, continuous loop.
+    for(let copy=0;copy<2;copy++)photos.forEach((src,i)=>{
+      const b=create('button','album-thumb');b.type='button';b.dataset.index=String(i);
+      b.setAttribute('aria-label',`${i+1}번 사진 보기`);
+      imageOrFallback(src,`${i+1}번 미리보기`,b);
+      b.onclick=()=>{showSlide(i);startAuto()};track.append(b);
+    });
+    track.style.setProperty('--thumb-duration',`${Math.max(40,photos.length*2.5)}s`);
+    $('albumThumbWindow').classList.toggle('hidden',photos.length<2);
+  }
+  function showList(){
+    stopAuto();activeAlbum=null;history.replaceState(null,'',location.pathname);
+    $('listView').classList.remove('hidden');$('detailView').classList.add('hidden');window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function openAlbum(album){
+    stopAuto();activeAlbum=album;activeIndex=0;
+    history.replaceState(null,'','#'+encodeURIComponent(album.id));
+    $('listView').classList.add('hidden');$('detailView').classList.remove('hidden');
+    $('albumDate').textContent=album.date||'';$('albumTitle').textContent=album.title;
+    $('albumDescription').textContent=album.description||'';
+    if(!album.photos?.length){$('albumViewer').innerHTML='<div class="empty">사진이 등록되면 이곳에 표시됩니다.</div>';return}
+    buildThumbs(album);showSlide(0);startAuto();window.scrollTo({top:0,behavior:'smooth'});
+  }
+  const list=$('albums');if(!albums.length)list.append(create('div','empty','등록된 행사 앨범이 없습니다.'));
+  albums.forEach(album=>{
+    const b=create('button','album');b.type='button';const cover=create('div','cover');
+    if(album.photos?.length)imageOrFallback(album.photos[0],album.title,cover);
+    else cover.append(create('div','fallback','사진 준비 중'));
+    b.append(cover);const info=create('div','album-info');
+    info.append(create('div','album-date',album.date||''),create('h3','',album.title),create('p','',album.description||''),create('div','album-bottom',`${album.photos?.length||0}장 · 앨범 보기 →`));
+    b.append(info);b.onclick=()=>openAlbum(album);list.append(b);
+  });
+  $('backBtn').onclick=showList;
+  $('albumPrev').onclick=()=>{showSlide(activeIndex-1);startAuto()};
+  $('albumNext').onclick=()=>{showSlide(activeIndex+1);startAuto()};
+  $('albumStage').addEventListener('mouseenter',stopAuto);
+  $('albumStage').addEventListener('mouseleave',startAuto);
+  $('albumThumbWindow').addEventListener('mouseenter',stopAuto);
+  $('albumThumbWindow').addEventListener('mouseleave',startAuto);
+  $('albumViewer').addEventListener('focusin',stopAuto);
+  $('albumViewer').addEventListener('focusout',()=>{if(!$('albumViewer').contains(document.activeElement))startAuto()});
+  document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
+  // Retain existing lightbox markup and keyboard controls for compatibility.
+  function showLightboxPhoto(){if(!lightboxAlbum)return;$('lbImage').src=lightboxAlbum.photos[lightboxIndex];$('lbImage').alt=`${lightboxAlbum.title} ${lightboxIndex+1}번 사진`;$('lbCaption').textContent=`${lightboxAlbum.title} · ${lightboxIndex+1} / ${lightboxAlbum.photos.length}`}
+  function stepLightbox(n){if(!lightboxAlbum)return;lightboxIndex=(lightboxIndex+n+lightboxAlbum.photos.length)%lightboxAlbum.photos.length;showLightboxPhoto()}
+  function closeLightbox(){if($('lightbox').classList.contains('hidden'))return;$('lightbox').classList.add('hidden');document.body.style.overflow='';lightboxAlbum=null;lastFocus?.focus()}
+  $('lbClose').onclick=closeLightbox;$('lbPrev').onclick=()=>stepLightbox(-1);$('lbNext').onclick=()=>stepLightbox(1);
+  $('lightbox').onclick=e=>{if(e.target===$('lightbox'))closeLightbox()};
+  document.addEventListener('keydown',e=>{
+    if(!$('lightbox').classList.contains('hidden')){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')stepLightbox(-1);if(e.key==='ArrowRight')stepLightbox(1);return}
+    if(activeAlbum&&e.key==='ArrowLeft'){showSlide(activeIndex-1);startAuto()}
+    if(activeAlbum&&e.key==='ArrowRight'){showSlide(activeIndex+1);startAuto()}
+  });
+  const hash=decodeURIComponent(location.hash.slice(1));const selected=albums.find(a=>a.id===hash);if(selected)openAlbum(selected);
 })();
 </script>
 <script>
@@ -105,14 +192,4 @@ body { padding-top: 48px; }
  });
  nav.querySelectorAll('.nav-dropdown a,.navlinks>a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('mobile-open');btn.setAttribute('aria-expanded','false')}));
 })();
-</script><script>
-/* ARS 안내는 모든 페이지에서 content.js의 SITE_CONTENT.ars를 사용합니다. */
-(function(){
-  const ars = (typeof SITE_CONTENT !== 'undefined' && SITE_CONTENT.ars) || {};
-  const title = document.getElementById('arsTitle');
-  const message = document.getElementById('arsMessage');
-  if (title && ars.title) title.textContent = ars.title;
-  if (message) message.textContent = ars.message || '';
-})();
-</script>
-</body></html>
+</script></body></html>
