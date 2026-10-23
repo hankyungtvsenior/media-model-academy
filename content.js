@@ -27,15 +27,15 @@ const SITE_CONTENT = {
     eyebrow: "NEW STAGE, NEW BEGINNING",
     title: "우리는 지금도\n심장이 뛴다.",
     description: "나이는 우리의 가능성을 정하지 않습니다.\n새로운 꿈을 꾸고, 새로운 무대에 서고, 다시 한 번 설레는 순간을 만듭니다.",
-    primaryButton: "1기 모집 안내",
+    primaryButton: "2기 모집 안내",
     secondaryButton: "아카데미 소개"
   },
 
   quickInfo: {
-    audition: "2026년 10월 17일(토)",
-    capacity: "최종 20명",
+    audition: "2기 교육생 모집 중",
+    capacity: "별도 안내",
     course: "15주 전문과정",
-    deadline: "2026년 10월 15일 23:59"
+    deadline: "별도 문의"
   },
 
   academy: {
@@ -121,34 +121,33 @@ instructors: [
 ],
 
   recruitment: {
-    title: "2026 K-시니어 미디어 모델 아카데미 1기 모집",
-    subtitle: "새로운 무대를 향한 첫걸음, 공개 오디션에서 시작합니다.",
+    title: "K-시니어 미디어 모델 아카데미 2기 교육생 모집",
+    subtitle: "2기 교육생을 모집합니다. 참여 및 교육 관련 문의는 사단법인 시니어패션모델협회 또는 한국경제TV로 연락해 주시기 바랍니다.",
     items: [
-      { label: "공개 오디션", value: "2026년 10월 17일(토)" },
-      { label: "오디션 장소", value: "한국경제TV 11층 스튜디오" },
-      { label: "모집 인원", value: "최종 20명(변동 가능)" },
-      { label: "선발 방법", value: "참가신청서 접수 → 오디션 심사 → 최종 선발" },
-      { label: "교육 기간", value: "2026년 10월 24일 ~ 2027년 1월 30일 / 15주\n*위 일정은 변동될 수 있습니다." },
-      { label: "교육 장소", value: "서울 성동문화원 · 한국경제TV" },
-      { label: "오디션 참가비", value: "무료" },
-      { label: "신청 마감", value: "2026년 10월 15일 23:59" }
+      { label: "모집 안내", value: "2기 교육생 모집 중" },
+      { label: "선발 절차", value: "참가신청 → 내부심사 → 최종선발 → 교육시작" },
+      { label: "모집 일정", value: "별도 문의" },
+      { label: "교육 일정", value: "별도 안내" },
+      { label: "참여 문의", value: "사단법인 시니어패션모델협회 · 한국경제TV" },
+      { label: "시니어패션모델협회", value: "010-4214-7787" },
+      { label: "한국경제TV", value: "02-6676-0448" }
     ],
-    originalPrice: "200만원",
-    specialPrice: "150만원",
-    priceNote: "1기 모집에 한하여 적용되는 특별가입니다.",
+    originalPrice: "",
+    specialPrice: "참여 문의",
+    priceNote: "교육 참여 및 모집 관련 사항은 시니어패션모델협회 또는 한국경제TV로 문의해 주시기 바랍니다.",
     notes: [
-      "최종 선발자는 오디션 심사 후 개별 안내드립니다.",
-      "신청자가 많을 경우 조기 마감될 수 있습니다."
+      "2기 교육생은 공개 오디션 없이 내부심사를 통해 선발합니다.",
+      "세부 일정 및 교육 관련 사항은 문의해 주시기 바랍니다."
     ]
   },
 
   application: {
-    enabled: false, // true: 신청 가능, false: 신청 마감
-    title: "참가신청서를 작성해 주세요.",
-    description: "작성해 주신 내용은 오디션 심사 및 참가자 선발을 위해 활용됩니다.",
-    privacyNote: "신청서 제출 전 개인정보 수집·이용 및 사진·영상·초상권 활용 동의 내용을 반드시 확인해 주시기 바랍니다.",
-    buttonText: "참가신청서 작성하기",
-    applicationUrl: "https://form.naver.com/response/jNOhKvMCS5"
+    enabled: false, // 신청 링크 확정 전까지 비활성화
+    title: "2기 교육생 참여 안내",
+    description: "2기 교육생 모집 및 참여 관련 사항은 사단법인 시니어패션모델협회 또는 한국경제TV로 문의해 주시기 바랍니다.",
+    privacyNote: "세부 모집 일정과 신청 방법은 문의를 통해 안내받으실 수 있습니다.",
+    buttonText: "참여 문의하기",
+    applicationUrl: "#contact"
   },
 
   contact: {
