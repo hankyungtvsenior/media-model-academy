@@ -1674,6 +1674,15 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
   .academy-highlights #benefitGrid.benefit-grid > .benefit:last-child { grid-column:1 / -1; }
 }
 
+
+/* Sponsor carousel manual navigation */
+.sponsor-carousel{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:12px;align-items:center}
+.sponsor-carousel .sponsor-grid{min-width:0}
+.sponsor-arrow{width:44px;height:44px;border-radius:50%;border:1px solid #cbd2d9;background:#fff;color:#273a52;font-size:22px;cursor:pointer;display:grid;place-items:center;box-shadow:0 5px 15px rgba(31,36,48,.08);transition:background .2s,color .2s}
+.sponsor-arrow:hover{background:#273a52;color:#fff}
+.sponsor-arrow:focus-visible{outline:3px solid #557a9e;outline-offset:3px}
+@media(max-width:620px){.sponsor-carousel{grid-template-columns:34px minmax(0,1fr) 34px;gap:6px}.sponsor-arrow{width:34px;height:34px;font-size:17px}}
+
 </style>
 </head>
 
@@ -1993,10 +2002,11 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
 
         </div>
 
-        <div
-          class="sponsor-grid"
-          id="sponsorGrid"
-        ></div>
+        <div class="sponsor-carousel">
+          <button class="sponsor-arrow" id="sponsorPrev" type="button" aria-label="협찬사 로고 이전으로">&#10094;</button>
+          <div class="sponsor-grid" id="sponsorGrid"></div>
+          <button class="sponsor-arrow" id="sponsorNext" type="button" aria-label="협찬사 로고 다음으로">&#10095;</button>
+        </div>
 
       </div>
 
@@ -2351,6 +2361,26 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
     );
   }
 
+
+  // Shift the running marquee by one logo without interrupting autoplay.
+  function shiftSponsor(direction){
+    const track = sponsorGrid?.querySelector('.sponsor-track');
+    if (!track) return;
+    const animation = track.getAnimations().find(a => a.effect);
+    if (!animation) return;
+    const firstCard = track.querySelector('.sponsor');
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap) || 0;
+    const step = (firstCard?.getBoundingClientRect().width || 200) + gap;
+    const cycleWidth = track.scrollWidth / 2;
+    const duration = animation.effect.getTiming().duration;
+    if (!cycleWidth || typeof duration !== 'number') return;
+    const current = Number(animation.currentTime) || 0;
+    // A forward step moves the logo strip to the left, revealing the next logo.
+    animation.currentTime = current + direction * duration * step / cycleWidth;
+  }
+  document.getElementById('sponsorPrev')?.addEventListener('click', () => shiftSponsor(-1));
+  document.getElementById('sponsorNext')?.addEventListener('click', () => shiftSponsor(1));
 
   /* CONTACT는 contact.html에서 렌더링 */
 
