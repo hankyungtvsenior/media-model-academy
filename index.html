@@ -1653,6 +1653,27 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
 .recruit-item {
   white-space: pre-line;
 }
+
+/* Combined education features and benefits: one visually unified section */
+.academy-highlights .highlights-heading { margin-bottom:26px; }
+.academy-highlights .highlights-benefits-heading { margin-top:48px; margin-bottom:26px; }
+.academy-highlights .feature-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.academy-highlights .feature-grid > .card { min-width:0; }
+/* Three cards on the first row, two centered on the second row. */
+.academy-highlights #benefitGrid.benefit-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:16px; }
+.academy-highlights #benefitGrid.benefit-grid > .benefit { grid-column:span 2; }
+.academy-highlights #benefitGrid.benefit-grid > .benefit:nth-child(4) { grid-column:2 / span 2; }
+.academy-highlights #benefitGrid.benefit-grid > .benefit:nth-child(5) { grid-column:4 / span 2; }
+@media(max-width:700px) {
+  .academy-highlights .feature-grid { grid-template-columns:1fr; }
+  .academy-highlights .highlights-benefits-heading { margin-top:36px; }
+  .academy-highlights #benefitGrid.benefit-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .academy-highlights #benefitGrid.benefit-grid > .benefit,
+  .academy-highlights #benefitGrid.benefit-grid > .benefit:nth-child(4),
+  .academy-highlights #benefitGrid.benefit-grid > .benefit:nth-child(5) { grid-column:auto; }
+  .academy-highlights #benefitGrid.benefit-grid > .benefit:last-child { grid-column:1 / -1; }
+}
+
 </style>
 </head>
 
@@ -1881,69 +1902,27 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
 
   </section>
 
-  <!-- FEATURES -->
-
-  <section class="soft">
-
+  <!-- FEATURES + BENEFITS: one combined section -->
+  <section class="soft academy-highlights" id="benefits">
     <div class="wrap">
-
-      <div class="section-head">
-
+      <div class="section-head highlights-heading">
         <div>
-          <div class="eyebrow">
-            Why K-Senior Media Model Academy
-          </div>
-
+          <div class="eyebrow">Why K-Senior Media Model Academy</div>
           <h2>교육 특징</h2>
         </div>
-
-        <p>
-          모델 교육을 넘어 미디어 경험과 새로운 사회활동의 기회까지
-        </p>
-
+        <p>모델 교육을 넘어 미디어 경험과 새로운 사회활동의 기회까지</p>
       </div>
+      <div class="feature-grid" id="featureGrid"></div>
 
-      <div
-        class="feature-grid"
-        id="featureGrid"
-      ></div>
-
-    </div>
-
-  </section>
-
-<!-- BENEFITS -->
-
-  <section
-    class="soft"
-    id="benefits"
-  >
-
-    <div class="wrap">
-
-      <div class="section-head">
-
+      <div class="section-head highlights-benefits-heading">
         <div>
           <div class="eyebrow">Benefits</div>
-
-          <h2>
-            K-시니어 미디어 모델 아카데미만의 특별한 기회
-          </h2>
+          <h2>K-시니어 미디어 모델 아카데미만의 특별한 기회</h2>
         </div>
-
-        <p>
-          교육 과정과 함께 다양한 미디어·모델 활동 및 회원 혜택을 제공합니다.
-        </p>
-
+        <p>교육 과정과 함께 다양한 미디어·모델 활동 및 회원 혜택을 제공합니다.</p>
       </div>
-
-      <div
-        class="benefit-grid"
-        id="benefitGrid"
-      ></div>
-
+      <div class="benefit-grid" id="benefitGrid"></div>
     </div>
-
   </section>
 
   <!-- APPLICATION -->
