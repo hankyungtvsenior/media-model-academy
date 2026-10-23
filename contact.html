@@ -1539,6 +1539,10 @@ body { padding-top: 48px; }
 
 </style><style>.contact-page-hero{padding:76px 0 60px;background:linear-gradient(135deg,#faf8f2,#f5f1e8 55%,#eee8dc)}.contact-page-hero h1{font-size:clamp(36px,5vw,58px);margin:8px 0 12px;color:#273a52}.contact-page-hero p{color:#68707a}.contact-page-hero .crumb{font-size:14px;margin-top:24px}.contact-page-hero .crumb a{text-decoration:underline}.contact-sponsors-bg #contact{padding-top:68px}.contact-sponsors-bg .sponsors{padding-bottom:90px}</style><style>
 /* Contact page only: compact, single-heading layout */
+.topbar .brand{flex:0 1 340px;}
+.topbar .brand strong{font-size:16px;line-height:1.35;display:block;}
+.topbar .brand small{font-size:9px;letter-spacing:.04em;}
+@media(max-width:620px){.topbar .brand strong{font-size:13px}.topbar .brand small{font-size:8px}.topbar .brand{gap:8px}.topbar .brand-mark{width:32px;height:32px}}
 .contact-compact-main{background:linear-gradient(145deg,#faf8f3 0%,#f5f1e8 55%,#eee9df 100%)}
 .contact-compact-section{padding:42px 0 76px;min-height:0}
 .contact-breadcrumb{font-size:13px;color:#68707a;margin:0 0 18px}
@@ -1556,7 +1560,7 @@ body { padding-top: 48px; }
 </style></head><body><div class="ars-bar"><strong id="arsTitle">ARS 결제 안내</strong><span id="arsMessage"></span></div><header class="topbar">
   <div class="wrap nav">
 
-    <a class="brand" id="brandLink" href="#home">
+    <a class="brand" id="brandLink" href="index.html">
 
       <img
         class="brand-logo"
@@ -1699,6 +1703,8 @@ body { padding-top: 48px; }
 </footer><script>
 const C=SITE_CONTENT;
 const text=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value||'';};
+text('brandEnglish', 'K-SENIOR MEDIA MODEL ACADEMY');
+text('brandKorean', 'K-시니어 미디어 모델 아카데미');
 text('arsTitle',C.ars?.title);
 text('arsMessage',C.ars?.message);
 text('wowtvPhone',C.contact?.wowtvPhone);
