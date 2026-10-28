@@ -3,7 +3,7 @@ const SITE_CONTENT = {
     english: "K-SENIOR MEDIA MODEL ACADEMY",
     korean: "K-시니어 미디어 모델 아카데미",
     sub: "한국경제TV × SFMA",
-    logo: "",
+    logo: "assets/academy_logo.png",
     logoAlt: "K-시니어 미디어 모델 아카데미"
   },
 
