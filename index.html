@@ -1683,6 +1683,99 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
 .sponsor-arrow:focus-visible{outline:3px solid #557a9e;outline-offset:3px}
 @media(max-width:620px){.sponsor-carousel{grid-template-columns:34px minmax(0,1fr) 34px;gap:6px}.sponsor-arrow{width:34px;height:34px;font-size:17px}}
 
+/* 한국경제TV 회사 정보 푸터 */
+.hktv-company-footer {
+  background: #f7f7f7;
+  border-top: 1px solid #e5e5e5;
+  padding: 32px 24px 24px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.hktv-company-footer * {
+  box-sizing: border-box;
+}
+
+.hktv-company-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hktv-company-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.hktv-company-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hktv-company-name {
+  font-size: 23px;
+  font-weight: 800;
+  color: #777;
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
+
+.hktv-company-info p {
+  margin: 3px 0;
+}
+
+.hktv-company-contact {
+  min-width: 210px;
+  padding: 18px 22px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.hktv-company-contact-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.hktv-company-contact-number {
+  display: block;
+  margin-top: 4px;
+  font-size: 23px;
+  font-weight: 700;
+  color: #142a47;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hktv-company-copyright {
+  border-top: 1px solid #ddd;
+  margin-top: 22px;
+  padding-top: 14px;
+  color: #999;
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  .hktv-company-footer {
+    padding: 28px 18px 22px;
+  }
+
+  .hktv-company-main {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hktv-company-contact {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .hktv-company-name {
+    font-size: 21px;
+  }
+}
+
 </style>
 </head>
 
