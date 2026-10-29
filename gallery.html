@@ -72,6 +72,100 @@ footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344
 @keyframes album-thumb-scroll{to{transform:translateX(calc(-50% - 6px))}}
 @media(max-width:620px){.album-stage{height:360px;border-radius:14px}.album-nav{width:36px;height:36px;font-size:25px}.album-nav.prev{left:8px}.album-nav.next{right:8px}.album-thumb{flex-basis:94px;width:94px;height:72px}.album-thumb-track{gap:9px}@keyframes album-thumb-scroll{to{transform:translateX(calc(-50% - 4.5px))}}}
 @media(prefers-reduced-motion:reduce){.album-thumb-track{animation:none}.album-thumb-window{overflow-x:auto}.album-stage img{transition:none}}
+
+/* 한국경제TV 회사 정보 푸터 */
+.hktv-company-footer {
+  background: #f7f7f7;
+  border-top: 1px solid #e5e5e5;
+  padding: 32px 24px 24px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.hktv-company-footer * {
+  box-sizing: border-box;
+}
+
+.hktv-company-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hktv-company-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.hktv-company-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hktv-company-name {
+  font-size: 23px;
+  font-weight: 800;
+  color: #777;
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
+
+.hktv-company-info p {
+  margin: 3px 0;
+}
+
+.hktv-company-contact {
+  min-width: 210px;
+  padding: 18px 22px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.hktv-company-contact-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.hktv-company-contact-number {
+  display: block;
+  margin-top: 4px;
+  font-size: 23px;
+  font-weight: 700;
+  color: #142a47;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hktv-company-copyright {
+  border-top: 1px solid #ddd;
+  margin-top: 22px;
+  padding-top: 14px;
+  color: #999;
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  .hktv-company-footer {
+    padding: 28px 18px 22px;
+  }
+
+  .hktv-company-main {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hktv-company-contact {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .hktv-company-name {
+    font-size: 21px;
+  }
+}
+
 </style>
 <script src="gallery-content.js"></script>
 </head>
@@ -193,4 +287,60 @@ footer{background:#f8f6f0;border-top:1px solid #ded8ca;padding:32px 0;color:#344
  });
  nav.querySelectorAll('.nav-dropdown a,.navlinks>a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('mobile-open');btn.setAttribute('aria-expanded','false')}));
 })();
-</script></body></html>
+</script>
+
+<!-- 한국경제TV 회사 정보 푸터 시작 -->
+<footer class="hktv-company-footer">
+  <div class="hktv-company-inner">
+
+    <div class="hktv-company-main">
+
+      <div class="hktv-company-info">
+        <h2 class="hktv-company-name">한국경제TV</h2>
+
+        <p>
+          (주)한국경제티브이 | 대표이사 정종태
+        </p>
+
+        <p>
+          서울특별시 중구 청파로 463
+          (중림동, 한국경제신문사) (우:04505)
+        </p>
+
+        <p>
+          사업자등록번호: 107-81-70183
+        </p>
+
+        <p>
+          통신판매업신고번호: 서울중구 2022-0572호
+        </p>
+
+        <p>
+          호스팅제공자: (주)한국경제티브이
+        </p>
+      </div>
+
+      <div class="hktv-company-contact">
+        <div class="hktv-company-contact-label">
+          아카데미 문의
+        </div>
+
+        <a
+          class="hktv-company-contact-number"
+          href="tel:0266760448"
+        >
+          02-6676-0448
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hktv-company-copyright">
+      Copyright © 한국경제TV. All Rights Reserved.
+    </div>
+
+  </div>
+</footer>
+<!-- 한국경제TV 회사 정보 푸터 끝 -->
+
+</body></html>
