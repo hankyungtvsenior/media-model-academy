@@ -1,3 +1,4 @@
+// 언론보도는 날짜를 YYYY.MM.DD로 입력합니다. 화면과 SEO용 <time>에서는 ISO 날짜를 자동 생성합니다.
 // K-시니어 미디어 모델 아카데미 언론보도 목록
 // 새 기사는 아래 배열 맨 위에 { title, url, date, publisher } 형태로 추가하세요.
 // date는 기사 보도일입니다.
@@ -93,3 +94,10 @@ window.NEWS_ARTICLES = [
     date: '2026.08.11', publisher: '한국경제TV'
   }
 ];
+
+// 날짜의 기계 판독용 표현 (기존 데이터/표시 형식은 유지)
+window.NEWS_ARTICLES.forEach(article => {
+  if (typeof article.date === 'string' && /^\d{4}\.\d{2}\.\d{2}$/.test(article.date)) {
+    article.isoDate = article.date.replace(/\./g, '-');
+  }
+});
