@@ -39,7 +39,7 @@
   </script>
 
 
-  <script src="content.js?v=20261030-seo-popup"></script>
+  <script src="content.js?v=20261030-video-popup"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1906,6 +1906,13 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
   .hero-photo-popup .popup-today { gap:5px; }
 }
 
+
+/* Video popup: retain existing card design and fit the whole video inside it. */
+.hero-photo-popup .popup-photo-stage { position:relative; }
+.hero-photo-popup .popup-video { width:100%; height:100%; object-fit:contain; background:#17283d; }
+.hero-photo-popup .popup-video-error { position:absolute; left:14px; right:14px; bottom:12px; margin:0; padding:10px 12px; border-radius:8px; color:#fff; background:rgba(14,25,40,.9); font-size:13px; text-align:center; }
+.hero-photo-popup .popup-video-error[hidden] { display:none; }
+
 </style>
 </head>
 
@@ -1950,22 +1957,22 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
   </div>
 </header>
 
-<!-- 메인 슬라이드와 동일한 행사 사진을 보여주는 팝업 -->
+<!-- 자동재생 영상 팝업 (메인 사진 슬라이드는 독립적으로 유지) -->
 <div class="site-popup hero-photo-popup" id="sitePopup" role="dialog" aria-modal="true"
-     aria-label="K-시니어 미디어 모델 아카데미 행사 사진" aria-hidden="true">
+     aria-label="K-시니어 미디어 모델 아카데미 소개 영상" aria-hidden="true">
   <div class="popup-card">
     <div class="popup-heading">
       <h2>K-시니어 미디어 모델 아카데미</h2>
-      <p>행사 현장의 순간들</p>
+      <p>소개 영상</p>
     </div>
     <button class="popup-close" id="popupClose" type="button" aria-label="팝업 닫기">×</button>
     <div class="popup-photo-stage">
-      <img class="popup-photo" id="popupSlideImage" alt="" decoding="async">
-    </div>
-    <div class="popup-photo-nav">
-      <button class="popup-photo-arrow" id="popupSlidePrev" type="button" aria-label="이전 사진">‹</button>
-      <span class="popup-photo-count" id="popupSlideCount" aria-live="polite"></span>
-      <button class="popup-photo-arrow" id="popupSlideNext" type="button" aria-label="다음 사진">›</button>
+      <video class="popup-photo popup-video" id="popupVideo" autoplay muted loop playsinline controls preload="auto"
+             aria-label="K-시니어 미디어 모델 아카데미 소개 영상">
+        <source id="popupVideoSource" src="assets/popup_video.mp4" type="video/mp4">
+        이 브라우저에서는 영상을 재생할 수 없습니다.
+      </video>
+      <p class="popup-video-error" id="popupVideoError" role="status" hidden>영상을 불러올 수 없습니다. 파일 경로 또는 MP4 인코딩을 확인해 주세요.</p>
     </div>
     <div class="popup-controls">
       <div class="popup-bottom">
@@ -2696,22 +2703,19 @@ if (C.contact?.sfmaPhone) {
     );
 
   /* =====================
-     MAIN PHOTO POPUP
-     기존 메인 히어로 슬라이드의 이미지 목록을 재사용합니다.
+     VIDEO POPUP
+     사진 슬라이드 타이머와 분리하여 영상 종료 전 전환되지 않습니다.
   ===================== */
   const popupConfig = C.popup || {};
   const sitePopup = document.getElementById("sitePopup");
   const popupToday = document.getElementById("popupToday");
-  const popupImage = document.getElementById("popupSlideImage");
-  const popupCount = document.getElementById("popupSlideCount");
-  const popupMedia = heroMedia.filter(item => item.type === "image");
-  const popupStorageKey = "kSeniorMainPhotoPopupHidden_v1";
-  let popupIndex = 0;
-  let popupTimer = null;
+  const popupVideo = document.getElementById("popupVideo");
+  const popupVideoSource = document.getElementById("popupVideoSource");
+  const popupVideoError = document.getElementById("popupVideoError");
+  const popupStorageKey = "kSeniorMainPhotoPopupHidden_v1"; // 기존 '오늘 하루 보지 않기' 설정 유지
   let popupPreviousFocus = null;
   let popupOpen = false;
 
-  // UTC가 아닌 방문자 현지 날짜를 기준으로 '오늘 하루'를 판단합니다.
   const localDateKey = () => {
     const now = new Date();
     return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, "0"),
@@ -2721,33 +2725,21 @@ if (C.contact?.sfmaPhone) {
     try { return localStorage.getItem(popupStorageKey) === localDateKey(); }
     catch (e) { return false; }
   };
-  const stopPopupTimer = () => {
-    window.clearTimeout(popupTimer);
-    popupTimer = null;
-  };
-  const schedulePopup = () => {
-    stopPopupTimer();
-    if (!popupOpen || popupMedia.length <= 1 || document.hidden ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const interval = Math.max(1500, Number(popupConfig.intervalMs) || 4000);
-    popupTimer = window.setTimeout(() => showPopupSlide(popupIndex + 1), interval);
-  };
-  const showPopupSlide = index => {
-    if (!popupMedia.length) return;
-    popupIndex = (index + popupMedia.length) % popupMedia.length;
-    const selected = popupMedia[popupIndex];
-    popupImage.alt = `K-시니어 미디어 모델 아카데미 오디션 및 행사 현장 사진 ${popupIndex + 1}`;
-    popupImage.src = selected.src;
-    popupCount.textContent = `${popupIndex + 1} / ${popupMedia.length}`;
-    schedulePopup();
-  };
+  const videoSrc = String(popupConfig.videoSrc || "assets/popup_video.mp4");
+  popupVideoSource.src = videoSrc;
+  popupVideo.loop = popupConfig.loop !== false;
+  popupVideo.load();
+  popupVideo.addEventListener("error", () => { popupVideoError.hidden = false; });
+  popupVideoSource.addEventListener("error", () => { popupVideoError.hidden = false; });
+  popupVideo.addEventListener("playing", () => { popupVideoError.hidden = true; });
+
   const closeSitePopup = () => {
     if (popupToday.checked) {
       try { localStorage.setItem(popupStorageKey, localDateKey()); }
-      catch (e) { /* 개인정보 보호 모드에서도 정상 동작 */ }
+      catch (e) { /* 시크릿 모드에서도 정상 종료 */ }
     }
     popupOpen = false;
-    stopPopupTimer();
+    popupVideo.pause();
     sitePopup.classList.remove("is-open");
     sitePopup.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -2755,35 +2747,28 @@ if (C.contact?.sfmaPhone) {
         typeof popupPreviousFocus.focus === "function") popupPreviousFocus.focus();
   };
   const openSitePopup = () => {
-    if (!popupMedia.length) return;
     popupPreviousFocus = document.activeElement;
     popupOpen = true;
     sitePopup.classList.add("is-open");
     sitePopup.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    showPopupSlide(0);
+    popupVideo.currentTime = 0;
+    popupVideo.muted = true; // 브라우저 자동재생 정책 대응: 소리는 사용자가 직접 켤 수 있음
+    const playResult = popupVideo.play();
+    if (playResult && typeof playResult.catch === "function") {
+      playResult.catch(() => { /* 자동재생 차단 시 영상 컨트롤에서 수동 재생 가능 */ });
+    }
     document.getElementById("popupClose").focus();
   };
 
-  document.getElementById("popupSlidePrev").addEventListener("click", () => showPopupSlide(popupIndex - 1));
-  document.getElementById("popupSlideNext").addEventListener("click", () => showPopupSlide(popupIndex + 1));
   document.getElementById("popupClose").addEventListener("click", closeSitePopup);
   document.getElementById("popupTextClose").addEventListener("click", closeSitePopup);
   sitePopup.addEventListener("click", e => { if (e.target === sitePopup) closeSitePopup(); });
-  popupImage.addEventListener("error", () => {
-    // 이미지가 없는 경우 무한히 재시도하지 않고 다음 사진으로 이동합니다.
-    if (popupOpen && popupMedia.length > 1) {
-      stopPopupTimer();
-      popupTimer = window.setTimeout(() => showPopupSlide(popupIndex + 1), 1200);
-    }
-  });
   document.addEventListener("keydown", e => {
     if (!popupOpen) return;
     if (e.key === "Escape") closeSitePopup();
-    if (e.key === "ArrowLeft") showPopupSlide(popupIndex - 1);
-    if (e.key === "ArrowRight") showPopupSlide(popupIndex + 1);
     if (e.key === "Tab") {
-      const focusable = [...sitePopup.querySelectorAll("button:not([disabled]), input:not([disabled])")];
+      const focusable = [...sitePopup.querySelectorAll("button:not([disabled]), input:not([disabled]), video[controls]")];
       if (!focusable.length) return;
       const first = focusable[0], last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -2791,10 +2776,13 @@ if (C.contact?.sfmaPhone) {
     }
   });
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) stopPopupTimer();
-    else if (popupOpen) schedulePopup();
+    if (document.hidden && popupOpen) popupVideo.pause();
+    else if (popupOpen && !popupVideo.ended) {
+      const playResult = popupVideo.play();
+      if (playResult && typeof playResult.catch === "function") playResult.catch(() => {});
+    }
   });
-  if (popupConfig.enabled && popupMedia.length && !isPopupHiddenToday()) openSitePopup();
+  if (popupConfig.enabled && !isPopupHiddenToday()) openSitePopup();
 
   /* =====================
      SCROLL MOTION

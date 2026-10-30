@@ -16,7 +16,8 @@ const SITE_CONTENT = {
   // enabled: false로 변경하면 팝업이 꺼지고 본문 슬라이드는 그대로 유지됩니다.
   popup: {
     enabled: true,
-    intervalMs: 4000
+    videoSrc: "assets/popup_video.mp4", // GitHub에 업로드한 MP4 경로
+    loop: true // 영상이 끝나면 처음부터 반복. 한 번만 재생하려면 false
   },
 
   hero: {
