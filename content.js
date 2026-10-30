@@ -12,15 +12,11 @@ const SITE_CONTENT = {
     message: "02-3490-4600"
   },
 
+  // 메인 페이지 접속 시 기존 히어로 사진이 팝업에서도 순서대로 표시됩니다.
+  // enabled: false로 변경하면 팝업이 꺼지고 본문 슬라이드는 그대로 유지됩니다.
   popup: {
-    enabled: false,
-    posterImage: "assets/popup/poster.jpg",
-    posterAlt: "K-시니어 미디어 모델 아카데미 1기 모집안내",
-    buttonUrl: "https://form.naver.com/response/jNOhKvMCS5",
-    kicker: "K-SENIOR MEDIA MODEL ACADEMY 1기 모집",
-    title: "K-시니어 미디어 모델 아카데미 1기 공개 오디션",
-    message: "2026년 10월 17일(토) 공개 오디션\n신청 마감 2026년 10월 15일 23:59",
-    buttonText: "참가신청 바로가기"
+    enabled: true,
+    intervalMs: 4000
   },
 
   hero: {
