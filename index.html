@@ -150,8 +150,9 @@
       object-position:left center;
     }
 
-    .brand.has-logo .brand-logo{display:block}
-    .brand.has-logo .brand-fallback{display:none}
+    .brand.has-logo .brand-logo{display:block; width:46px; height:46px; flex:none}
+    .brand.has-logo .brand-fallback{display:flex; min-width:0}
+    .brand.has-logo .brand-mark{display:none}
 
     .brand-fallback{
       display:flex;
@@ -1930,8 +1931,8 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
         <span class="brand-mark"></span>
 
         <span>
-          <small id="brandEnglish"></small>
-          <strong id="brandKorean"></strong>
+          <small id="brandEnglish">K-SENIOR MEDIA MODEL ACADEMY</small>
+          <strong id="brandKorean">K-시니어 미디어 모델 아카데미</strong>
         </span>
       </span>
 
