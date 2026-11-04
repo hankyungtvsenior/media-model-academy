@@ -189,6 +189,25 @@ body { padding-top: 48px; }
 /* 실제 아카데미 로고: 영문·한글 브랜드명과 함께 표시 */
 .topbar .brand-logo{display:block;flex:none;width:48px;height:48px;object-fit:contain}
 @media(max-width:650px){.topbar .brand-logo{width:36px;height:36px}}
+
+/* 공식 SNS 바로가기: 기존 레이아웃을 변경하지 않는 독립 스타일 */
+.hktv-social-links{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:13px 0 2px}
+.hktv-social-links a{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:7px 12px;border:1px solid #d9dee4;border-radius:8px;background:#fff;color:#344052;font-size:12px;font-weight:700;text-decoration:none;line-height:1.5;transition:border-color .2s,background .2s}
+.hktv-social-links a:hover,.hktv-social-links a:focus-visible{border-color:#536e8b;background:#eff3f7}
+.hktv-social-links svg{width:17px;height:17px;flex:none}
+.home-social-section{padding:48px 0 26px;background:transparent}
+.home-social-section .home-social-heading{margin-bottom:19px}
+.home-social-section .home-social-heading h2{font-size:clamp(26px,3.6vw,36px);color:#273a52;line-height:1.25;margin:5px 0 7px;letter-spacing:-.04em}
+.home-social-section .home-social-heading p{color:#68707a;font-size:16px;margin:0}
+.home-social-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.home-social-card{display:flex;align-items:center;gap:17px;padding:24px 27px;border:1px solid #e3e0d9;border-radius:18px;background:#fff;color:#273a52;text-decoration:none;box-shadow:0 8px 24px rgba(31,36,48,.05);transition:transform .2s,box-shadow .2s}
+.home-social-card:hover,.home-social-card:focus-visible{transform:translateY(-3px);box-shadow:0 14px 30px rgba(31,36,48,.12)}
+.home-social-card .sns-icon{display:grid;place-items:center;flex:none;width:50px;height:50px;border-radius:13px;background:#f2f0ea}
+.home-social-card .sns-icon svg{width:27px;height:27px}
+.home-social-card strong{display:block;font-size:19px;line-height:1.3}
+.home-social-card small{display:block;margin-top:4px;color:#68707a;font-size:13px}
+@media(max-width:650px){.home-social-cards{grid-template-columns:1fr}.home-social-card{padding:18px}.home-social-section{padding:36px 0 22px}.hktv-social-links{gap:7px}}
+
 </style>
 <script src="news-content.js?v=20261030-seo1" defer></script>
 <script src="content.js?v=20261020-ars"></script></head><body>
@@ -400,6 +419,10 @@ window.addEventListener('DOMContentLoaded',()=>{
         <p>
           호스팅제공자: (주)한국경제티브이
         </p>
+<div class="hktv-social-links" aria-label="K-시니어 미디어 모델 아카데미 공식 SNS">
+<a href="https://www.instagram.com/hankyungsenior/" target="_blank" rel="noopener noreferrer" aria-label="공식 인스타그램 새 창에서 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+<a href="https://www.youtube.com/@한경시니어모델" target="_blank" rel="noopener noreferrer" aria-label="공식 유튜브 새 창에서 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg><span>YouTube</span></a>
+</div>
       </div>
 
       <div class="hktv-company-contact">

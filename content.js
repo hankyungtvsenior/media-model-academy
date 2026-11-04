@@ -152,7 +152,8 @@ instructors: [
     sfmaPhone: "010-4214-7787",
     wowtvUrl: "https://www.wowtv.co.kr/",
     sfmaUrl: "https://www.sfma.kr/",
-    instagramUrl: "#",
+    instagramUrl: "https://www.instagram.com/hankyungsenior/",
+    youtubeUrl: "https://www.youtube.com/@한경시니어모델",
     email: "",
     address: ""
   },
