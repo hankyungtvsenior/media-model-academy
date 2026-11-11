@@ -2251,7 +2251,7 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
     id="mobileApplicationLink"
     href="#application"
   >
-    참여 문의하기
+    2기 참가 신청하기
   </a>
 </div>
 
@@ -2499,18 +2499,18 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
   if (privacyNote) privacyNote.style.display = "none";
 
   const applicationOpen = true;
-  const applicationUrl = "contact.html";
+  const applicationUrl = "https://form.naver.com/response/FJpWrrxkt9h";
   const applicationLink = document.getElementById("applicationLink");
   const mobileLink = document.getElementById("mobileApplicationLink");
   [applicationLink, mobileLink].forEach(link => {
     if (!link) return;
     link.href = applicationUrl;
-    link.removeAttribute("target");
-    link.removeAttribute("rel");
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
     link.removeAttribute("aria-disabled");
     link.removeAttribute("tabindex");
     link.classList.remove("application-closed");
-    link.textContent = "참여 문의하기";
+    link.textContent = "2기 참가 신청하기";
   });
 
 
