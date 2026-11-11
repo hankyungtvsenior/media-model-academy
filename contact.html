@@ -1752,12 +1752,7 @@ body { padding-top: 48px; }
 .contact-compact-section .contact-card h3{font-size:19px;margin:0 0 10px}
 .contact-compact-section .contact-card p{font-size:14px;margin:5px 0}
 @media(max-width:700px){.contact-compact-section{padding:30px 0 52px}.contact-compact-section .contact-grid{grid-template-columns:1fr;gap:12px}.contact-compact-section .contact-card{padding:20px}.contact-compact-heading{margin-bottom:22px}}
-
-/* 결제 안내 상단 고정 링크 */
-.ars-bar .payment-bar-link{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:100%;min-height:40px;color:#fff;text-decoration:none;font:inherit;font-weight:800;cursor:pointer}
-.ars-bar .payment-bar-link:hover,.ars-bar .payment-bar-link:focus-visible{text-decoration:underline;text-underline-offset:4px;color:#fff}
-@media(max-width:480px){.ars-bar .payment-bar-detail{font-size:12px}}
-</style></head><body><div class="ars-bar"><a class="payment-bar-link" href="payment.html" aria-label="결제 안내 페이지로 이동">결제 안내 <span class="payment-bar-detail">· ARS 및 계좌이체 안내</span> <span aria-hidden="true">›</span></a></div><header class="topbar">
+</style></head><body><div class="ars-bar"><strong id="arsTitle">ARS 결제 안내</strong><span id="arsMessage"></span></div><header class="topbar">
   <div class="wrap nav">
 
     <a class="brand" id="brandLink" href="index.html">
@@ -1782,7 +1777,7 @@ body { padding-top: 48px; }
 
     <nav class="navlinks" aria-label="주요 메뉴">
  <div class="nav-group"><a class="nav-parent" href="index.html#academy" aria-haspopup="true" aria-expanded="false">아카데미 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="index.html#benefits">교육생 특전</a><a href="index.html#recruitment">2기 모집</a></div></div>
- <div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html">커리큘럼</a><a href="faculty.html">강사진</a><a href="payment.html">결제 안내</a></div></div>
+ <div class="nav-group"><a class="nav-parent" href="curriculum.html" aria-haspopup="true" aria-expanded="false">강의 소개 <span class="nav-chevron">▾</span></a><div class="nav-dropdown"><a href="curriculum.html">커리큘럼</a><a href="faculty.html">강사진</a></div></div>
  <a href="gallery.html">행사 갤러리</a>
  <a href="news.html">언론보도</a>
  <a href="contact.html" class="active" aria-current="page">문의</a>
@@ -1846,13 +1841,13 @@ body { padding-top: 48px; }
 
         </div>
 
-      </div>
 <div class="contact-social" id="official-sns" aria-labelledby="official-sns-title">
 <div class="home-social-heading"><div class="eyebrow">OFFICIAL SNS</div><h2 id="official-sns-title">공식 SNS</h2><p>K-시니어 미디어 모델 아카데미의 행사 소식과 현장 영상을 만나보세요.</p></div>
 <div class="home-social-cards">
 <a class="home-social-card" href="https://www.instagram.com/hankyungsenior/" target="_blank" rel="noopener noreferrer"><span class="sns-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg></span><span><strong>Instagram</strong><small>@hankyungsenior · 행사 사진과 소식</small></span></a>
 <a class="home-social-card" href="https://www.youtube.com/@한경시니어모델" target="_blank" rel="noopener noreferrer"><span class="sns-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg></span><span><strong>YouTube</strong><small>@한경시니어모델 · 오디션 및 현장 영상</small></span></a>
 </div></div>
+      </div>
     </section>
 </main><footer>
   <div class="wrap footer-row">
