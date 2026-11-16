@@ -1,0 +1,11 @@
+아카데미 갤러리 메뉴 변경 (2026-11-16)
+
+1. 이 ZIP의 파일을 GitHub Pages 저장소 최상위 경로에 덮어쓰세요. 기존 assets 폴더는 그대로 둡니다.
+2. 메뉴: 아카데미 갤러리 > 아카데미 갤러리 (gallery.html) / 영상 갤러리 (video.html).
+3. gallery.html의 기존 행사별 앨범 선택, 사진 자동 슬라이드, 썸네일, 모든 사진 데이터는 보존됩니다.
+4. 방송 영상을 등록할 때 video-content.js에서 ACADEMY_VIDEOS 배열에 실제 유튜브 URL을 추가하세요.
+   예시: { title: "1기 오디션", date: "2026.10.17", description: "전체 방송", url: "https://youtu.be/abcdefghijk" },
+   (위의 11자리 ID는 예시입니다. 실제 영상 ID를 입력해야 합니다.)
+5. URL이 추가되면 video.html에 유튜브 iframe 플레이어가 바로 나타나고, 클릭 후 페이지 이동 없이 시청 가능합니다.
+6. 지금은 실제 유튜브 영상 주소를 받지 못했으므로 영상 등록 전 안내문이 나타납니다.
+7. GitHub Desktop에서 Commit 후 Push origin, 배포 후 Ctrl+F5로 새로고침하세요.
