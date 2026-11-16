@@ -4,6 +4,16 @@
 // date는 기사 보도일입니다.
 window.NEWS_ARTICLES = [
   {
+    title: '윤곽 드러낸 K-시니어 미디어 모델 31인의 당당한 포즈',
+    url: 'https://n.news.naver.com/mnews/article/215/0001270541',
+    date: '2026.10.26', publisher: '한국경제TV'
+  },
+  {
+    title: '“떨리는 첫 만남”… K-시니어 미디어 모델 아카데미 오리엔테이션',
+    url: 'https://n.news.naver.com/mnews/article/215/0001270487',
+    date: '2026.10.26', publisher: '한국경제TV'
+  },
+  {
     title: '[K-시니어 미디어모델 아카데미 오디션] 거를 타선이 없는 모델 후보들',
     url: 'https://n.news.naver.com/mnews/article/215/0001269980',
     date: '2026.10.21', publisher: '한국경제TV'
