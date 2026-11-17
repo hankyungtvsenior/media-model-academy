@@ -1942,6 +1942,16 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
  .navlinks .academy-gallery-nav .nav-dropdown{position:static;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:#f6f7f8;padding:3px 8px;margin:0 0 8px;min-width:0}
  .navlinks .academy-gallery-nav.is-open .nav-dropdown{display:flex}
 }
+
+/* 2기 모집 포스터 전용 팝업: 영상 자동재생 없이 이미지 및 신청 링크 표시 */
+.hero-photo-popup .popup-poster-stage { height:auto; min-height:0; flex:1 1 auto; overflow:auto; background:#f7f5f0; }
+.hero-photo-popup .popup-recruit-poster { width:100%; height:auto; max-height:min(65dvh,660px); object-fit:contain; display:block; }
+.hero-photo-popup .popup-recruit-link { display:block; flex:none; margin:12px 18px 0; padding:13px 18px; border-radius:10px; text-align:center; background:#203550; color:#fff; font-weight:800; text-decoration:none; }
+.hero-photo-popup .popup-recruit-link:hover, .hero-photo-popup .popup-recruit-link:focus-visible { background:#315273; color:#fff; }
+@media(max-width:620px) {
+  .hero-photo-popup .popup-recruit-poster { max-height:60dvh; }
+  .hero-photo-popup .popup-recruit-link { margin:9px 12px 0; padding:12px; font-size:14px; }
+}
 </style>
 </head>
 
@@ -1983,23 +1993,21 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
   </div>
 </header>
 
-<!-- 자동재생 영상 팝업 (메인 사진 슬라이드는 독립적으로 유지) -->
+<!-- 2기 모집 포스터 팝업: 기존 영상 팝업 대체 -->
 <div class="site-popup hero-photo-popup" id="sitePopup" role="dialog" aria-modal="true"
-     aria-label="K-시니어 미디어 모델 아카데미 소개 영상" aria-hidden="true">
+     aria-label="K-시니어 미디어 모델 아카데미 2기 모집 안내" aria-hidden="true">
   <div class="popup-card">
     <div class="popup-heading">
       <h2>K-시니어 미디어 모델 아카데미</h2>
-      <p>소개 영상</p>
+      <p>2기 모집 안내</p>
     </div>
     <button class="popup-close" id="popupClose" type="button" aria-label="팝업 닫기">×</button>
-    <div class="popup-photo-stage">
-      <video class="popup-photo popup-video" id="popupVideo" autoplay muted loop playsinline controls preload="auto"
-             aria-label="K-시니어 미디어 모델 아카데미 소개 영상">
-        <source id="popupVideoSource" src="assets/popup_video.mp4" type="video/mp4">
-        이 브라우저에서는 영상을 재생할 수 없습니다.
-      </video>
-      <p class="popup-video-error" id="popupVideoError" role="status" hidden>영상을 불러올 수 없습니다. 파일 경로 또는 MP4 인코딩을 확인해 주세요.</p>
+    <div class="popup-photo-stage popup-poster-stage">
+      <img class="popup-photo popup-recruit-poster" id="popupPoster" src="assets/popup/poster_2.jpg"
+           alt="K-시니어 미디어 모델 아카데미 2기 모집 포스터">
     </div>
+    <a class="popup-recruit-link" id="popupRecruitLink"
+       href="https://form.naver.com/response/FJpWrrxkt9h" target="_blank" rel="noopener noreferrer">2기 참가 신청 바로가기 →</a>
     <div class="popup-controls">
       <div class="popup-bottom">
         <label class="popup-today"><input type="checkbox" id="popupToday"> 오늘 하루 보지 않기</label>
@@ -2730,16 +2738,16 @@ if (C.contact?.sfmaPhone) {
     );
 
   /* =====================
-     VIDEO POPUP
-     사진 슬라이드 타이머와 분리하여 영상 종료 전 전환되지 않습니다.
+     2기 모집 포스터 팝업
+     이미지는 assets/popup/poster_2.jpg, 링크는 현재 홈페이지의 2기 신청 네이버폼
   ===================== */
-  const popupConfig = C.popup || {};
   const sitePopup = document.getElementById("sitePopup");
   const popupToday = document.getElementById("popupToday");
-  const popupVideo = document.getElementById("popupVideo");
-  const popupVideoSource = document.getElementById("popupVideoSource");
-  const popupVideoError = document.getElementById("popupVideoError");
-  const popupStorageKey = "kSeniorMainPhotoPopupHidden_v1"; // 기존 '오늘 하루 보지 않기' 설정 유지
+  const popupPoster = document.getElementById("popupPoster");
+  const popupRecruitLink = document.getElementById("popupRecruitLink");
+  // 바로가기 주소를 변경하려면 아래 URL만 수정하세요.
+  popupRecruitLink.href = "https://form.naver.com/response/FJpWrrxkt9h";
+  const popupStorageKey = "kSeniorRecruitPoster2Hidden_v1";
   let popupPreviousFocus = null;
   let popupOpen = false;
 
@@ -2752,21 +2760,12 @@ if (C.contact?.sfmaPhone) {
     try { return localStorage.getItem(popupStorageKey) === localDateKey(); }
     catch (e) { return false; }
   };
-  const videoSrc = String(popupConfig.videoSrc || "assets/popup_video.mp4");
-  popupVideoSource.src = videoSrc;
-  popupVideo.loop = popupConfig.loop !== false;
-  popupVideo.load();
-  popupVideo.addEventListener("error", () => { popupVideoError.hidden = false; });
-  popupVideoSource.addEventListener("error", () => { popupVideoError.hidden = false; });
-  popupVideo.addEventListener("playing", () => { popupVideoError.hidden = true; });
-
   const closeSitePopup = () => {
     if (popupToday.checked) {
       try { localStorage.setItem(popupStorageKey, localDateKey()); }
-      catch (e) { /* 시크릿 모드에서도 정상 종료 */ }
+      catch (e) { /* 시크릿 모드에서도 종료 가능 */ }
     }
     popupOpen = false;
-    popupVideo.pause();
     sitePopup.classList.remove("is-open");
     sitePopup.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -2779,12 +2778,6 @@ if (C.contact?.sfmaPhone) {
     sitePopup.classList.add("is-open");
     sitePopup.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    popupVideo.currentTime = 0;
-    popupVideo.muted = true; // 브라우저 자동재생 정책 대응: 소리는 사용자가 직접 켤 수 있음
-    const playResult = popupVideo.play();
-    if (playResult && typeof playResult.catch === "function") {
-      playResult.catch(() => { /* 자동재생 차단 시 영상 컨트롤에서 수동 재생 가능 */ });
-    }
     document.getElementById("popupClose").focus();
   };
 
@@ -2795,21 +2788,19 @@ if (C.contact?.sfmaPhone) {
     if (!popupOpen) return;
     if (e.key === "Escape") closeSitePopup();
     if (e.key === "Tab") {
-      const focusable = [...sitePopup.querySelectorAll("button:not([disabled]), input:not([disabled]), video[controls]")];
+      const focusable = [...sitePopup.querySelectorAll('button:not([disabled]), a[href], input:not([disabled])')];
       if (!focusable.length) return;
       const first = focusable[0], last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden && popupOpen) popupVideo.pause();
-    else if (popupOpen && !popupVideo.ended) {
-      const playResult = popupVideo.play();
-      if (playResult && typeof playResult.catch === "function") playResult.catch(() => {});
-    }
-  });
-  if (popupConfig.enabled && !isPopupHiddenToday()) openSitePopup();
+  // 이미지 파일이 없는 경우 깨진 포스터 팝업을 띄우지 않습니다.
+  popupPoster.addEventListener("error", () => { if (popupOpen) closeSitePopup(); });
+  if (!isPopupHiddenToday()) {
+    if (popupPoster.complete) { if (popupPoster.naturalWidth > 0) openSitePopup(); }
+    else popupPoster.addEventListener("load", openSitePopup, { once: true });
+  }
 
   /* =====================
      SCROLL MOTION
