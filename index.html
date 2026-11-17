@@ -1952,6 +1952,31 @@ body { padding-top:48px; } /* Reserve the actual height of the fixed ARS bar. */
   .hero-photo-popup .popup-recruit-poster { max-height:60dvh; }
   .hero-photo-popup .popup-recruit-link { margin:9px 12px 0; padding:12px; font-size:14px; }
 }
+/* 2기 모집 포스터 원본 세로 비율에 맞춘 팝업 크기 조정 */
+.hero-photo-popup .popup-card {
+  width: min(420px, calc((100dvh - 175px) * .70), calc(100vw - 24px));
+  max-height: calc(100dvh - 20px);
+}
+.hero-photo-popup .popup-poster-stage {
+  flex: 0 1 auto;
+  overflow: hidden;
+  background: #fff;
+}
+.hero-photo-popup .popup-recruit-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 175px);
+  object-fit: contain;
+}
+@media (max-width:620px) {
+  .hero-photo-popup .popup-card {
+    width: min(calc((100dvh - 165px) * .70), calc(100vw - 24px));
+  }
+  .hero-photo-popup .popup-recruit-poster {
+    max-height: calc(100dvh - 165px);
+  }
+}
 </style>
 </head>
 
