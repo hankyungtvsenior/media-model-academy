@@ -44,7 +44,7 @@ const GALLERY_ALBUMS = [
     title: "K-시니어 미디어 모델 아카데미 (1기)",
     date: "",
     description: "K-시니어 미디어 모델 아카데미 1기 교육 현장",
-    // 사진 파일은 assets/hero/ 에 올리고(예: academy1_12.jpg), 아래 목록 끝에 한 줄씩 추가하세요.
+    // 사진 파일은 assets/hero/ 에 올리고(예: academy1_24.jpg), 아래 목록 끝에 한 줄씩 추가하세요.
     photos: [
       "assets/hero/academy1_1.jpg",
       "assets/hero/academy1_2.jpg",
@@ -54,9 +54,20 @@ const GALLERY_ALBUMS = [
       "assets/hero/academy1_6.jpg",
       "assets/hero/academy1_7.jpg",
       "assets/hero/academy1_8.jpg",
-      "assets/hero/academy1_9.jpg",
       "assets/hero/academy1_10.jpg",
-      "assets/hero/academy1_11.jpg"
+      "assets/hero/academy1_11.jpg",
+      "assets/hero/academy1_12.jpg",
+      "assets/hero/academy1_13.jpg",
+      "assets/hero/academy1_14.jpg",
+      "assets/hero/academy1_15.jpg",
+      "assets/hero/academy1_16.jpg",
+      "assets/hero/academy1_17.jpg",
+      "assets/hero/academy1_18.jpg",
+      "assets/hero/academy1_19.jpg",
+      "assets/hero/academy1_20.jpg",
+      "assets/hero/academy1_21.jpg",
+      "assets/hero/academy1_22.jpg",
+      "assets/hero/academy1_23.jpg"
     ]
   }
 ];
