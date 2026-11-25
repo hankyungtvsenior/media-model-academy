@@ -4,6 +4,11 @@
 // date는 기사 보도일입니다.
 window.NEWS_ARTICLES = [
   {
+    title: '[K-시니어 미디어모델 아카데미] 보통 사람들이 만드는 특별한 런웨이…2기 수강생 모집',
+    url: 'https://n.news.naver.com/mnews/article/215/0001273933',
+    date: '2026.11.25', publisher: '한국경제TV'
+  },
+  {
     title: '윤곽 드러낸 K-시니어 미디어 모델 31인의 당당한 포즈',
     url: 'https://n.news.naver.com/mnews/article/215/0001270541',
     date: '2026.10.26', publisher: '한국경제TV'
